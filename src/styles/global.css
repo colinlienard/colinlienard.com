@@ -1,1 +1,12 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@theme {
+	--font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+@layer components {
+	.section {
+		width: 100%;
+		max-width: min(calc(100vw - 1rem), 80rem);
+	}
+}

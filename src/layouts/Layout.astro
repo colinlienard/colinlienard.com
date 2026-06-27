@@ -1,27 +1,23 @@
 ---
-import "../styles/global.css";
+import { Font } from 'astro:assets';
+import Nav from '../components/Nav.astro';
+import '../styles/global.css';
 ---
 
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro Basics</title>
-  </head>
-  <body>
-    <slot />
-  </body>
+<html lang={Astro.currentLocale}>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Colin Lienard • Full-Stack Engineer</title>
+		<Font cssVariable="--font-inter" preload />
+	</head>
+	<body
+		class="flex min-h-dvh flex-col items-center bg-taupe-100 font-sans text-taupe-900 antialiased"
+	>
+		<Nav />
+		<slot />
+	</body>
 </html>
-
-<style>
-  html,
-  body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-  }
-</style>

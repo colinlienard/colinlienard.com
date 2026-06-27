@@ -1,0 +1,43 @@
+---
+import { Image } from 'astro:assets';
+import me from '../assets/me.jpeg';
+import { useTranslations } from '../i18n';
+
+const t = useTranslations(Astro.currentLocale);
+---
+
+<section class="section flex flex-col items-center justify-center text-center">
+	<div
+		class="flex items-center gap-2 rounded-full border border-taupe-300/75 px-4 py-2 text-sm font-medium"
+	>
+		<div class="size-2.5 rounded-full bg-emerald-400"></div>
+		{t('hero.status')}
+	</div>
+
+	<h1 class="mt-8 text-3xl font-medium tracking-tight text-balance sm:text-4xl">
+		{t('hero.title')}
+		<span class="block text-taupe-500/80">{t('hero.subtitle')}</span>
+	</h1>
+
+	<div class="mt-10 flex flex-wrap items-center justify-center gap-3">
+		<a
+			href="#contact"
+			class="flex items-center gap-3 rounded-xl bg-taupe-900 px-4 py-3 font-semibold text-white shadow-xl/30 transition-shadow duration-300 hover:shadow-xl/45"
+		>
+			<Image
+				src={me}
+				alt="Colin Lienard"
+				width={64}
+				height={64}
+				class="size-6 rounded-full object-cover"
+			/>
+			{t('hero.cta.primary')}
+		</a>
+		<a
+			href="#work"
+			class="flex rounded-xl bg-taupe-200 px-4 py-3 font-semibold transition-colors hover:bg-taupe-300/75"
+		>
+			{t('hero.cta.secondary')}
+		</a>
+	</div>
+</section>
