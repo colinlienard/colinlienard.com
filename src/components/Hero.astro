@@ -6,23 +6,26 @@ import { useTranslations } from '../i18n';
 const t = useTranslations(Astro.currentLocale);
 ---
 
-<section class="section flex flex-col items-center justify-center text-center">
+<section class="section relative flex flex-col items-center justify-center text-center">
 	<div
-		class="flex items-center gap-2 rounded-full border border-taupe-300/75 px-4 py-2 text-sm font-medium"
+		class="flex items-center gap-2 rounded-full border border-taupe-900/10 px-4 py-2 text-sm font-medium"
 	>
-		<div class="size-2.5 rounded-full bg-emerald-400"></div>
+		<div class="relative size-2 *:absolute *:inset-0 *:rounded-full *:bg-green-400">
+			<div></div>
+			<div class="ping"></div>
+		</div>
 		{t('hero.status')}
 	</div>
 
 	<h1 class="mt-8 text-3xl font-medium tracking-tight text-balance sm:text-4xl">
 		{t('hero.title')}
-		<span class="block text-taupe-500/80">{t('hero.subtitle')}</span>
+		<span class="block text-taupe-900/50">{t('hero.subtitle')}</span>
 	</h1>
 
 	<div class="mt-10 flex flex-wrap items-center justify-center gap-3">
 		<a
 			href="#contact"
-			class="flex items-center gap-3 rounded-xl bg-taupe-900 px-4 py-3 font-semibold text-white shadow-xl/30 transition-shadow duration-300 hover:shadow-xl/45"
+			class="squircle flex items-center gap-3 rounded-full bg-taupe-900 px-4 py-3 font-semibold text-white shadow-xl/30 transition-shadow duration-300 hover:shadow-xl/45"
 		>
 			<Image
 				src={me}
@@ -35,9 +38,23 @@ const t = useTranslations(Astro.currentLocale);
 		</a>
 		<a
 			href="#work"
-			class="flex rounded-xl bg-taupe-200 px-4 py-3 font-semibold transition-colors hover:bg-taupe-300/75"
+			class="squircle flex rounded-full bg-white/40 px-4 py-3 font-semibold transition-colors hover:bg-white/50"
 		>
 			{t('hero.cta.secondary')}
 		</a>
 	</div>
 </section>
+
+<style>
+	.ping {
+		animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+	}
+
+	@keyframes ping {
+		90%,
+		100% {
+			transform: scale(3);
+			opacity: 0;
+		}
+	}
+</style>

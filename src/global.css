@@ -1,5 +1,11 @@
 @import 'tailwindcss';
 
+@layer base {
+	html {
+		scroll-behavior: smooth;
+	}
+}
+
 @theme {
 	--font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
 }
@@ -8,5 +14,9 @@
 	.section {
 		width: 100%;
 		max-width: min(calc(100vw - 1rem), 80rem);
+	}
+
+	.squircle {
+		corner-shape: squircle;
 	}
 }

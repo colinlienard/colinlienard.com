@@ -1,0 +1,209 @@
+<div class="dappled-light" aria-hidden="true">
+	<div class="glow"></div>
+	<div class="glow-bounce"></div>
+	<div class="perspective">
+		<div class="leaves">
+			<svg style="width: 0; height: 0; position: absolute;">
+				<defs>
+					<filter class="wind" x="-20%" y="-20%" width="140%" height="140%">
+						<feTurbulence type="fractalNoise" numOctaves="2" seed="1">
+							<animate
+								attributeName="baseFrequency"
+								dur="16s"
+								keyTimes="0;0.33;0.66;1"
+								values="0.005 0.003;0.01 0.009;0.008 0.004;0.005 0.003"
+								repeatCount="indefinite"></animate>
+						</feTurbulence>
+						<feDisplacementMap in="SourceGraphic">
+							<animate
+								attributeName="scale"
+								dur="20s"
+								keyTimes="0;0.25;0.5;0.75;1"
+								values="45;55;75;55;45"
+								repeatCount="indefinite"></animate>
+						</feDisplacementMap>
+					</filter>
+				</defs>
+			</svg>
+		</div>
+		<div class="blinds">
+			<div class="shutters">
+				{Array.from({ length: 23 }).map(() => <div class="shutter" />)}
+			</div>
+			<div class="vertical">
+				<div class="bar"></div>
+				<div class="bar"></div>
+			</div>
+		</div>
+	</div>
+	<div class="progressive-blur">
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</div>
+</div>
+
+<style>
+	.dappled-light {
+		--shadow: #2c2620;
+		--bounce-light: #f5d7a6;
+		--timing-fn: cubic-bezier(0.455, 0.19, 0, 0.985);
+
+		pointer-events: none;
+		position: fixed;
+		inset: 0;
+		height: 100vh;
+		width: 100vw;
+		z-index: 0;
+		overflow: hidden;
+	}
+
+	.progressive-blur {
+		position: absolute;
+		height: 100%;
+		width: 100%;
+
+		& > div {
+			position: absolute;
+			inset: 0;
+			height: 100%;
+			width: 100%;
+			backdrop-filter: blur(var(--blur-amount));
+			mask-image: linear-gradient(
+				252deg,
+				transparent,
+				transparent var(--stop1),
+				black var(--stop2),
+				black
+			);
+		}
+
+		& > div:nth-child(1) {
+			--blur-amount: 6px;
+			--stop1: 0%;
+			--stop2: 0%;
+		}
+
+		& > div:nth-child(2) {
+			--blur-amount: 12px;
+			--stop1: 40%;
+			--stop2: 80%;
+		}
+
+		& > div:nth-child(3) {
+			--blur-amount: 48px;
+			--stop1: 40%;
+			--stop2: 70%;
+		}
+
+		& > div:nth-child(4) {
+			--blur-amount: 96px;
+			--stop1: 70%;
+			--stop2: 80%;
+		}
+	}
+
+	.glow {
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		background: linear-gradient(309deg, var(--bounce-light), var(--bounce-light) 20%, transparent);
+		opacity: 0.5;
+	}
+
+	.glow-bounce {
+		position: absolute;
+		bottom: 0;
+		height: 100%;
+		width: 100%;
+		background: linear-gradient(355deg, var(--bounce-light) 0%, transparent 30%, transparent 100%);
+		opacity: 0.5;
+	}
+
+	.perspective {
+		position: absolute;
+		top: -30vh;
+		right: 0;
+		width: 80vw;
+		height: 130vh;
+		opacity: 0.07;
+		background-blend-mode: darken;
+		transform-origin: top right;
+		transform-style: preserve-3d;
+		transform: matrix3d(0.75, -0.0625, 0, 0.0008, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+	}
+
+	.leaves {
+		position: absolute;
+		bottom: -20px;
+		right: -700px;
+		width: 1600px;
+		height: 1400px;
+		background-image: url('/leaves.png');
+		background-size: cover;
+		background-repeat: no-repeat;
+		filter: url(#wind);
+		animation: billow 8s ease-in-out infinite;
+	}
+
+	.blinds {
+		position: relative;
+		width: 100%;
+	}
+
+	.blinds .shutter,
+	.blinds .bar {
+		background-color: var(--shadow);
+	}
+
+	.blinds > .shutters {
+		display: flex;
+		flex-direction: column;
+		align-items: end;
+		gap: 60px;
+	}
+
+	.blinds > .vertical {
+		position: absolute;
+		top: 0;
+		height: 100%;
+		width: 100%;
+		display: flex;
+		justify-content: space-around;
+	}
+
+	.vertical > .bar {
+		width: 5px;
+		height: 100%;
+	}
+
+	.shutter {
+		width: 100%;
+		height: 40px;
+	}
+
+	@keyframes billow {
+		0% {
+			transform: perspective(400px) rotateX(0deg) rotateY(0deg) scale(1);
+		}
+		25% {
+			transform: perspective(400px) rotateX(1deg) rotateY(2deg) scale(1.02);
+		}
+		50% {
+			transform: perspective(400px) rotateX(-4deg) rotateY(-2deg) scale(0.97);
+		}
+		75% {
+			transform: perspective(400px) rotateX(1deg) rotateY(-1deg) scale(1.04);
+		}
+		100% {
+			transform: perspective(400px) rotateX(0deg) rotateY(0deg) scale(1);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.leaves {
+			animation: none;
+		}
+	}
+</style>
