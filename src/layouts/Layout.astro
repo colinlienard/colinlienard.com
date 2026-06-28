@@ -1,7 +1,9 @@
 ---
 import { Font } from 'astro:assets';
+import Grain from '../components/Grain.astro';
 import Nav from '../components/Nav.astro';
-import '../styles/global.css';
+import Sunlit from '../components/Sunlit.astro';
+import '../global.css';
 ---
 
 <!doctype html>
@@ -11,12 +13,14 @@ import '../styles/global.css';
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Colin Lienard • Full-Stack Engineer</title>
+		<title>Colin Lienard</title>
 		<Font cssVariable="--font-inter" preload />
 	</head>
 	<body
-		class="flex min-h-dvh flex-col items-center bg-taupe-100 font-sans text-taupe-900 antialiased"
+		class="flex min-h-dvh cursor-default flex-col items-center bg-taupe-100 font-sans text-taupe-900 antialiased selection:bg-taupe-900/10"
 	>
+		<Sunlit />
+		<Grain />
 		<Nav />
 		<slot />
 	</body>
