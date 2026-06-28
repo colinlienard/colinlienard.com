@@ -48,7 +48,7 @@ const t = useTranslations(Astro.currentLocale);
 </section>
 
 <script>
-	const button = document.getElementById('copy-email');
+	const button = document.querySelector('#copy-email');
 
 	if (button instanceof HTMLButtonElement) {
 		const { email } = button.dataset;
@@ -65,7 +65,7 @@ const t = useTranslations(Astro.currentLocale);
 					delete button.dataset.copied;
 				}, 3000);
 			} catch {
-				window.location.href = `mailto:${email}`;
+				location.assign(`mailto:${email}`);
 			}
 		});
 	}

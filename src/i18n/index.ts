@@ -8,19 +8,21 @@ export const languages = {
 export const ui = {
 	fr: {
 		'hero.status': 'Disponible maintenant (remote/Limoges)',
-		'hero.title': 'Ingénieur Full-Stack React & TypeScript',
+		'hero.title': 'Full-Stack Engineer React & TypeScript',
 		'hero.subtitle':
 			'+4 ans d’expérience, spécialisé dans l’expérience développeur et les applications web modernes',
 		'hero.cta.primary': 'Discutons',
-		'hero.cta.secondary': 'Explorer mon travail',
+		'hero.cta.secondary': 'Copier mon e-mail',
+		'hero.cta.copied': 'E-mail copié !',
 	},
 	en: {
 		'hero.status': 'Available now (remote/Limoges)',
 		'hero.title': 'Full-Stack React & TypeScript Engineer',
 		'hero.subtitle':
 			'+4 years of experience, specialized in developer experience and modern web applications',
-		'hero.cta.primary': 'Let’s talk',
-		'hero.cta.secondary': 'Explore my work',
+		'hero.cta.primary': "Let's talk",
+		'hero.cta.secondary': 'Copy my email',
+		'hero.cta.copied': 'Email copied!',
 	},
 } as const;
 

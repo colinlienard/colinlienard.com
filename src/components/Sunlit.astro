@@ -5,7 +5,7 @@
 		<svg style="width: 0; height: 0; position: absolute;">
 			<defs>
 				<filter id="wind1" x="-20%" y="-20%" width="140%" height="140%">
-					<feTurbulence type="fractalNoise" numOctaves="2" seed="1">
+					<feTurbulence type="fractalNoise" numOctaves="1" seed="1">
 						<animate
 							attributeName="baseFrequency"
 							dur="16s"
@@ -23,7 +23,7 @@
 					</feDisplacementMap>
 				</filter>
 				<filter id="wind2" x="-20%" y="-20%" width="140%" height="140%">
-					<feTurbulence type="fractalNoise" numOctaves="2" seed="4">
+					<feTurbulence type="fractalNoise" numOctaves="1" seed="4">
 						<animate
 							attributeName="baseFrequency"
 							dur="13s"
@@ -41,7 +41,7 @@
 					</feDisplacementMap>
 				</filter>
 				<filter id="wind3" x="-20%" y="-20%" width="140%" height="140%">
-					<feTurbulence type="fractalNoise" numOctaves="2" seed="7">
+					<feTurbulence type="fractalNoise" numOctaves="1" seed="7">
 						<animate
 							attributeName="baseFrequency"
 							dur="19s"
@@ -79,9 +79,28 @@
 		<div></div>
 		<div></div>
 		<div></div>
-		<div></div>
 	</div>
 </div>
+
+<script>
+	const root = document.querySelector<HTMLElement>('.dappled-light');
+	const svg = root?.querySelector('svg');
+
+	if (root && svg) {
+		const update = () => {
+			if (document.hidden) {
+				root.classList.add('is-paused');
+				svg.pauseAnimations();
+			} else {
+				root.classList.remove('is-paused');
+				svg.unpauseAnimations();
+			}
+		};
+
+		document.addEventListener('visibilitychange', update);
+		update();
+	}
+</script>
 
 <style>
 	.dappled-light {
@@ -139,12 +158,6 @@
 			--stop1: 40%;
 			--stop2: 70%;
 		}
-
-		& > div:nth-child(4) {
-			--blur-amount: 2px;
-			--stop1: 70%;
-			--stop2: 80%;
-		}
 	}
 
 	.glow {
@@ -180,6 +193,11 @@
 		background-image: url('/leaves.png');
 		background-size: cover;
 		background-repeat: no-repeat;
+		will-change: transform;
+	}
+
+	.dappled-light.is-paused .leaves {
+		animation-play-state: paused;
 	}
 
 	.leaves-1 {
