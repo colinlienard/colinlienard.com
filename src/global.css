@@ -4,6 +4,16 @@
 	html {
 		scroll-behavior: smooth;
 	}
+
+	img {
+		-webkit-user-drag: none;
+	}
+
+	button,
+	input:where([type='button'], [type='reset'], [type='submit']),
+	::file-selector-button {
+		cursor: pointer;
+	}
 }
 
 @theme {
@@ -13,10 +23,15 @@
 @layer components {
 	.section {
 		width: 100%;
-		max-width: min(calc(100vw - 1rem), 80rem);
+		max-width: min(calc(100vw - 1rem), 52rem);
 	}
 
 	.squircle {
-		corner-shape: squircle;
+		border-radius: var(--radius-2xl);
+
+		@supports (corner-shape: squircle) {
+			corner-shape: squircle;
+			border-radius: 99rem;
+		}
 	}
 }

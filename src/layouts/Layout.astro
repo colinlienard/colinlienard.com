@@ -2,7 +2,7 @@
 import { Font } from 'astro:assets';
 import Grain from '../components/Grain.astro';
 import Nav from '../components/Nav.astro';
-import SunlitLight from '../components/SunlitLight.astro';
+import Sunlit from '../components/Sunlit.astro';
 import '../global.css';
 ---
 
@@ -17,9 +17,9 @@ import '../global.css';
 		<Font cssVariable="--font-inter" preload />
 	</head>
 	<body
-		class="flex min-h-dvh flex-col items-center bg-taupe-100 font-sans text-taupe-900 antialiased"
+		class="flex min-h-dvh cursor-default flex-col items-center bg-taupe-100 font-sans text-taupe-900 antialiased selection:bg-taupe-900/10"
 	>
-		<SunlitLight />
+		<Sunlit />
 		<Grain />
 		<Nav />
 		<slot />

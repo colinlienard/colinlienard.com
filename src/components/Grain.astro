@@ -1,15 +1,19 @@
-<div id="grain" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
 
 <style>
-	#grain {
+	.grain {
 		pointer-events: none;
 		position: fixed;
 		inset: 0;
 		z-index: 50;
 		overflow: hidden;
+
+		@media (prefers-reduced-motion: reduce) {
+			display: none;
+		}
 	}
 
-	#grain::before {
+	.grain::before {
 		content: '';
 		position: absolute;
 		top: -10rem;
@@ -17,7 +21,7 @@
 		width: calc(100% + 20rem);
 		height: calc(100% + 20rem);
 		background-image: url(https://upload.wikimedia.org/wikipedia/commons/5/5c/Image_gaussian_noise_example.png);
-		opacity: 0.08;
+		opacity: 0.1;
 		animation: grain-shift 1s steps(2) infinite;
 		will-change: transform;
 	}
@@ -55,12 +59,6 @@
 		}
 		100% {
 			transform: translate3d(-3.5rem, 0, 0);
-		}
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		#grain::before {
-			animation: none;
 		}
 	}
 </style>
