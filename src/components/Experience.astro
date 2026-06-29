@@ -1,19 +1,22 @@
 ---
+import { Image } from 'astro:assets';
 import { useTranslations } from '../i18n';
+import mobsuccess from '../assets/mobsuccess.png';
+import connivence from '../assets/connivence.png';
 
 const t = useTranslations(Astro.currentLocale);
 
 const experiences = [
 	{
 		name: 'Mobsuccess',
-		logo: '/mobsuccess.png',
+		logo: mobsuccess,
 		period: t('experience.mobsuccess.period'),
 		role: t('experience.mobsuccess.role'),
 		description: t('experience.mobsuccess.description'),
 	},
 	{
 		name: 'Connivence',
-		logo: '/connivence.png',
+		logo: connivence,
 		period: t('experience.connivence.period'),
 		role: t('experience.connivence.role'),
 		description: t('experience.connivence.description'),
@@ -21,26 +24,28 @@ const experiences = [
 ];
 ---
 
-<section class="section flex flex-col gap-16 py-24">
+<section class="section flex flex-col gap-16">
 	<h2 class="text-2xl font-medium tracking-tight">{t('experience.title')}</h2>
-	<div class="flex flex-col gap-16">
+	<div class="grid gap-y-16 sm:grid-cols-[14rem_1fr] sm:gap-x-16">
 		{
 			experiences.map((experience) => (
-				<div class="flex flex-col gap-4 sm:flex-row sm:gap-16">
-					<p class="w-56 shrink-0 text-sm text-taupe-900/40">{experience.period}</p>
-					<div class="flex flex-col gap-3">
+				<>
+					<p class="text-sm text-taupe-900/40">{experience.period}</p>
+					<div class="mt-4 flex flex-col gap-3 sm:mt-0">
 						<h3 class="flex items-center gap-2 font-semibold">
 							{experience.role}
-							<img
+							<Image
 								src={experience.logo}
 								alt={experience.name}
+								width={40}
+								height={40}
 								class="size-5 rounded object-contain"
 							/>
 							{experience.name}
 						</h3>
 						<p class="leading-relaxed text-pretty text-taupe-900/60">{experience.description}</p>
 					</div>
-				</div>
+				</>
 			))
 		}
 	</div>
