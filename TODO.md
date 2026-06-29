@@ -1,6 +1,7 @@
-- [ ] Tech stack section
+- [x] Tech stack section
 - [ ] Contact section
 - [ ] Footer (little game)
 - [ ] Responsive
 - [ ] SEO
 - [ ] Improve copy
+- [ ] Animations

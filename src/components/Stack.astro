@@ -1,0 +1,50 @@
+---
+import { useTranslations } from '../i18n';
+import TypeScriptIcon from 'virtual:icons/logos/typescript-icon';
+import ReactIcon from 'virtual:icons/logos/react';
+import NodeJsIcon from 'virtual:icons/logos/nodejs-icon-alt';
+import VitestIcon from 'virtual:icons/logos/vitest';
+import DockerIcon from 'virtual:icons/logos/docker-icon';
+import SvelteIcon from 'virtual:icons/logos/svelte-icon';
+import ClaudeIcon from 'virtual:icons/logos/claude-icon';
+import FigmaIcon from 'virtual:icons/logos/figma';
+import PostgresIcon from 'virtual:icons/logos/postgresql';
+import CloudflareIcon from 'virtual:icons/logos/cloudflare-icon';
+import GitIcon from 'virtual:icons/logos/git-icon';
+import TailwindIcon from 'virtual:icons/logos/tailwindcss-icon';
+import HonoIcon from 'virtual:icons/logos/hono';
+import CiCdIcon from 'virtual:icons/logos/github-actions';
+
+const t = useTranslations(Astro.currentLocale);
+
+const items = [
+	{ name: 'TypeScript', icon: TypeScriptIcon },
+	{ name: 'React', icon: ReactIcon },
+	{ name: 'Svelte', icon: SvelteIcon },
+	{ name: 'Tailwind', icon: TailwindIcon },
+	{ name: 'Node.js', icon: NodeJsIcon },
+	{ name: 'Hono', icon: HonoIcon },
+	{ name: 'Postgres', icon: PostgresIcon },
+	{ name: 'Docker', icon: DockerIcon },
+	{ name: 'Cloudflare', icon: CloudflareIcon },
+	{ name: 'Git', icon: GitIcon },
+	{ name: 'CI/CD', icon: CiCdIcon },
+	{ name: 'Unit testing', icon: VitestIcon },
+	{ name: 'Figma', icon: FigmaIcon },
+	{ name: 'Claude', icon: ClaudeIcon },
+];
+---
+
+<section class="section flex flex-col gap-16">
+	<h2 class="text-2xl font-medium tracking-tight">{t('stack.title')}</h2>
+	<ul class="group grid grid-cols-7 justify-center gap-12">
+		{
+			items.map((item) => (
+				<li class="group/item flex flex-col items-center gap-4 hover:[&_svg]:scale-120">
+					<item.icon class="size-10 transition-all group-hover:grayscale group-hover/item:grayscale-0!" />
+					<span class="text-sm text-taupe-900/60">{item.name}</span>
+				</li>
+			))
+		}
+	</ul>
+</section>
