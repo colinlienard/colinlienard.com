@@ -25,13 +25,8 @@ const projects = [
 ];
 ---
 
-<section class="section flex flex-col gap-8">
+<section class="section flex flex-col gap-16">
 	<h2 class="text-2xl font-medium tracking-tight">{t('projects.title')}</h2>
-	<p class="leading-relaxed text-pretty text-taupe-900/60">
-		Lorem ipsum dolor sit amet consectetur adipisicing elit. A temporibus expedita esse incidunt,
-		illo perspiciatis dolore commodi quibusdam nesciunt fugiat harum deserunt eum, cupiditate omnis
-		doloremque delectus repellendus qui? Tenetur?
-	</p>
 	<ul class="grid grid-cols-2 gap-8">
 		{
 			projects.map((project) => (
@@ -74,7 +69,8 @@ const projects = [
 		}
 	</ul>
 	<p class="text-sm text-taupe-900/60">
-		and more on my <a
+		{t('projects.moreOn')}{' '}
+		<a
 			href="https://github.com/colinlienard"
 			target="_blank"
 			rel="noopener noreferrer"
