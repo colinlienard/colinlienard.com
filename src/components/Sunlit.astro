@@ -87,7 +87,7 @@
 		height: 100%;
 		width: 100%;
 		background: linear-gradient(60deg, var(--bounce-light), var(--bounce-light) 10%, transparent);
-		opacity: 0.3;
+		opacity: 0.4;
 	}
 
 	.glow-bounce {
@@ -102,11 +102,11 @@
 	.perspective {
 		position: absolute;
 		inset: 0;
-		opacity: 0.08;
+		opacity: 0.1;
 		transform-origin: top right;
 		transform-style: preserve-3d;
-		transform: matrix3d(0.8, 0.1, 0, 0.0006, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
-		mask-image: linear-gradient(to left, black 30%, rgba(0, 0, 0, 0.2) 80%);
+		transform: matrix3d(0.8, 0.3, 0, 0.001, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+		mask-image: linear-gradient(to bottom left, black 30%, transparent 80%);
 		filter: url(#blue-tint);
 	}
 
@@ -158,19 +158,19 @@
 		}
 
 		& > div:nth-child(1) {
-			--blur-amount: 6px;
+			--blur-amount: 4px;
 			--stop1: 0%;
 			--stop2: 0%;
 		}
 
 		& > div:nth-child(2) {
-			--blur-amount: 8px;
+			--blur-amount: 6px;
 			--stop1: 40%;
 			--stop2: 80%;
 		}
 
 		& > div:nth-child(3) {
-			--blur-amount: 10px;
+			--blur-amount: 8px;
 			--stop1: 40%;
 			--stop2: 70%;
 		}

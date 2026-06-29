@@ -25,6 +25,7 @@ export const ui = {
 			"Conception d'une application de gestion des stagiaires permettant l'inscription et l'exportation de documents administratifs, ce qui a permis d'augmenter les ventes de formations.",
 		'projects.title': 'Projets',
 		'projects.moreOn': '...et plus sur mon',
+		'stack.title': 'Tech stack',
 	},
 	en: {
 		'hero.status': 'Available now (remote/Limoges)',
@@ -45,6 +46,7 @@ export const ui = {
 			'Design of an intern management application enabling registration and export of administrative documents, which helped increase training sales.',
 		'projects.title': 'Projects',
 		'projects.moreOn': '...and more on my',
+		'stack.title': 'Tech Stack',
 	},
 } as const;
 
