@@ -14,6 +14,10 @@
 	::file-selector-button {
 		cursor: pointer;
 	}
+
+	a[target='_blank'] {
+		cursor: alias;
+	}
 }
 
 @theme {
@@ -31,7 +35,7 @@
 
 		@supports (corner-shape: squircle) {
 			corner-shape: squircle;
-			border-radius: 99rem;
+			border-radius: 4rem;
 		}
 	}
 }

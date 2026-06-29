@@ -23,6 +23,7 @@ export const ui = {
 		'experience.connivence.period': '2021 - 2022, Limoges',
 		'experience.connivence.description':
 			"Conception d'une application de gestion des stagiaires permettant l'inscription et l'exportation de documents administratifs, ce qui a permis d'augmenter les ventes de formations.",
+		'projects.title': 'Projets',
 	},
 	en: {
 		'hero.status': 'Available now (remote/Limoges)',
@@ -41,6 +42,7 @@ export const ui = {
 		'experience.connivence.period': '2021 - 2022, Limoges',
 		'experience.connivence.description':
 			'Design of an intern management application enabling registration and export of administrative documents, which helped increase training sales.',
+		'projects.title': 'Projects',
 	},
 } as const;
 

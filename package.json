@@ -12,16 +12,12 @@
 		"format": "prettier --check .",
 		"format:fix": "prettier --write ."
 	},
-	"dependencies": {
+	"devDependencies": {
 		"@astrojs/check": "^0.9.9",
+		"@eslint/js": "^10.0.1",
+		"@iconify-json/heroicons": "^1.2.3",
 		"@tailwindcss/vite": "^4.3.1",
 		"astro": "^7.0.3",
-		"sharp": "^0.35.2",
-		"tailwindcss": "^4.3.1",
-		"typescript": "^6.0.3"
-	},
-	"devDependencies": {
-		"@eslint/js": "^10.0.1",
 		"eslint": "^10.6.0",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-astro": "^2.1.1",
@@ -30,7 +26,11 @@
 		"prettier": "3.9.0",
 		"prettier-plugin-astro": "0.14.1",
 		"prettier-plugin-tailwindcss": "^0.8.0",
-		"typescript-eslint": "^8.62.0"
+		"sharp": "^0.35.2",
+		"tailwindcss": "^4.3.1",
+		"typescript": "^6.0.3",
+		"typescript-eslint": "^8.62.0",
+		"unplugin-icons": "^23.0.1"
 	},
 	"packageManager": "pnpm@9.15.0"
 }

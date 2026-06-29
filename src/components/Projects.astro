@@ -1,0 +1,84 @@
+---
+import { useTranslations } from '../i18n';
+import IconStar from 'virtual:icons/heroicons/star-solid';
+import svrouter from '../assets/sv-router.svg';
+import gitlight from '../assets/gitlight.png';
+import { Image } from 'astro:assets';
+
+const t = useTranslations(Astro.currentLocale);
+
+const projects = [
+	{
+		title: 'sv-router',
+		image: svrouter,
+		description: 'Type-safe routing for Svelte SPAs',
+		stars: 200,
+		link: 'https://github.com/colinlienard/sv-router',
+	},
+	{
+		title: 'GitLight',
+		image: gitlight,
+		description: 'GitHub & GitLab notifications on your desktop',
+		stars: 900,
+		link: 'https://github.com/colinlienard/gitlight',
+	},
+];
+---
+
+<section class="section flex flex-col gap-8">
+	<h2 class="text-2xl font-medium tracking-tight">{t('projects.title')}</h2>
+	<p class="leading-relaxed text-pretty text-taupe-900/60">
+		Lorem ipsum dolor sit amet consectetur adipisicing elit. A temporibus expedita esse incidunt,
+		illo perspiciatis dolore commodi quibusdam nesciunt fugiat harum deserunt eum, cupiditate omnis
+		doloremque delectus repellendus qui? Tenetur?
+	</p>
+	<ul class="grid grid-cols-2 gap-8">
+		{
+			projects.map((project) => (
+				<li>
+					<a
+						href={project.link}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="squircle flex flex-col items-center gap-8 bg-white/50 p-8 transition-all hover:bg-white/70 active:scale-98"
+					>
+						<div class="flex w-full items-center justify-end gap-1">
+							<IconStar class="text-amber-400" />
+							<span class="text-sm text-taupe-900/60">+{project.stars}</span>
+						</div>
+						<div class="relative">
+							<Image
+								src={project.image}
+								alt={project.title}
+								width={256}
+								height={256}
+								class="relative z-10 size-32"
+								loading="lazy"
+							/>
+							<Image
+								src={project.image}
+								alt={project.title}
+								width={256}
+								height={256}
+								class="absolute top-0 size-32 blur-3xl"
+								loading="lazy"
+							/>
+						</div>
+						<div class="flex w-full flex-col gap-2">
+							<span class="font-semibold">{project.title}</span>
+							<span class="text-sm text-taupe-900/60">{project.description}</span>
+						</div>
+					</a>
+				</li>
+			))
+		}
+	</ul>
+	<p class="text-sm text-taupe-900/60">
+		and more on my <a
+			href="https://github.com/colinlienard"
+			target="_blank"
+			rel="noopener noreferrer"
+			class="underline">GitHub</a
+		>.
+	</p>
+</section>

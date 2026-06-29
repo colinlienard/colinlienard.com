@@ -1,6 +1,6 @@
-import { defineConfig, fontProviders } from 'astro/config';
-
 import tailwindcss from '@tailwindcss/vite';
+import { defineConfig, fontProviders } from 'astro/config';
+import icons from 'unplugin-icons/vite';
 
 export default defineConfig({
 	i18n: {
@@ -17,6 +17,6 @@ export default defineConfig({
 		},
 	],
 	vite: {
-		plugins: [tailwindcss()],
+		plugins: [icons({ compiler: 'astro' }), tailwindcss()],
 	},
 });
