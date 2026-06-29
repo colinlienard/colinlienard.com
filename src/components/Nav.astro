@@ -6,7 +6,7 @@ const lang = getLang(Astro.currentLocale);
 ---
 
 <nav
-	class="fixed top-0 z-10 flex w-full items-center justify-between px-6 py-6 font-medium sm:px-10 sm:py-8"
+	class="pointer-events-none fixed top-0 z-10 flex w-full items-center justify-between px-6 py-6 font-medium *:pointer-events-auto sm:px-10 sm:py-8"
 >
 	<a href={getRelativeLocaleUrl(lang, '/')}>Colin Lienard</a>
 	<select class="outline-none" aria-label="Switch language" data-lang-switcher>

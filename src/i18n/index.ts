@@ -18,11 +18,13 @@ export const ui = {
 		'experience.mobsuccess.role': 'Full-Stack Engineer chez',
 		'experience.mobsuccess.period': '2023 - 2026, Paris (remote)',
 		'experience.mobsuccess.description':
-			"Développement d'applications web permettant à de grandes entreprises françaises de gérer leurs campagnes publicitaires numériques, contribuant à l'acquisition de nouveaux clients majeurs. Pilotage de plusieurs migrations techniques structurantes. Responsable de déploiements en production.",
+			"- Développement d'applications web permettant à de grandes entreprises françaises de gérer leurs campagnes publicitaires numériques, contribuant à l'acquisition de nouveaux clients majeurs.\n- Pilotage de plusieurs migrations techniques structurantes.\n- Responsable de déploiements en production.",
 		'experience.connivence.role': 'Développeur Front-End en alternance chez',
 		'experience.connivence.period': '2021 - 2022, Limoges',
 		'experience.connivence.description':
 			"Conception d'une application de gestion des stagiaires permettant l'inscription et l'exportation de documents administratifs, ce qui a permis d'augmenter les ventes de formations.",
+		'projects.title': 'Projets',
+		'projects.moreOn': '...et plus sur mon',
 	},
 	en: {
 		'hero.status': 'Available now (remote/Limoges)',
@@ -41,6 +43,8 @@ export const ui = {
 		'experience.connivence.period': '2021 - 2022, Limoges',
 		'experience.connivence.description':
 			'Design of an intern management application enabling registration and export of administrative documents, which helped increase training sales.',
+		'projects.title': 'Projects',
+		'projects.moreOn': '...and more on my',
 	},
 } as const;
 
