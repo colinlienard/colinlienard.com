@@ -1,9 +1,8 @@
 ---
 import { Font } from 'astro:assets';
-import Grain from '../components/Grain.astro';
 import Nav from '../components/Nav.astro';
-import Sunlit from '../components/Sunlit.astro';
 import Footer from '../components/Footer.astro';
+import Sunlit from '../components/Sunlit.astro';
 import '../global.css';
 ---
 
@@ -24,7 +23,6 @@ import '../global.css';
 		class="flex min-h-dvh cursor-default flex-col items-center gap-40 bg-white pt-32 font-sans text-taupe-900 antialiased selection:bg-taupe-900/10"
 	>
 		<Sunlit />
-		<Grain />
 		<Nav />
 		<slot />
 		<Footer />
