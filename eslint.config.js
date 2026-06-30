@@ -28,6 +28,7 @@ export default [
 					ignore: [/^(.*)\.astro$/],
 				},
 			],
+			'unicorn/name-replacements': 'off',
 		},
 	},
 	{

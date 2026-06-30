@@ -1,4 +1,5 @@
 - [x] Tech stack section
+- [ ] Prettier sort imports
 - [ ] Contact section
 - [ ] Footer (little game)
 - [ ] Responsive

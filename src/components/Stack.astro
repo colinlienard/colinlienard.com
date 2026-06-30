@@ -35,12 +35,12 @@ const items = [
 ];
 ---
 
-<section class="section flex flex-col gap-16">
+<section class="section flex flex-col gap-12">
 	<h2 class="text-2xl font-medium tracking-tight">{t('stack.title')}</h2>
-	<ul class="group grid grid-cols-7 justify-center gap-12">
+	<ul class="group grid grid-cols-7 justify-center border-[0.5px] border-taupe-900/10">
 		{
 			items.map((item) => (
-				<li class="group/item flex flex-col items-center gap-4 hover:[&_svg]:scale-120">
+				<li class="group/item flex aspect-square flex-col items-center justify-center gap-3 border-[0.5px] border-taupe-900/10 hover:[&_svg]:scale-110">
 					<item.icon class="size-10 transition-all group-hover:grayscale group-hover/item:grayscale-0!" />
 					<span class="text-sm text-taupe-900/60">{item.name}</span>
 				</li>
