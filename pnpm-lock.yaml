@@ -35,6 +35,9 @@ importers:
       eslint-plugin-astro:
         specifier: ^2.1.1
         version: 2.1.1(@typescript-eslint/parser@8.62.0(eslint@10.6.0(jiti@2.7.0))(typescript@6.0.3))(eslint@10.6.0(jiti@2.7.0))
+      eslint-plugin-simple-import-sort:
+        specifier: ^13.0.0
+        version: 13.0.0(eslint@10.6.0(jiti@2.7.0))
       eslint-plugin-unicorn:
         specifier: ^69.0.0
         version: 69.0.0(eslint@10.6.0(jiti@2.7.0))
@@ -1466,6 +1469,11 @@ packages:
         optional: true
       eslint-plugin-jsx-a11y:
         optional: true
+
+  eslint-plugin-simple-import-sort@13.0.0:
+    resolution: {integrity: sha512-McAc+/Nlvcg4byY/CABGH8kqnefWBj8s3JA2okEtz8ixbECQgU46p0HkTUKa4YS7wvgGceimlc34p1nXqbWqtA==}
+    peerDependencies:
+      eslint: '>=5.0.0'
 
   eslint-plugin-unicorn@69.0.0:
     resolution: {integrity: sha512-ZN/KtHr9hQ6AOByANSNJpsDbo/+Nn+EyQ6blK4w+dcmS/xpYkqLLfrUc+NA/wOK6vF5uEUvhn8my5B/3sruB9g==}
@@ -3983,6 +3991,10 @@ snapshots:
       '@typescript-eslint/parser': 8.62.0(eslint@10.6.0(jiti@2.7.0))(typescript@6.0.3)
     transitivePeerDependencies:
       - supports-color
+
+  eslint-plugin-simple-import-sort@13.0.0(eslint@10.6.0(jiti@2.7.0)):
+    dependencies:
+      eslint: 10.6.0(jiti@2.7.0)
 
   eslint-plugin-unicorn@69.0.0(eslint@10.6.0(jiti@2.7.0)):
     dependencies:

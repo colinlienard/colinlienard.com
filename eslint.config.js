@@ -1,7 +1,8 @@
 import js from '@eslint/js';
-import astro from 'eslint-plugin-astro';
-import eslintPluginUnicorn from 'eslint-plugin-unicorn';
 import prettier from 'eslint-config-prettier';
+import astro from 'eslint-plugin-astro';
+import simpleImportSort from 'eslint-plugin-simple-import-sort';
+import eslintPluginUnicorn from 'eslint-plugin-unicorn';
 import globals from 'globals';
 import ts from 'typescript-eslint';
 
@@ -29,6 +30,18 @@ export default [
 				},
 			],
 			'unicorn/name-replacements': 'off',
+		},
+	},
+	{
+		plugins: {
+			'simple-import-sort': simpleImportSort,
+		},
+		rules: {
+			'simple-import-sort/imports': [
+				'warn',
+				{ groups: [[String.raw`^\u0000`, '^node:', String.raw`^@?\w`, '^', String.raw`^\.`]] },
+			],
+			'simple-import-sort/exports': 'warn',
 		},
 	},
 	{
