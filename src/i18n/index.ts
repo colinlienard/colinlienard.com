@@ -24,8 +24,10 @@ export const ui = {
 		'experience.connivence.description':
 			"Conception d'une application de gestion des stagiaires permettant l'inscription et l'exportation de documents administratifs, ce qui a permis d'augmenter les ventes de formations.",
 		'projects.title': 'Open source',
-		'projects.moreOn': '...et plus sur mon',
+		'projects.moreOn': '...et plus sur',
 		'stack.title': 'Tech stack',
+		'contact.title': 'Contact',
+		'footer.allRightsReserved': 'Tous droits réservés',
 	},
 	en: {
 		'hero.status': 'Available now (remote/Limoges)',
@@ -45,8 +47,10 @@ export const ui = {
 		'experience.connivence.description':
 			'Design of an intern management application enabling registration and export of administrative documents, which helped increase training sales.',
 		'projects.title': 'Open Source',
-		'projects.moreOn': '...and more on my',
+		'projects.moreOn': '...and more on',
 		'stack.title': 'Tech Stack',
+		'contact.title': "Let's connect",
+		'footer.allRightsReserved': 'All rights reserved',
 	},
 } as const;
 

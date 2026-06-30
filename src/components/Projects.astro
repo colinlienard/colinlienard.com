@@ -3,6 +3,9 @@ import { Image } from 'astro:assets';
 import IconStar from 'virtual:icons/heroicons/star-solid';
 import gitlight from '../assets/gitlight.png';
 import svrouter from '../assets/sv-router.svg';
+import GithubIcon from 'virtual:icons/logos/github-icon';
+import githundred from '../assets/githundred.png';
+
 import { useTranslations } from '../i18n';
 
 const t = useTranslations(Astro.currentLocale);
@@ -22,15 +25,22 @@ const projects = [
 		stars: 900,
 		link: 'https://github.com/colinlienard/gitlight',
 	},
+	{
+		title: "GitHundred",
+		image: githundred,
+		description: "Top 100 most starred GitHub repositories",
+		stars: 50,
+		link: 'https://githundred.vercel.app',
+	}
 ];
 ---
 
 <section class="section flex flex-col gap-12">
 	<h2 class="text-2xl font-medium tracking-tight">{t('projects.title')}</h2>
-	<ul class="grid grid-cols-2 border border-taupe-900/10">
+	<ul class="grid grid-cols-2 border-[0.5px] border-taupe-900/10">
 		{
 			projects.map((project) => (
-				<li class="border-l border-taupe-900/10 first:border-none">
+				<li class="border-[0.5px] border-taupe-900/10">
 					<a
 						href={project.link}
 						target="_blank"
@@ -39,7 +49,7 @@ const projects = [
 					>
 						<div class="flex w-full items-center justify-end gap-1">
 							<IconStar class="text-amber-400" />
-							<span class="text-sm text-taupe-900/60">+{project.stars}</span>
+							<span class="font-mono text-sm text-taupe-900/60">+{project.stars}</span>
 						</div>
 						<div class="relative">
 							<Image
@@ -50,14 +60,14 @@ const projects = [
 								class="relative z-10 size-32"
 								loading="lazy"
 							/>
-							<Image
+							<!-- <Image
 								src={project.image}
 								alt={project.title}
 								width={256}
 								height={256}
 								class="absolute top-0 size-32 blur-3xl"
 								loading="lazy"
-							/>
+							/> -->
 						</div>
 						<div class="flex w-full flex-col gap-2">
 							<span class="font-semibold">{project.title}</span>
@@ -67,14 +77,18 @@ const projects = [
 				</li>
 			))
 		}
+		<li class="border-[0.5px] border-taupe-900/10 flex items-center justify-center">
+  		<p class="text-taupe-900/60">
+  			{t('projects.moreOn')}{' '}
+  			<a
+  				href="https://github.com/colinlienard"
+  				target="_blank"
+  				rel="noopener noreferrer"
+  				class="underline">
+        <GithubIcon class="inline size-4 mr-1 [&_path]:fill-taupe-900/60 -translate-y-px" />
+        GitHub</a
+  			>.
+  		</p>
+		</li>
 	</ul>
-	<p class="text-sm text-taupe-900/60">
-		{t('projects.moreOn')}{' '}
-		<a
-			href="https://github.com/colinlienard"
-			target="_blank"
-			rel="noopener noreferrer"
-			class="underline">GitHub</a
-		>.
-	</p>
 </section>
