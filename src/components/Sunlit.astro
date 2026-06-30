@@ -55,11 +55,11 @@
 	}
 
 	function glv(a: number[]) {
-		return `vec${a.length}(${a.map(glf).join(', ')})`;
+		return `vec${a.length}(${a.map((n) => glf(n)).join(', ')})`;
 	}
 
 	function hex(h: string): number[] {
-		const n = parseInt(h.replace('#', ''), 16);
+		const n = Number.parseInt(h.replace('#', ''), 16);
 		return [(n >> 16) & 255, (n >> 8) & 255, n & 255].map((c) => Math.round((c / 255) * 1e4) / 1e4);
 	}
 
@@ -323,14 +323,15 @@
 			canvas.width = W;
 			canvas.height = H;
 			gl.bindTexture(gl.TEXTURE_2D, fieldTex);
+			// eslint-disable-next-line unicorn/no-null -- WebGL: null allocates empty storage
 			gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, fW, fH, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
 		}
 		resize();
-		window.addEventListener('resize', resize);
+		new ResizeObserver(resize).observe(document.documentElement);
 
 		const mouse = { x: 0.5, y: 0.5 };
 		const target = { x: 0.5, y: 0.5 };
-		window.addEventListener(
+		addEventListener(
 			'pointermove',
 			(e) => {
 				target.x = e.clientX / window.innerWidth;
@@ -340,68 +341,70 @@
 		);
 
 		let raf = 0;
-		let dirty = false;
-		const start = performance.now();
+		let isDirty = false;
+	const start = performance.now();
 
-		function render(now: number) {
-			if (!gl) return;
-			if (dirty) {
-				dirty = false;
-				rebuild();
-				resize();
-			}
-			const t = (now - start) / 1000;
-			mouse.x += (target.x - mouse.x) * CONFIG.render.mouseEase;
-			mouse.y += (target.y - mouse.y) * CONFIG.render.mouseEase;
-
-			// Pass 1: field → low-res framebuffer.
-			gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
-			gl.viewport(0, 0, fW, fH);
-			gl.useProgram(fieldProg);
-			gl.uniform2f(loc.fRes, fW, fH);
-			gl.uniform1f(loc.fTime, t);
-			gl.uniform2f(loc.fMouse, mouse.x, mouse.y);
-			gl.drawArrays(gl.TRIANGLES, 0, 3);
-
-			// Pass 2: bokeh + composite → screen.
-			gl.bindFramebuffer(gl.FRAMEBUFFER, null);
-			gl.viewport(0, 0, W, H);
-			gl.useProgram(compProg);
-			gl.activeTexture(gl.TEXTURE0);
-			gl.bindTexture(gl.TEXTURE_2D, fieldTex);
-			gl.uniform1i(loc.cField, 0);
-			gl.uniform2f(loc.cRes, W, H);
-			gl.uniform1f(loc.cTime, t);
-			gl.uniform2f(loc.cMouse, mouse.x, mouse.y);
-			gl.drawArrays(gl.TRIANGLES, 0, 3);
-
-			raf = requestAnimationFrame(render);
+	function render(now: number) {
+		if (!gl) return;
+		if (isDirty) {
+			isDirty = false;
+			rebuild();
+			resize();
 		}
+		const t = (now - start) / 1000;
+		mouse.x += (target.x - mouse.x) * CONFIG.render.mouseEase;
+		mouse.y += (target.y - mouse.y) * CONFIG.render.mouseEase;
 
-		function play() {
-			if (!raf) raf = requestAnimationFrame(render);
-		}
-		function pause() {
-			cancelAnimationFrame(raf);
-			raf = 0;
-		}
-		document.addEventListener('visibilitychange', () => (document.hidden ? pause() : play()));
-		play();
+		// Pass 1: field → low-res framebuffer.
+		gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
+		gl.viewport(0, 0, fW, fH);
+		gl.useProgram(fieldProg);
+		gl.uniform2f(loc.fRes, fW, fH);
+		gl.uniform1f(loc.fTime, t);
+		gl.uniform2f(loc.fMouse, mouse.x, mouse.y);
+		gl.drawArrays(gl.TRIANGLES, 0, 3);
 
-		// Handle for the dev panel: flag a recompile on the next frame.
-		return {
-			apply() {
-				dirty = true;
+		// Pass 2: bokeh + composite → screen.
+		// eslint-disable-next-line unicorn/no-null -- WebGL: null binds the default framebuffer
+		gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+		gl.viewport(0, 0, W, H);
+		gl.useProgram(compProg);
+		gl.activeTexture(gl.TEXTURE0);
+		gl.bindTexture(gl.TEXTURE_2D, fieldTex);
+		gl.uniform1i(loc.cField, 0);
+		gl.uniform2f(loc.cRes, W, H);
+		gl.uniform1f(loc.cTime, t);
+		gl.uniform2f(loc.cMouse, mouse.x, mouse.y);
+		gl.drawArrays(gl.TRIANGLES, 0, 3);
+
+		raf = requestAnimationFrame(render);
+	}
+
+	function play() {
+		if (!raf) raf = requestAnimationFrame(render);
+	}
+	function pause() {
+		cancelAnimationFrame(raf);
+		raf = 0;
+	}
+	document.addEventListener('visibilitychange', () => (document.hidden ? pause() : play()));
+	play();
+
+	// Handle for the dev panel: flag a recompile on the next frame.
+	return {
+		apply() {
+			isDirty = true;
 				play();
 			},
 		};
 	}
 
 	const canvas = document.querySelector<HTMLCanvasElement>('canvas.sunlit');
-	if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+	if (canvas && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
 		const handle = init(canvas);
 		if (import.meta.env.DEV && handle) {
-			import('./sunlit-dev-panel').then((m) => m.createDevPanel(CONFIG, () => handle.apply()));
+			const m = await import('./sunlit-dev-panel');
+			m.createDevPanel(CONFIG, () => handle.apply());
 		}
 	}
 </script>
