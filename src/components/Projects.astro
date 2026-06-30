@@ -25,17 +25,17 @@ const projects = [
 ];
 ---
 
-<section class="section flex flex-col gap-16">
+<section class="section flex flex-col gap-12">
 	<h2 class="text-2xl font-medium tracking-tight">{t('projects.title')}</h2>
-	<ul class="grid grid-cols-2 gap-8">
+	<ul class="grid grid-cols-2 border border-taupe-900/10">
 		{
 			projects.map((project) => (
-				<li>
+				<li class="border-l border-taupe-900/10 first:border-none">
 					<a
 						href={project.link}
 						target="_blank"
 						rel="noopener noreferrer"
-						class="squircle flex flex-col items-center gap-8 border border-taupe-900/10 p-8 transition-all active:scale-98"
+						class="flex flex-col items-center gap-8 p-8"
 					>
 						<div class="flex w-full items-center justify-end gap-1">
 							<IconStar class="text-amber-400" />

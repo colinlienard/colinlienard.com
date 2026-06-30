@@ -3,49 +3,49 @@
 <script>
 	const CONFIG = {
 		render: {
-			dprCap: 1.5, // max device-pixel-ratio (lower = faster, blurrier)
-			fieldScale: 0.6, // field pass resolution vs screen (lower = faster)
-			mouseEase: 0.04, // mouse follow smoothing (0..1, lower = laggier)
+			dprCap: 1.25,
+			fieldScale: 0.203,
+			mouseEase: 0.035,
 		},
 		colors: {
-			background: hex('#FBF1E7'), // backdrop
-			shadow: hex('#262612'), // shadow tint
+			background: hex('#f9ebdd'),
+			shadow: hex('#3b3a07'),
 		},
 		pool: {
-			center: [0.6028, 0.6171], // light pool center, UV space (y up)
-			radius: 0.177, // light pool size
-			skew: [0.54, 0.46], // pool stretch (x, y)
-			mouseShift: 0.15, // how far the pool follows the mouse
+			center: [0.5, 0.7],
+			radius: 0.173,
+			skew: [0.268, 0.522],
+			mouseShift: 0.0785,
 		},
 		cells: {
-			scale: 26.7, // voronoi density (higher = smaller leaf cells)
-			rotation: 0.763, // cell field rotation (radians)
-			skew: [1.0, 0.16], // cell stretch (x, y)
-			displace: 0.2, // how hard cells shatter the field (UV units)
-			speed: 0.2, // cell shimmer/morph speed
-			timeOffset: 5.0, // phase offset so it doesn't start uniform
+			scale: 11.2,
+			rotation: 0.8,
+			skew: [1.17, 0.325],
+			displace: 0.23,
+			speed: 0.2,
+			timeOffset: 5,
 		},
 		sine: {
-			freq: 7.0, // horizontal wave frequency
-			amp: 0.236, // wave amplitude
-			speed: 0.26, // wave drift speed
+			freq: 3.65,
+			amp: 0,
+			speed: 0.133,
 		},
 		bokeh: {
-			samples: 40, // blur quality (higher = smoother, slower)
-			radius: 0.436, // blur/bloom size
-			bloom: 150.0, // how much bright areas bloom
-			bloomPower: 9.0, // bloom contrast (higher = only brightest bloom)
+			samples: 40,
+			radius: 0.4,
+			bloom: 150,
+			bloomPower: 8,
 		},
 		composite: {
-			multiply: 0.48, // strength of the shadow multiply over the backdrop
-			parallax: 0.02, // subtle whole-field shift with the mouse
+			multiply: 0.5,
+			parallax: 0.0338,
 		},
 		aberration: {
-			amount: 0.008, // chromatic aberration: radial R/B split, grows toward edges
+			amount: 0.0103,
 		},
 		grain: {
-			amount: 0.2, // film grain strength (screen blend mix; 0 = off)
-			speed: 0.1, // grain regenerations per second (1 = original; raise to shimmer)
+			amount: 0.2,
+			speed: 0.1,
 		},
 	};
 
@@ -73,7 +73,7 @@
 		}
 	`;
 
-	const FIELD = `#version 300 es
+	const buildField = () => `#version 300 es
 		precision highp float;
 		in vec2 vUv;
 		out vec4 frag;
@@ -156,7 +156,7 @@
 		}
 	`;
 
-	const COMPOSITE = `#version 300 es
+	const buildComposite = () => `#version 300 es
 		precision highp float;
 		in vec2 vUv;
 		out vec4 frag;
@@ -264,9 +264,6 @@
 		const gl = canvas.getContext('webgl2', { antialias: false, alpha: false });
 		if (!gl) return;
 
-		const fieldProg = program(gl, VERT, FIELD);
-		const compProg = program(gl, VERT, COMPOSITE);
-
 		const vao = gl.createVertexArray();
 		gl.bindVertexArray(vao);
 		const vbo = gl.createBuffer();
@@ -286,15 +283,30 @@
 		gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, fieldTex, 0);
 
 		const u = (p: WebGLProgram, name: string) => gl.getUniformLocation(p, name);
-		const loc = {
-			fRes: u(fieldProg, 'uRes'),
-			fTime: u(fieldProg, 'uTime'),
-			fMouse: u(fieldProg, 'uMouse'),
-			cField: u(compProg, 'uField'),
-			cRes: u(compProg, 'uRes'),
-			cTime: u(compProg, 'uTime'),
-			cMouse: u(compProg, 'uMouse'),
-		};
+
+		let fieldProg: WebGLProgram;
+		let compProg: WebGLProgram;
+		let loc: Record<string, WebGLUniformLocation | null>;
+
+		function rebuild() {
+			if (!gl) return;
+			const fp = program(gl, VERT, buildField());
+			const cp = program(gl, VERT, buildComposite());
+			if (fieldProg) gl.deleteProgram(fieldProg);
+			if (compProg) gl.deleteProgram(compProg);
+			fieldProg = fp;
+			compProg = cp;
+			loc = {
+				fRes: u(fieldProg, 'uRes'),
+				fTime: u(fieldProg, 'uTime'),
+				fMouse: u(fieldProg, 'uMouse'),
+				cField: u(compProg, 'uField'),
+				cRes: u(compProg, 'uRes'),
+				cTime: u(compProg, 'uTime'),
+				cMouse: u(compProg, 'uMouse'),
+			};
+		}
+		rebuild();
 
 		let W = 0;
 		let H = 0;
@@ -328,10 +340,16 @@
 		);
 
 		let raf = 0;
+		let dirty = false;
 		const start = performance.now();
 
 		function render(now: number) {
 			if (!gl) return;
+			if (dirty) {
+				dirty = false;
+				rebuild();
+				resize();
+			}
 			const t = (now - start) / 1000;
 			mouse.x += (target.x - mouse.x) * CONFIG.render.mouseEase;
 			mouse.y += (target.y - mouse.y) * CONFIG.render.mouseEase;
@@ -369,11 +387,22 @@
 		}
 		document.addEventListener('visibilitychange', () => (document.hidden ? pause() : play()));
 		play();
+
+		// Handle for the dev panel: flag a recompile on the next frame.
+		return {
+			apply() {
+				dirty = true;
+				play();
+			},
+		};
 	}
 
 	const canvas = document.querySelector<HTMLCanvasElement>('canvas.sunlit');
 	if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-		init(canvas);
+		const handle = init(canvas);
+		if (import.meta.env.DEV && handle) {
+			import('./sunlit-dev-panel').then((m) => m.createDevPanel(CONFIG, () => handle.apply()));
+		}
 	}
 </script>
 
