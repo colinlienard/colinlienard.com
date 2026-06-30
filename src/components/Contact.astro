@@ -1,11 +1,11 @@
 ---
-import { useTranslations } from '../i18n';
-import LinkedinIcon from 'virtual:icons/logos/linkedin-icon';
-import GithubIcon from 'virtual:icons/logos/github-icon';
-import XIcon from 'virtual:icons/logos/x';
 import EmailIcon from 'virtual:icons/heroicons/envelope-solid';
+import GithubIcon from 'virtual:icons/logos/github-icon';
+import LinkedinIcon from 'virtual:icons/logos/linkedin-icon';
 import TwitterIcon from 'virtual:icons/logos/twitter';
+import XIcon from 'virtual:icons/logos/x';
 import MaltIcon from '../assets/malt.svg';
+import { useTranslations } from '../i18n';
 
 const t = useTranslations(Astro.currentLocale);
 ---
@@ -13,17 +13,77 @@ const t = useTranslations(Astro.currentLocale);
 <section class="section flex flex-col gap-12">
 	<h2 class="text-2xl font-medium tracking-tight">{t('contact.title')}</h2>
 	<ul class="*:[&_path]:fill-taupe-900">
-		<EmailIcon />
-		<span class="copy-label copy-label-default">{t('hero.cta.secondary')}</span>
-		<span class="copy-label copy-label-copied" aria-hidden="true">{t('hero.cta.copied')}</span>
-		<LinkedinIcon />
-		LinkedIn
-		<MaltIcon />
-		Malt
-		<GithubIcon />
-		GitHub
-		<XIcon />
-		<TwitterIcon />
-		X
+		<button type="button" id="copy-email-contact" data-email="hello@colinlienard.com" class="copy-email">
+			<EmailIcon />
+			<span class="grid">
+				<span class="copy-label copy-label-default">{t('hero.cta.secondary')}</span>
+				<span class="copy-label copy-label-copied" aria-hidden="true">{t('hero.cta.copied')}</span>
+			</span>
+		</button>
+		<a href="https://www.linkedin.com/in/colin-lienard/" target="_blank" rel="noopener noreferrer">
+			<LinkedinIcon />
+			LinkedIn
+		</a>
+		<a href="#" target="_blank" rel="noopener noreferrer">
+			<MaltIcon />
+			Malt
+		</a>
+		<a href="https://github.com/colinlienard" target="_blank" rel="noopener noreferrer">
+			<GithubIcon />
+			GitHub
+		</a>
+		<a href="https://x.com/colinlienard" target="_blank" rel="noopener noreferrer">
+			<XIcon />
+			<TwitterIcon />
+			X
+		</a>
 	</ul>
 </section>
+
+<script>
+	const button = document.querySelector('#copy-email-contact');
+
+	if (button instanceof HTMLButtonElement) {
+		const { email } = button.dataset;
+		let timeout: ReturnType<typeof setTimeout>;
+
+		button.addEventListener('click', async () => {
+			if (!email) return;
+
+			try {
+				await navigator.clipboard.writeText(email);
+				button.dataset.copied = 'true';
+				clearTimeout(timeout);
+				timeout = setTimeout(() => {
+					delete button.dataset.copied;
+				}, 3000);
+			} catch {
+				location.assign(`mailto:${email}`);
+			}
+		});
+	}
+</script>
+
+<style>
+	.copy-label {
+		grid-area: 1 / 1;
+		transition:
+			opacity 0.5s ease,
+			filter 0.5s ease;
+	}
+
+	.copy-label-copied {
+		opacity: 0;
+		filter: blur(4px);
+	}
+
+	.copy-email[data-copied] .copy-label-default {
+		opacity: 0;
+		filter: blur(4px);
+	}
+
+	.copy-email[data-copied] .copy-label-copied {
+		opacity: 1;
+		filter: blur(0);
+	}
+</style>
