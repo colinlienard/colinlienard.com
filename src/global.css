@@ -3,6 +3,11 @@
 @layer base {
 	html {
 		scroll-behavior: smooth;
+		font-size: 14px;
+
+		@media (width > 480px) {
+			font-size: 16px;
+		}
 	}
 
 	img {
@@ -28,7 +33,7 @@
 @layer components {
 	.section {
 		width: 100%;
-		max-width: min(calc(100vw - 1rem), 52rem);
+		max-width: min(calc(100vw - 4rem), 52rem);
 	}
 
 	.squircle {

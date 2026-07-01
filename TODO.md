@@ -2,7 +2,7 @@
 - [x] Prettier sort imports
 - [x] Contact section
 - [x] Footer
-- [ ] Responsive
+- [x] Responsive
 - [ ] SEO
 - [ ] Improve copy
 - [ ] Animations
