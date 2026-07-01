@@ -3,7 +3,7 @@
 - [x] Contact section
 - [x] Footer
 - [x] Responsive
-- [ ] SEO
+- [x] SEO
 - [ ] Improve copy
 - [ ] Animations
 

@@ -1,5 +1,4 @@
 ---
-import me from '../assets/me.jpeg';
 import { CONTACT } from '../config';
 import { getLang, useTranslations } from '../i18n';
 
@@ -8,7 +7,7 @@ const t = useTranslations(Astro.currentLocale);
 
 const site = Astro.site!;
 const canonical = new URL(Astro.url.pathname, site);
-const ogImage = new URL(me.src, site);
+const ogImage = new URL('/og.jpg', site);
 
 const title = 'Colin Lienard';
 const description = t('seo.description');
@@ -53,8 +52,8 @@ const personSchema = {
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonical.href} />
 <meta property="og:image" content={ogImage.href} />
-<meta property="og:image:width" content={String(me.width)} />
-<meta property="og:image:height" content={String(me.height)} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content={CONTACT.twitterHandle} />
