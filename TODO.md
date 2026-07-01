@@ -1,7 +1,7 @@
 - [x] Tech stack section
 - [x] Prettier sort imports
 - [x] Contact section
-- [ ] Footer (little game)
+- [x] Footer
 - [ ] Responsive
 - [ ] SEO
 - [ ] Improve copy
