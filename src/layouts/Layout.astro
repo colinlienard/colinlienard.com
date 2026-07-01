@@ -16,6 +16,7 @@ import Sunlit from '../components/Sunlit.astro';
 		<title>Colin Lienard</title>
 		<meta name="description" content="TODO" />
 		<Font cssVariable="--font-inter" preload />
+		<Font cssVariable="--font-geist-mono" preload />
 		<!-- TODO: remove this when done -->
 		<meta name="robots" content="noindex, nofollow" />
 	</head>
@@ -24,7 +25,9 @@ import Sunlit from '../components/Sunlit.astro';
 	>
 		<Sunlit />
 		<Nav />
-		<slot />
+		<main class="contents">
+			<slot />
+		</main>
 		<Footer />
 	</body>
 </html>

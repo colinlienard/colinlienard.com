@@ -15,6 +15,13 @@ export default defineConfig({
 			weights: ['100 900'],
 			styles: ['normal'],
 		},
+		{
+			provider: fontProviders.google(),
+			name: 'Geist Mono',
+			cssVariable: '--font-geist-mono',
+			weights: ['100 900'],
+			styles: ['normal'],
+		},
 	],
 	vite: {
 		plugins: [icons({ compiler: 'astro' }), tailwindcss()],
