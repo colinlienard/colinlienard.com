@@ -1,0 +1,44 @@
+---
+import BoltIcon from 'virtual:icons/heroicons/bolt';
+import CodeIcon from 'virtual:icons/heroicons/code-bracket';
+import SparklesIcon from 'virtual:icons/heroicons/sparkles';
+import { useTranslations } from '../i18n';
+
+const t = useTranslations(Astro.currentLocale);
+
+const cards = [
+	{
+		icon: CodeIcon,
+		title: t('services.card1.title'),
+		description: t('services.card1.description'),
+	},
+	{
+		icon: BoltIcon,
+		title: t('services.card2.title'),
+		description: t('services.card2.description'),
+	},
+	{
+		icon: SparklesIcon,
+		title: t('services.card3.title'),
+		description: t('services.card3.description'),
+	},
+];
+---
+
+<section class="section flex flex-col gap-12">
+	<h2 class="text-2xl font-medium tracking-tight">{t('services.title')}</h2>
+	<p class="max-w-2xl leading-relaxed text-pretty text-taupe-900/60">
+		{t('services.lead')}
+	</p>
+	<ul class="grid border-[0.5px] border-taupe-900/10 sm:grid-cols-3">
+		{
+			cards.map((card) => (
+				<li class="flex flex-col gap-4 border-[0.5px] border-taupe-900/10 p-8">
+					<card.icon class="size-6 text-taupe-900" aria-hidden="true" />
+					<h3 class="font-semibold">{card.title}</h3>
+					<p class="text-sm leading-relaxed text-pretty text-taupe-900/60">{card.description}</p>
+				</li>
+			))
+		}
+	</ul>
+</section>

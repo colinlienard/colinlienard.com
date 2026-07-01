@@ -12,14 +12,19 @@ const experiences = [
 		logo: mobsuccess,
 		period: t('experience.mobsuccess.period'),
 		role: t('experience.mobsuccess.role'),
-		description: t('experience.mobsuccess.description'),
+		bullets: [
+			{ text: t('experience.mobsuccess.b1') },
+			{ text: t('experience.mobsuccess.b2'), tooltip: t('experience.mobsuccess.b2.tooltip') },
+			{ text: t('experience.mobsuccess.b3'), tooltip: t('experience.mobsuccess.b3.tooltip') },
+			{ text: t('experience.mobsuccess.b4') },
+		],
 	},
 	{
 		name: 'Connivence',
 		logo: connivence,
 		period: t('experience.connivence.period'),
 		role: t('experience.connivence.role'),
-		description: t('experience.connivence.description'),
+		bullets: [{ text: t('experience.connivence.b1') }],
 	},
 ];
 ---
@@ -40,13 +45,30 @@ const experiences = [
 								width={48}
 								height={48}
 								class="mr-0.5 ml-2 inline size-6 -translate-y-0.5 object-contain"
-								loading="eager"
+								loading="lazy"
 							/>
 							{experience.name}
 						</h3>
 						<ul class="flex list-disc flex-col gap-1 pl-5 leading-relaxed text-pretty text-taupe-900/60">
-							{experience.description.split('\n').map((item) => (
-								<li>{item}</li>
+							{experience.bullets.map((bullet) => (
+								<li>
+									{'tooltip' in bullet && bullet.tooltip ? (
+										<span
+											class="tooltip-trigger cursor-help underline decoration-taupe-900/30 decoration-dashed underline-offset-4"
+											tabindex="0"
+										>
+											{bullet.text}
+											<span
+												role="tooltip"
+												class="tooltip squircle pointer-events-none absolute bottom-[calc(100%+8px)] left-0 z-20 w-max max-w-xs rounded-3xl bg-taupe-900 px-3 py-2 text-sm leading-snug text-white shadow-xl/30"
+											>
+												{bullet.tooltip}
+											</span>
+										</span>
+									) : (
+										bullet.text
+									)}
+								</li>
 							))}
 						</ul>
 					</div>
@@ -55,3 +77,23 @@ const experiences = [
 		}
 	</ul>
 </section>
+
+<style>
+	.tooltip-trigger {
+		position: relative;
+	}
+
+	.tooltip {
+		opacity: 0;
+		transform: translateY(4px);
+		transition:
+			opacity 0.2s ease,
+			transform 0.2s ease;
+	}
+
+	.tooltip-trigger:hover .tooltip,
+	.tooltip-trigger:focus-visible .tooltip {
+		opacity: 1;
+		transform: translateY(0);
+	}
+</style>
