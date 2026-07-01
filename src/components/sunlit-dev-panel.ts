@@ -45,7 +45,7 @@ export function createDevPanel(config: Config, onChange: () => void) {
 	const panel = document.createElement('div');
 	css(panel, {
 		position: 'fixed',
-		top: '96px',
+		top: '200px',
 		right: '12px',
 		width: '248px',
 		maxHeight: '80vh',

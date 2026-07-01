@@ -1,8 +1,10 @@
 ---
 import { getRelativeLocaleUrl } from 'astro:i18n';
+import ChevronDownIcon from 'virtual:icons/heroicons/chevron-down';
 import { getLang, languages } from '../i18n';
 
 const lang = getLang(Astro.currentLocale);
+const current = languages[lang];
 ---
 
 <nav
@@ -10,33 +12,69 @@ const lang = getLang(Astro.currentLocale);
 	class="fixed top-0 z-10 flex w-full items-center justify-between px-6 py-6 font-medium sm:px-10 sm:py-8"
 >
 	<a href={getRelativeLocaleUrl(lang, '/')}>Colin Lienard</a>
-	<select class="outline-none" aria-label="Switch language" data-lang-switcher>
-		{
-			Object.entries(languages).map(([code, { label, path }]) => (
-				<option value={path} selected={code === lang}>
-					{label}
-				</option>
-			))
-		}
-	</select>
+	<details class="lang-switcher group relative" data-lang-switcher>
+		<summary
+			class="flex cursor-pointer list-none items-center gap-1 outline-none [&::-webkit-details-marker]:hidden"
+			aria-label="Change language"
+		>
+			{current.label}
+			<ChevronDownIcon
+				class="size-4 transition-transform duration-200 group-open:rotate-180 [&_path]:stroke-[2px]"
+				aria-hidden="true"
+			/>
+		</summary>
+		<ul
+			class="absolute right-0 mt-2 flex min-w-full flex-col overflow-hidden rounded-xl border border-taupe-900/10 bg-white"
+		>
+			{
+				Object.entries(languages).map(([code, { icon, label }]) => (
+					<li>
+						<a
+							href={getRelativeLocaleUrl(code, '/')}
+							hreflang={code}
+							aria-current={code === lang ? 'true' : undefined}
+							class:list={[
+								'block px-4 py-2 text-nowrap transition-colors hover:bg-taupe-900/5',
+								{ 'font-semibold': code === lang },
+							]}
+						>
+							{icon + ' ' + label}
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</details>
 </nav>
 
 <script>
-	const switcher = document.querySelector<HTMLSelectElement>('[data-lang-switcher]');
-	switcher?.addEventListener('change', () => {
-		location.assign(switcher.value);
-	});
+	const switcher = document.querySelector<HTMLDetailsElement>('[data-lang-switcher]');
+	if (switcher) {
+		document.addEventListener('click', (event) => {
+			if (!switcher.contains(event.target as Node)) switcher.open = false;
+		});
+		switcher.addEventListener('keydown', (event) => {
+			if (event.key === 'Escape') switcher.open = false;
+		});
+	}
+
+	const nav = document.querySelector('#nav');
+	const onScroll = () => nav?.toggleAttribute('data-scrolled', window.scrollY > 32);
+	onScroll();
+	window.addEventListener('scroll', onScroll, { passive: true });
 </script>
 
 <style>
 	@media (width <= 1200px) {
 		#nav {
-			animation: scrolled linear both;
-			animation-timeline: scroll(root block);
-			animation-range: 0 2rem;
 			background-color: white;
 			border-bottom: 1px solid transparent;
+			transition: border-color 0.15s linear;
 			z-index: 50;
+		}
+
+		#nav[data-scrolled] {
+			border-color: color-mix(in oklab, var(--color-taupe-900) 10%, transparent);
 		}
 	}
 
@@ -46,12 +84,6 @@ const lang = getLang(Astro.currentLocale);
 			* {
 				pointer-events: all;
 			}
-		}
-	}
-
-	@keyframes scrolled {
-		to {
-			border-color: color-mix(in oklab, var(--color-taupe-900) 10%, transparent);
 		}
 	}
 </style>

@@ -43,7 +43,10 @@ const items = [
 		{
 			items.map((item) => (
 				<li class="group/item flex aspect-square flex-col items-center justify-center gap-3 border-[0.5px] border-taupe-900/10 hover:[&_svg]:scale-110">
-					<item.icon class="size-10 transition-all group-hover:grayscale group-hover/item:grayscale-0!" />
+					<item.icon
+						class="size-10 transition-all group-hover:grayscale group-hover/item:grayscale-0!"
+						aria-hidden="true"
+					/>
 					<span class="font-mono text-xs text-taupe-900/60">{item.name}</span>
 				</li>
 			))

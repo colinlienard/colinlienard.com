@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import me from '../assets/me.jpeg';
+import { CONTACT } from '../config';
 import { useTranslations } from '../i18n';
 
 const t = useTranslations(Astro.currentLocale);
@@ -19,13 +20,15 @@ const t = useTranslations(Astro.currentLocale);
 
 	<h1 class="mt-8 text-3xl font-medium tracking-tight text-balance sm:text-4xl">
 		{t('hero.title')}
-		<span class="block text-taupe-900/50">{t('hero.subtitle')}</span>
 	</h1>
+	<p class="text-3xl font-medium tracking-tight text-balance text-taupe-900/50 sm:text-4xl">
+		{t('hero.subtitle')}
+	</p>
 
 	<div class="mt-10 flex flex-wrap items-center justify-center gap-3">
 		<a
 			class="squircle flex items-center gap-3 bg-taupe-900 px-4 py-3 font-semibold text-white shadow-xl/30 transition-all duration-300 hover:shadow-xl/45 active:scale-95"
-			href="https://cal.com/colinlienard/30min"
+			href={CONTACT.cal}
 		>
 			<Image
 				src={me}
@@ -40,7 +43,7 @@ const t = useTranslations(Astro.currentLocale);
 		<button
 			type="button"
 			id="copy-email"
-			data-email="hello@colinlienard.com"
+			data-email={CONTACT.email}
 			class="copy-email squircle grid place-items-center bg-taupe-900/8 px-4 py-3 font-semibold transition-all hover:bg-taupe-900/12 active:scale-95"
 		>
 			<span class="copy-label copy-label-default">{t('hero.cta.secondary')}</span>

@@ -1,12 +1,25 @@
+import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, fontProviders } from 'astro/config';
 import icons from 'unplugin-icons/vite';
 
 export default defineConfig({
+	site: 'https://colinlienard.com',
 	i18n: {
 		locales: ['fr', 'en'],
 		defaultLocale: 'fr',
 	},
+	integrations: [
+		sitemap({
+			i18n: {
+				defaultLocale: 'fr',
+				locales: {
+					fr: 'fr-FR',
+					en: 'en-US',
+				},
+			},
+		}),
+	],
 	fonts: [
 		{
 			provider: fontProviders.google(),

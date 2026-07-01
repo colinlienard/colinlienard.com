@@ -1,0 +1,65 @@
+---
+import { CONTACT } from '../config';
+import { getLang, useTranslations } from '../i18n';
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(Astro.currentLocale);
+
+const site = Astro.site!;
+const canonical = new URL(Astro.url.pathname, site);
+const ogImage = new URL('/og.jpg', site);
+
+const title = 'Colin Lienard';
+const description = t('seo.description');
+
+const alternates = [
+	{ hreflang: 'fr', href: new URL('/', site).href },
+	{ hreflang: 'en', href: new URL('/en/', site).href },
+	{ hreflang: 'x-default', href: new URL('/', site).href },
+];
+
+const personSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'Person',
+	name: 'Colin Lienard',
+	url: site.href,
+	image: ogImage.href,
+	jobTitle: 'Full-Stack Engineer',
+	email: `mailto:${CONTACT.email}`,
+	address: {
+		'@type': 'PostalAddress',
+		addressLocality: 'Limoges',
+		addressCountry: 'FR',
+	},
+	sameAs: [
+		CONTACT.linkedin,
+		CONTACT.github,
+		CONTACT.x,
+		// TODO: malt url
+	],
+};
+---
+
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical.href} />
+
+{alternates.map(({ hreflang, href }) => <link rel="alternate" hreflang={hreflang} href={href} />)}
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Colin Lienard" />
+<meta property="og:locale" content={lang === 'fr' ? 'fr_FR' : 'en_US'} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical.href} />
+<meta property="og:image" content={ogImage.href} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content={CONTACT.twitterHandle} />
+<meta name="twitter:creator" content={CONTACT.twitterHandle} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage.href} />
+
+<script type="application/ld+json" set:html={JSON.stringify(personSchema)} is:inline />
