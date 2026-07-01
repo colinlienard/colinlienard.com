@@ -5,6 +5,7 @@ import GithubIcon from 'virtual:icons/logos/github-icon';
 import githundred from '../assets/githundred.png';
 import gitlight from '../assets/gitlight.png';
 import svrouter from '../assets/sv-router.svg';
+import { CONTACT } from '../config';
 import { useTranslations } from '../i18n';
 
 const t = useTranslations(Astro.currentLocale);
@@ -72,7 +73,7 @@ const projects = [
 			<p class="text-taupe-900/60">
 				{t('projects.moreOn')}{' '}
 				<a
-					href="https://github.com/colinlienard"
+					href={CONTACT.github}
 					target="_blank"
 					rel="noopener noreferrer"
 					class="underline"

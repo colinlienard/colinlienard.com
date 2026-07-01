@@ -1,12 +1,14 @@
 export const defaultLang = 'fr';
 
 export const languages = {
-	fr: { label: 'FR', path: '/' },
-	en: { label: 'EN', path: '/en/' },
+	fr: { label: 'FR', icon: '🇫🇷', path: '/' },
+	en: { label: 'EN', icon: '🇬🇧', path: '/en/' },
 } as const;
 
 export const ui = {
 	fr: {
+		'seo.description':
+			'Colin Lienard, Full-Stack Engineer React & TypeScript basé à Limoges. +4 ans d’expérience, spécialisé dans l’expérience développeur et les applications web modernes.',
 		'hero.status': 'Disponible maintenant (remote/Limoges)',
 		'hero.title': 'Full-Stack Engineer React & TypeScript',
 		'hero.subtitle':
@@ -18,7 +20,7 @@ export const ui = {
 		'experience.mobsuccess.role': 'Full-Stack Engineer chez',
 		'experience.mobsuccess.period': '2023 - 2026, Paris (remote)',
 		'experience.mobsuccess.description':
-			"- Développement d'applications web permettant à de grandes entreprises françaises de gérer leurs campagnes publicitaires numériques, contribuant à l'acquisition de nouveaux clients majeurs.\n- Pilotage de plusieurs migrations techniques structurantes.\n- Responsable de déploiements en production.",
+			"Développement d'applications web permettant à de grandes entreprises françaises de gérer leurs campagnes publicitaires numériques, contribuant à l'acquisition de nouveaux clients majeurs.\nPilotage de plusieurs migrations techniques structurantes.\nResponsable de déploiements en production.",
 		'experience.connivence.role': 'Développeur Front-End en alternance chez',
 		'experience.connivence.period': '2021 - 2022, Limoges',
 		'experience.connivence.description':
@@ -30,6 +32,8 @@ export const ui = {
 		'footer.allRightsReserved': 'Tous droits réservés',
 	},
 	en: {
+		'seo.description':
+			'Colin Lienard, Full-Stack React & TypeScript Engineer based in Limoges, France. +4 years of experience, specialized in developer experience and modern web applications.',
 		'hero.status': 'Available now (remote/Limoges)',
 		'hero.title': 'Full-Stack React & TypeScript Engineer',
 		'hero.subtitle':
@@ -41,7 +45,7 @@ export const ui = {
 		'experience.mobsuccess.role': 'Full-Stack Engineer at',
 		'experience.mobsuccess.period': '2023 - 2026, Paris (remote)',
 		'experience.mobsuccess.description':
-			'Development of web applications enabling large French companies to manage their digital advertising campaigns, contributing to the acquisition of major new clients. Led several key technical migrations. Responsible for production deployments.',
+			'Development of web applications enabling large French companies to manage their digital advertising campaigns, contributing to the acquisition of major new clients.\nLed several key technical migrations.\nResponsible for production deployments.',
 		'experience.connivence.role': 'Frontend Developer (apprenticeship) at',
 		'experience.connivence.period': '2021 - 2022, Limoges',
 		'experience.connivence.description':

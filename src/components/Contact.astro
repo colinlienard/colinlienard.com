@@ -5,6 +5,7 @@ import GithubIcon from 'virtual:icons/logos/github-icon';
 import LinkedinIcon from 'virtual:icons/logos/linkedin-icon';
 import XIcon from 'virtual:icons/logos/x';
 import MaltIcon from '../assets/malt.svg';
+import { CONTACT } from '../config';
 import { useTranslations } from '../i18n';
 
 const t = useTranslations(Astro.currentLocale);
@@ -16,10 +17,10 @@ const t = useTranslations(Astro.currentLocale);
 		<button
 			type="button"
 			id="copy-email-contact"
-			data-email="hello@colinlienard.com"
+			data-email={CONTACT.email}
 			class="copy-email flex w-full items-center gap-2 py-4 transition-opacity group-hover:opacity-30 hover:opacity-100! [&_path]:fill-taupe-900"
 		>
-			<EmailIcon />
+			<EmailIcon aria-hidden="true" />
 			<span class="relative">
 				<span class="copy-label copy-label-default">{t('hero.cta.secondary')}</span>
 				<span class="copy-label copy-label-copied" aria-hidden="true">{t('hero.cta.copied')}</span>
@@ -27,47 +28,47 @@ const t = useTranslations(Astro.currentLocale);
 		</button>
 		<hr class="text-taupe-900/10" />
 		<a
-			href="https://www.linkedin.com/in/colin-lienard/"
+			href={CONTACT.linkedin}
 			target="_blank"
 			rel="noopener noreferrer"
 			class="flex items-center gap-2 py-4 transition-opacity group-hover:opacity-30 hover:opacity-100! [&_path]:fill-taupe-900"
 		>
-			<LinkedinIcon />
+			<LinkedinIcon aria-hidden="true" />
 			LinkedIn
-			<ArrowUpRightIcon class="ml-auto size-4" />
+			<ArrowUpRightIcon class="ml-auto size-4" aria-hidden="true" />
 		</a>
 		<hr class="text-taupe-900/10" />
 		<a
-			href="#"
+			href={CONTACT.malt}
 			target="_blank"
 			rel="noopener noreferrer"
 			class="flex items-center gap-2 py-4 transition-opacity group-hover:opacity-30 hover:opacity-100! [&_path]:fill-taupe-900"
 		>
-			<MaltIcon />
+			<MaltIcon aria-hidden="true" />
 			Malt
-			<ArrowUpRightIcon class="ml-auto size-4" />
+			<ArrowUpRightIcon class="ml-auto size-4" aria-hidden="true" />
 		</a>
 		<hr class="text-taupe-900/10" />
 		<a
-			href="https://github.com/colinlienard"
+			href={CONTACT.github}
 			target="_blank"
 			rel="noopener noreferrer"
 			class="flex items-center gap-2 py-4 transition-opacity group-hover:opacity-30 hover:opacity-100! [&_path]:fill-taupe-900"
 		>
-			<GithubIcon />
+			<GithubIcon aria-hidden="true" />
 			GitHub
-			<ArrowUpRightIcon class="ml-auto size-4" />
+			<ArrowUpRightIcon class="ml-auto size-4" aria-hidden="true" />
 		</a>
 		<hr class="text-taupe-900/10" />
 		<a
-			href="https://x.com/colinlienard"
+			href={CONTACT.x}
 			target="_blank"
 			rel="noopener noreferrer"
 			class="flex items-center gap-2 py-4 transition-opacity group-hover:opacity-30 hover:opacity-100! [&_path]:fill-taupe-900"
 		>
-			<XIcon />
+			<XIcon aria-hidden="true" />
 			X
-			<ArrowUpRightIcon class="ml-auto size-4" />
+			<ArrowUpRightIcon class="ml-auto size-4" aria-hidden="true" />
 		</a>
 	</div>
 </section>
