@@ -1,0 +1,43 @@
+---
+import BeakerIcon from 'virtual:icons/heroicons/beaker';
+import HandRaisedIcon from 'virtual:icons/heroicons/hand-raised';
+import StarIcon from 'virtual:icons/heroicons/star-solid';
+import NodeIcon from 'virtual:icons/logos/nodejs-icon-alt';
+import ReactIcon from 'virtual:icons/logos/react';
+import { useTranslations } from '../i18n';
+
+const t = useTranslations(Astro.currentLocale);
+
+const link =
+	'font-medium text-taupe-900 underline decoration-taupe-900/30 underline-offset-2 transition-colors hover:decoration-solid decoration-dashed';
+const inlineIcon = 'ml-0.5 inline size-[1.05em] -translate-y-0.5';
+---
+
+<!-- TODO: change hand icon -->
+<section class="section flex flex-col gap-4">
+	<p class="leading-relaxed text-pretty text-taupe-900/60">
+		<HandRaisedIcon
+			class="mr-1 inline size-[1.1em] -translate-y-0.5 text-taupe-900"
+			aria-hidden="true"
+		/>
+		{t('about.s1.pre')}<a class={link} href="#experience">{t('about.s1.link')}</a>{' '}{
+			t('about.s1.post')
+		}{' '}
+
+		{t('about.s2.pre')}<span class="font-medium whitespace-nowrap text-taupe-900"
+			>front-end<ReactIcon class={inlineIcon} aria-hidden="true" /></span
+		>{t('about.s2.mid')}<span class="font-medium whitespace-nowrap text-taupe-900"
+			>back-end<NodeIcon class={inlineIcon} aria-hidden="true" /></span
+		>{' '}{t('about.s2.post')}<br />
+	</p>
+	<p class="leading-relaxed text-pretty text-taupe-900/60">
+		{t('about.s3.pre')}<a class={`${link} whitespace-nowrap`} href="#projects"
+			>{t('about.s3.link')}<StarIcon class={`${inlineIcon} text-amber-400`} aria-hidden="true" /></a
+		>{' '}{t('about.s3.post')}{' '}
+
+		{t('about.s4.pre')}<a class={link} href="#stack">{t('about.s4.link')}</a><BeakerIcon
+			class={`${inlineIcon} text-taupe-900`}
+			aria-hidden="true"
+		/>{' '}{t('about.s4.post')}
+	</p>
+</section>

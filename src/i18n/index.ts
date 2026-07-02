@@ -12,10 +12,23 @@ export const ui = {
 		'hero.status': 'Disponible maintenant (remote/Limoges)',
 		'hero.title': 'Full-Stack Engineer React & TypeScript',
 		'hero.subtitle':
-			'+4 ans d’expérience, spécialisé dans l’expérience développeur et les applications web modernes',
+			"+4 ans d'expérience, spécialisé dans l’expérience développeur et les applications web modernes",
 		'hero.cta.primary': 'Discutons',
 		'hero.cta.secondary': 'Copier mon e-mail',
 		'hero.cta.copied': 'E-mail copié !',
+		'about.s1.pre': 'Salut, je travaille avec des ',
+		'about.s1.link': 'startups',
+		'about.s1.post':
+			'pour transformer une idée en un produit solide et soigné, main dans la main avec l’équipe produit et les autres développeurs.',
+		'about.s2.pre': 'Je me concentre sur le ',
+		'about.s2.mid': ', tout en gardant la flexibilité de développer des fonctionnalités ',
+		'about.s2.post': 'quand le produit l’exige.',
+		'about.s3.pre': 'En parallèle, je conçois et je maintiens des ',
+		'about.s3.link': 'projets open source',
+		'about.s3.post': 'qui ont un impact réel.',
+		'about.s4.pre': 'Curieux de nature, j’aime explorer de nouvelles ',
+		'about.s4.link': 'technologies',
+		'about.s4.post': 'et les mettre en pratique dans mes projets.',
 		'services.title': "Ce que j'apporte",
 		'services.lead':
 			"J'aide les startups à transformer une idée en produit web solide rapide, soigné et prêt à passer à l'échelle. Du front-end à la mise en production, je prends en charge la technique pour que vous restiez concentrés sur votre produit et vos utilisateurs.",
@@ -32,15 +45,17 @@ export const ui = {
 		'experience.mobsuccess.role': 'Full-Stack Engineer chez',
 		'experience.mobsuccess.period': '2023 - 2026, Paris (remote)',
 		'experience.mobsuccess.b1':
-			'Développé des applications web utilisées par de grandes entreprises françaises pour piloter leurs campagnes publicitaires, un levier direct dans la signature de nouveaux comptes majeurs.',
+			'Développé des applications web utilisées par de grandes entreprises françaises pour piloter leurs campagnes publicitaires.',
 		'experience.mobsuccess.b2':
-			'Optimisé les performances des applications et des tests unitaires.',
-		'experience.mobsuccess.b2.tooltip':
-			'Temps de chargement des applications réduit de 2,5 s et durée des runs de tests réduite de 22 %.',
-		'experience.mobsuccess.b3': 'Mené plusieurs migrations techniques structurantes.',
+			'Créé un assistant IA permettant aux utilisateurs de poser des questions et de déclencher des actions agentiques.',
+		'experience.mobsuccess.b3':
+			'Optimisé les performances des applications et des suites de tests.',
 		'experience.mobsuccess.b3.tooltip':
-			'CRA → Vite, JS → TS, React Router → TanStack Router, adoption du React Compiler.',
-		'experience.mobsuccess.b4': 'Assuré les déploiements en production.',
+			'Temps de chargement des applications réduit de 2,5 s et durée des runs de tests réduite de 22 %.',
+		'experience.mobsuccess.b4': 'Mené plusieurs migrations techniques structurantes.',
+		'experience.mobsuccess.b4.tooltip':
+			'Create React App → Vite, JS → TS, React Router → TanStack Router, adoption du React Compiler.',
+		'experience.mobsuccess.b5': 'Assuré les déploiements en production.',
 		'experience.connivence.role': 'Développeur Front-End en alternance chez',
 		'experience.connivence.period': '2021 - 2022, Limoges',
 		'experience.connivence.b1':
@@ -61,6 +76,19 @@ export const ui = {
 		'hero.cta.primary': "Let's talk",
 		'hero.cta.secondary': 'Copy my email',
 		'hero.cta.copied': 'Email copied!',
+		'about.s1.pre': 'Hey, I work with ',
+		'about.s1.link': 'startups',
+		'about.s1.post':
+			'to turn an idea into a solid, polished product, hand in hand with the product team and other developers.',
+		'about.s2.pre': 'I focus on the ',
+		'about.s2.mid': ', while keeping the flexibility to build ',
+		'about.s2.post': 'features whenever the product needs it.',
+		'about.s3.pre': 'On the side, I build and maintain ',
+		'about.s3.link': 'open-source projects',
+		'about.s3.post': 'that make a real impact.',
+		'about.s4.pre': 'Curious by nature, I love exploring new ',
+		'about.s4.link': 'technologies',
+		'about.s4.post': 'and putting them into practice in my projects.',
 		'services.title': 'What I bring',
 		'services.lead':
 			'I help startups turn an idea into a solid web product fast, polished and ready to scale. From the frontend to production, I own the technical side so you can stay focused on your product and your users.',
@@ -77,13 +105,15 @@ export const ui = {
 		'experience.mobsuccess.role': 'Full-Stack Engineer at',
 		'experience.mobsuccess.period': '2023 - 2026, Paris (remote)',
 		'experience.mobsuccess.b1':
-			'Built web applications used by major French companies to run their advertising campaigns, a direct driver in landing new key accounts.',
-		'experience.mobsuccess.b2': 'Optimized application performance and unit tests.',
-		'experience.mobsuccess.b2.tooltip': 'Cut app load time by 2.5s and test-run duration by 22%.',
-		'experience.mobsuccess.b3': 'Led several key technical migrations.',
-		'experience.mobsuccess.b3.tooltip':
-			'CRA → Vite, JS → TS, React Router → TanStack Router, React Compiler adoption.',
-		'experience.mobsuccess.b4': 'Owned production deployments.',
+			'Built web applications used by major French companies to run their advertising campaigns.',
+		'experience.mobsuccess.b2':
+			'Created an AI chat companion letting users ask questions and trigger agentic actions.',
+		'experience.mobsuccess.b3': 'Optimized application performance and test suites.',
+		'experience.mobsuccess.b3.tooltip': 'Cut app load time by 2.5s and test-run duration by 22%',
+		'experience.mobsuccess.b4': 'Led several key technical migrations..',
+		'experience.mobsuccess.b4.tooltip':
+			'Create React App → Vite, JS → TS, React Router → TanStack Router, React Compiler adoption.',
+		'experience.mobsuccess.b5': 'Owned production deployments.',
 		'experience.connivence.role': 'Frontend Developer (apprenticeship) at',
 		'experience.connivence.period': '2021 - 2022, Limoges',
 		'experience.connivence.b1':

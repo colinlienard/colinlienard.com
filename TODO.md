@@ -1,0 +1,6 @@
+- [ ] Improve available pill
+- [ ] Animations at the start
+- [ ] Animations on scroll
+- [ ] Steps on the side of the page
+- [ ] Improve sunlit config devtool
+- [ ] Change the background color in the footer?
