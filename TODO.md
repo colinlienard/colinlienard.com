@@ -1,3 +1,4 @@
+- [ ] Add sounds
 - [ ] Improve available pill
 - [ ] Animations at the start
 - [ ] Animations on scroll
