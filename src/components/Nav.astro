@@ -24,7 +24,7 @@ const current = languages[lang];
 			/>
 		</summary>
 		<ul
-			class="absolute right-0 mt-2 flex min-w-full flex-col overflow-hidden rounded-xl border border-taupe-900/10 bg-white"
+			class="squircle absolute right-0 mt-2 flex min-w-full flex-col overflow-hidden rounded-3xl shadow-xl/30"
 		>
 			{
 				Object.entries(languages).map(([code, { icon, label }]) => (
@@ -34,7 +34,7 @@ const current = languages[lang];
 							hreflang={code}
 							aria-current={code === lang ? 'true' : undefined}
 							class:list={[
-								'block px-4 py-2 text-nowrap transition-colors hover:bg-taupe-900/5',
+								'block bg-taupe-900 px-4 py-2 text-nowrap text-white transition-colors hover:bg-taupe-700',
 								{ 'font-semibold': code === lang },
 							]}
 						>

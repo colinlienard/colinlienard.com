@@ -1,0 +1,98 @@
+---
+import { Image } from 'astro:assets';
+import me from '../assets/me.jpeg';
+import { useTranslations } from '../i18n';
+
+const t = useTranslations(Astro.currentLocale);
+
+const link =
+	'font-medium text-taupe-900 underline decoration-taupe-900/40 underline-offset-2 transition-colors hover:decoration-solid decoration-dashed';
+---
+
+<!-- TODO: change hand icon -->
+<section class="section flex gap-12 not-sm:flex-col">
+	<div class="flex flex-col gap-12">
+		<h2 class="text-2xl font-medium tracking-tight">{t('about.title')}</h2>
+		<div class="flex flex-col gap-4">
+			<p class="leading-relaxed text-pretty text-taupe-900/60">
+				{t('about.s1.pre')}<a class={link} href="#experience">{t('about.s1.link')}</a>{' '}{
+					t('about.s1.post')
+				}{' '}
+
+				{t('about.s2.pre')}<span class="font-medium whitespace-nowrap text-taupe-900"
+					>front-end</span
+				>{t('about.s2.mid')}<span class="font-medium whitespace-nowrap text-taupe-900"
+					>back-end</span
+				>{' '}{t('about.s2.post')}<br />
+			</p>
+			<p class="leading-relaxed text-pretty text-taupe-900/60">
+				{t('about.s3.pre')}<a class={`${link} whitespace-nowrap`} href="#projects"
+					>{t('about.s3.link')}</a
+				>{' '}{t('about.s3.post')}{' '}
+
+				{t('about.s4.pre')}<a class={link} href="#stack">{t('about.s4.link')}</a>{' '}{
+					t('about.s4.post')
+				}
+			</p>
+		</div>
+	</div>
+	<Image
+		src={me}
+		alt="Colin Lienard"
+		width={280}
+		height={360}
+		class="distort object-cover not-sm:mx-auto"
+		loading="eager"
+	/>
+
+	<svg class="pointer-events-none absolute h-0 w-0" aria-hidden="true">
+		<filter id="distort">
+			<feTurbulence
+				type="fractalNoise"
+				baseFrequency="0.012 0.012"
+				numOctaves="1"
+				seed="2"
+				result="noise"></feTurbulence>
+			<feDisplacementMap
+				in="SourceGraphic"
+				in2="noise"
+				scale="4"
+				xChannelSelector="R"
+				yChannelSelector="G"></feDisplacementMap>
+		</filter>
+	</svg>
+</section>
+
+<style>
+	.distort {
+		filter: url(#distort);
+		will-change: filter;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.distort {
+			filter: none;
+		}
+	}
+</style>
+
+<script>
+	const media = matchMedia('(prefers-reduced-motion: reduce)');
+	const turbulence = document.querySelector<SVGFETurbulenceElement>('#distort feTurbulence');
+
+	if (turbulence && !media.matches) {
+		let frame = 0;
+
+		const animate = (time: number) => {
+			const f = 0.01 + Math.sin(time / 1000) * 0.004;
+			turbulence.setAttribute('baseFrequency', `${f} ${f}`);
+			frame = requestAnimationFrame(animate);
+		};
+
+		frame = requestAnimationFrame(animate);
+
+		media.addEventListener('change', (event) => {
+			if (event.matches) cancelAnimationFrame(frame);
+		});
+	}
+</script>
