@@ -1,31 +1,30 @@
 ---
 import { Image } from 'astro:assets';
 import me from '../assets/me.jpeg';
+import me2 from '../assets/me-2.jpg';
+import me3 from '../assets/me-3.jpg';
 import { useTranslations } from '../i18n';
 
 const t = useTranslations(Astro.currentLocale);
 
 const link =
-	'font-medium text-taupe-900 underline decoration-taupe-900/40 underline-offset-2 transition-colors hover:decoration-solid decoration-dashed';
+	'font-medium text-zinc-900 underline decoration-zinc-900/40 underline-offset-2 transition-colors hover:decoration-solid decoration-dashed';
 ---
 
-<!-- TODO: change hand icon -->
-<section class="section flex gap-12 not-sm:flex-col">
+<section class="section flex gap-20 not-sm:flex-col">
 	<div class="flex flex-col gap-12">
 		<h2 class="text-2xl font-medium tracking-tight">{t('about.title')}</h2>
 		<div class="flex flex-col gap-4">
-			<p class="leading-relaxed text-pretty text-taupe-900/60">
+			<p class="leading-relaxed text-pretty text-zinc-900/60">
 				{t('about.s1.pre')}<a class={link} href="#experience">{t('about.s1.link')}</a>{' '}{
 					t('about.s1.post')
 				}{' '}
 
-				{t('about.s2.pre')}<span class="font-medium whitespace-nowrap text-taupe-900"
-					>front-end</span
-				>{t('about.s2.mid')}<span class="font-medium whitespace-nowrap text-taupe-900"
-					>back-end</span
+				{t('about.s2.pre')}<span class="font-medium whitespace-nowrap text-zinc-900">front-end</span
+				>{t('about.s2.mid')}<span class="font-medium whitespace-nowrap text-zinc-900">back-end</span
 				>{' '}{t('about.s2.post')}<br />
 			</p>
-			<p class="leading-relaxed text-pretty text-taupe-900/60">
+			<p class="leading-relaxed text-pretty text-zinc-900/60">
 				{t('about.s3.pre')}<a class={`${link} whitespace-nowrap`} href="#projects"
 					>{t('about.s3.link')}</a
 				>{' '}{t('about.s3.post')}{' '}
@@ -36,14 +35,39 @@ const link =
 			</p>
 		</div>
 	</div>
-	<Image
-		src={me}
-		alt="Colin Lienard"
-		width={280}
-		height={360}
-		class="distort object-cover not-sm:mx-auto"
-		loading="eager"
-	/>
+	<button type="button" class="photo-stack distort not-sm:mx-auto" aria-label={t('about.photos')}>
+		<span class="photo">
+			<Image
+				src={me3}
+				alt="Colin Lienard"
+				width={280}
+				height={360}
+				class="object-cover"
+				quality="max"
+				loading="eager"
+			/>
+		</span>
+		<span class="photo">
+			<Image
+				src={me2}
+				alt="Colin Lienard"
+				width={280}
+				height={360}
+				class="object-cover"
+				loading="eager"
+			/>
+		</span>
+		<span class="photo">
+			<Image
+				src={me}
+				alt="Colin Lienard"
+				width={280}
+				height={360}
+				class="object-cover"
+				loading="eager"
+			/>
+		</span>
+	</button>
 
 	<svg class="pointer-events-none absolute h-0 w-0" aria-hidden="true">
 		<filter id="distort">
@@ -56,7 +80,7 @@ const link =
 			<feDisplacementMap
 				in="SourceGraphic"
 				in2="noise"
-				scale="4"
+				scale="6"
 				xChannelSelector="R"
 				yChannelSelector="G"></feDisplacementMap>
 		</filter>
@@ -72,6 +96,38 @@ const link =
 	@media (prefers-reduced-motion: reduce) {
 		.distort {
 			filter: none;
+		}
+	}
+
+	.photo-stack {
+		position: relative;
+		width: 280px;
+		height: 360px;
+		flex-shrink: 0;
+		cursor: ew-resize;
+		border: none;
+		background: none;
+		padding: 0;
+	}
+
+	.photo {
+		position: absolute;
+		inset: 0;
+		transform: translate(var(--x, 0), var(--y, 0)) rotate(var(--r, 0deg));
+		z-index: var(--z, 0);
+		transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+		will-change: transform;
+	}
+
+	.photo :global(img) {
+		width: 100%;
+		height: 100%;
+		box-shadow: 0 6px 20px rgb(0 0 0 / 0.18);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.photo {
+			transition: none;
 		}
 	}
 </style>
@@ -93,6 +149,36 @@ const link =
 
 		media.addEventListener('change', (event) => {
 			if (event.matches) cancelAnimationFrame(frame);
+		});
+	}
+
+	const stack = document.querySelector<HTMLButtonElement>('.photo-stack');
+
+	if (stack) {
+		const photos = [...stack.querySelectorAll<HTMLElement>('.photo')];
+		const slots = [
+			{ x: '-14px', y: '10px', r: '-5deg' },
+			{ x: '10px', y: '-6px', r: '4deg' },
+			{ x: '0px', y: '0px', r: '0deg' },
+		];
+
+		let order = [...photos];
+
+		const render = () => {
+			order.forEach((photo, i) => {
+				const slot = slots[i] ?? slots.at(-1)!;
+				photo.style.setProperty('--x', slot.x);
+				photo.style.setProperty('--y', slot.y);
+				photo.style.setProperty('--r', slot.r);
+				photo.style.setProperty('--z', String(i));
+			});
+		};
+
+		render();
+
+		stack.addEventListener('click', () => {
+			order.unshift(order.pop()!);
+			render();
 		});
 	}
 </script>

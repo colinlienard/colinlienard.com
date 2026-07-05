@@ -30,6 +30,7 @@ export const ui = {
 		'about.s4.pre': 'J’explore aussi de nouvelles ',
 		'about.s4.link': 'technologies',
 		'about.s4.post': 'et les intègre à mon travail pour améliorer l’expérience développeur.',
+		'about.photos': 'Cliquer pour parcourir les photos',
 		'services.title': "Ce que j'apporte",
 		'services.lead':
 			"J'aide les startups à transformer une idée en produit web solide rapide, soigné et prêt à passer à l'échelle. Du front-end à la mise en production, je prends en charge la technique pour que vous restiez concentrés sur votre produit et vos utilisateurs.",
@@ -91,6 +92,7 @@ export const ui = {
 		'about.s4.pre': 'I also explore new ',
 		'about.s4.link': 'technologies',
 		'about.s4.post': 'and bring them into my work to improve the developer experience.',
+		'about.photos': 'Click to flip through the photos',
 		'services.title': 'What I bring',
 		'services.lead':
 			'I help startups turn an idea into a solid web product fast, polished and ready to scale. From the frontend to production, I own the technical side so you can stay focused on your product and your users.',

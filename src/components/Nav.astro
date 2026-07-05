@@ -34,7 +34,7 @@ const current = languages[lang];
 							hreflang={code}
 							aria-current={code === lang ? 'true' : undefined}
 							class:list={[
-								'block bg-taupe-900 px-4 py-2 text-nowrap text-white transition-colors hover:bg-taupe-700',
+								'block bg-zinc-900 px-4 py-2 text-nowrap text-white transition-colors hover:bg-zinc-700',
 								{ 'font-semibold': code === lang },
 							]}
 						>
@@ -74,7 +74,7 @@ const current = languages[lang];
 		}
 
 		#nav[data-scrolled] {
-			border-color: color-mix(in oklab, var(--color-taupe-900) 10%, transparent);
+			border-color: color-mix(in oklab, var(--color-zinc-900) 10%, transparent);
 		}
 	}
 

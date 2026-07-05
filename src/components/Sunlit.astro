@@ -9,13 +9,15 @@
 		},
 		colors: {
 			background: hex('#f9ebdd'),
-			shadow: hex('#3b3a07'),
+			shadow: hex('#092a44'),
 		},
 		pool: {
-			center: [0.5, 0.7],
-			radius: 0.173,
+			center: [0.5, 0.75],
+			radius: 0.15,
 			skew: [0.268, 0.522],
 			mouseShift: 0.0785,
+			scrollGrowth: 1,
+			scrollGrowthLimit: 0.2,
 		},
 		cells: {
 			scale: 11.2,
@@ -80,6 +82,7 @@
 		uniform vec2 uRes;
 		uniform float uTime;
 		uniform vec2 uMouse;
+		uniform float uScroll;
 
 		const float PI = 3.14159265359;
 		const float TAU = 6.28318530718;
@@ -123,7 +126,7 @@
 			float aspect = uRes.x / uRes.y;
 			vec2 asp = vec2(aspect, 1.0);
 			vec2 skew = ${glv(CONFIG.pool.skew)};
-			float halfR = ${glf(CONFIG.pool.radius)};
+			float halfR = ${glf(CONFIG.pool.radius)} * (1.0 + uScroll * ${glf(CONFIG.pool.scrollGrowth)});
 			float inner = halfR * 0.5;
 			float outer = halfR * 1.5;
 			vec2 pos = ${glv(CONFIG.pool.center)} + (uMouse - 0.5) * ${glf(CONFIG.pool.mouseShift)};
@@ -300,6 +303,7 @@
 				fRes: u(fieldProg, 'uRes'),
 				fTime: u(fieldProg, 'uTime'),
 				fMouse: u(fieldProg, 'uMouse'),
+				fScroll: u(fieldProg, 'uScroll'),
 				cField: u(compProg, 'uField'),
 				cRes: u(compProg, 'uRes'),
 				cTime: u(compProg, 'uTime'),
@@ -340,6 +344,18 @@
 			{ passive: true },
 		);
 
+		// Scroll progress (0 at top → 1 once past the growth limit), eased for smooth growth.
+		let scroll = 0;
+		let scrollTarget = 0;
+		function updateScroll() {
+			const max =
+				(document.documentElement.scrollHeight - window.innerHeight) *
+				CONFIG.pool.scrollGrowthLimit;
+			scrollTarget = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
+		}
+		updateScroll();
+		addEventListener('scroll', updateScroll, { passive: true });
+
 		let raf = 0;
 		let isDirty = false;
 		const start = performance.now();
@@ -354,6 +370,7 @@
 			const t = (now - start) / 1000;
 			mouse.x += (target.x - mouse.x) * CONFIG.render.mouseEase;
 			mouse.y += (target.y - mouse.y) * CONFIG.render.mouseEase;
+			scroll += (scrollTarget - scroll) * CONFIG.render.mouseEase;
 
 			// Pass 1: field → low-res framebuffer.
 			gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
@@ -362,6 +379,7 @@
 			gl.uniform2f(loc.fRes, fW, fH);
 			gl.uniform1f(loc.fTime, t);
 			gl.uniform2f(loc.fMouse, mouse.x, mouse.y);
+			gl.uniform1f(loc.fScroll, scroll);
 			gl.drawArrays(gl.TRIANGLES, 0, 3);
 
 			// Pass 2: bokeh + composite → screen.

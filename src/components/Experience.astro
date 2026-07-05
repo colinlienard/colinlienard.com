@@ -36,7 +36,7 @@ const experiences = [
 		{
 			experiences.map((experience) => (
 				<li class="flex flex-col gap-2 sm:contents">
-					<p class="font-mono text-sm text-taupe-900/60">{experience.period}</p>
+					<p class="font-mono text-sm text-zinc-900/60">{experience.period}</p>
 					<div class="flex flex-col gap-3">
 						<h3 class="inline items-center font-semibold">
 							{experience.role}
@@ -50,18 +50,18 @@ const experiences = [
 							/>
 							{experience.name}
 						</h3>
-						<ul class="flex list-[square] flex-col gap-1 leading-relaxed text-pretty text-taupe-900/60">
+						<ul class="flex list-[square] flex-col gap-1 leading-relaxed text-pretty text-zinc-900/60">
 							{experience.bullets.map((bullet) => (
 								<li>
 									{'tooltip' in bullet && bullet.tooltip ? (
 										<span
-											class="tooltip-trigger cursor-help underline decoration-taupe-900/30 decoration-dashed underline-offset-4"
+											class="tooltip-trigger cursor-help underline decoration-zinc-900/30 decoration-dashed underline-offset-4"
 											tabindex="0"
 										>
 											{bullet.text}
 											<span
 												role="tooltip"
-												class="tooltip squircle pointer-events-none absolute bottom-[calc(100%+8px)] left-0 z-20 w-max max-w-xs rounded-3xl bg-taupe-900 px-3 py-2 text-sm leading-snug text-white shadow-xl/30"
+												class="tooltip squircle pointer-events-none absolute bottom-[calc(100%+8px)] left-0 z-20 w-max max-w-xs rounded-3xl bg-zinc-900 px-3 py-2 text-sm leading-snug text-white shadow-xl/30"
 											>
 												{bullet.tooltip}
 											</span>

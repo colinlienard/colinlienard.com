@@ -8,12 +8,12 @@ const t = useTranslations(Astro.currentLocale);
 ---
 
 <section class="section relative flex flex-col items-center justify-center text-center">
-	<div class="flex items-center gap-2 rounded-full border border-taupe-900/10 px-4 py-2">
+	<div class="flex items-center gap-2 rounded-full border border-zinc-900/10 px-4 py-2">
 		<div class="relative size-2 *:absolute *:inset-0 *:rounded-full *:bg-green-400">
 			<div></div>
 			<div class="ping"></div>
 		</div>
-		<span class="font-mono text-sm text-nowrap">
+		<span class="text-sm text-nowrap">
 			{t('hero.status')}
 		</span>
 	</div>
@@ -21,13 +21,13 @@ const t = useTranslations(Astro.currentLocale);
 	<h1 class="mt-8 text-3xl font-medium tracking-tight text-balance sm:text-4xl">
 		{t('hero.title')}
 	</h1>
-	<p class="text-3xl font-medium tracking-tight text-balance text-taupe-900/50 sm:text-4xl">
+	<p class="text-3xl font-medium tracking-tight text-balance text-zinc-900/50 sm:text-4xl">
 		{t('hero.subtitle')}
 	</p>
 
 	<div class="mt-10 flex flex-wrap items-center justify-center gap-3">
 		<a
-			class="squircle flex items-center gap-3 bg-taupe-900 px-4 py-3 font-semibold text-white shadow-xl/30 transition-all duration-300 hover:shadow-xl/45 active:scale-95"
+			class="squircle flex items-center gap-3 bg-zinc-900 px-4 py-3 font-semibold text-white shadow-xl/30 transition-all duration-300 hover:shadow-xl/45 active:scale-95"
 			href={CONTACT.cal}
 		>
 			<Image
@@ -44,7 +44,7 @@ const t = useTranslations(Astro.currentLocale);
 			type="button"
 			id="copy-email"
 			data-email={CONTACT.email}
-			class="copy-email squircle grid place-items-center bg-taupe-900/8 px-4 py-3 font-semibold transition-all hover:bg-taupe-900/12 active:scale-95"
+			class="copy-email squircle grid place-items-center bg-zinc-900/8 px-4 py-3 font-semibold transition-all hover:bg-zinc-900/12 active:scale-95"
 		>
 			<span class="copy-label copy-label-default">{t('hero.cta.secondary')}</span>
 			<span class="copy-label copy-label-copied" aria-hidden="true">{t('hero.cta.copied')}</span>
