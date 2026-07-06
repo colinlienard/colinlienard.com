@@ -162,16 +162,16 @@ const link =
 			{ x: '0px', y: '0px', r: '0deg' },
 		];
 
-		let order = [...photos];
+		const order = [...photos];
 
 		const render = () => {
-			order.forEach((photo, i) => {
-				const slot = slots[i] ?? slots.at(-1)!;
-				photo.style.setProperty('--x', slot.x);
-				photo.style.setProperty('--y', slot.y);
-				photo.style.setProperty('--r', slot.r);
-				photo.style.setProperty('--z', String(i));
-			});
+			for (const [i, photo] of order.entries()) {
+			const slot = slots[i] ?? slots.at(-1)!;
+			photo.style.setProperty('--x', slot.x);
+			photo.style.setProperty('--y', slot.y);
+			photo.style.setProperty('--r', slot.r);
+			photo.style.setProperty('--z', String(i));
+		}
 		};
 
 		render();

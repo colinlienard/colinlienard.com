@@ -60,6 +60,14 @@ const projects = [
 								class="relative z-10 size-32 transition-transform"
 								loading="lazy"
 							/>
+							<Image
+								src={project.image}
+								alt={project.title}
+								width={256}
+								height={256}
+								class="absolute inset-0 size-32 blur-2xl"
+								loading="lazy"
+							/>
 						</div>
 						<div class="flex w-full flex-col gap-2">
 							<span class="font-semibold">{project.title}</span>

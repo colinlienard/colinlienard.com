@@ -354,6 +354,7 @@
 			scrollTarget = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
 		}
 		updateScroll();
+		/* eslint-disable-next-line unicorn/prefer-observer-apis */
 		addEventListener('scroll', updateScroll, { passive: true });
 
 		let raf = 0;
