@@ -2,9 +2,8 @@
 import '../global.css';
 import { Font } from 'astro:assets';
 import Footer from '../components/Footer.astro';
-import Nav from '../components/Nav.astro';
-import Seo from '../components/Seo.astro';
 import Menu from '../components/Menu.astro';
+import Seo from '../components/Seo.astro';
 ---
 
 <!doctype html>
@@ -24,7 +23,6 @@ import Menu from '../components/Menu.astro';
 	<body
 		class="flex min-h-dvh cursor-default flex-col items-center bg-neutral-50 pt-36 font-sans font-medium text-neutral-900 antialiased selection:bg-neutral-900/10"
 	>
-		<!-- <Nav /> -->
 		<Menu />
 		<main class="flex w-full max-w-[min(calc(100vw-4rem),40rem)] flex-col gap-20">
 			<slot />

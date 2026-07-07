@@ -1,13 +1,23 @@
 ---
 import { Image } from 'astro:assets';
+import BriefcaseIcon from 'virtual:icons/heroicons/briefcase';
 import connivence from '../assets/connivence.png';
 import mobsuccess from '../assets/mobsuccess.png';
-import BriefcaseIcon from 'virtual:icons/heroicons/briefcase';
 import { useTranslations } from '../i18n';
+import { getStackItem, type StackItem } from '../stack';
+
+type Experience = {
+	name: string;
+	logo: typeof mobsuccess;
+	period: string;
+	role: string;
+	bullets: { text: string; tooltip?: string }[];
+	stack: StackItem[];
+};
 
 const t = useTranslations(Astro.currentLocale);
 
-const experiences = [
+const experiences: Experience[] = [
 	{
 		name: 'Mobsuccess',
 		logo: mobsuccess,
@@ -20,6 +30,7 @@ const experiences = [
 			{ text: t('experience.mobsuccess.b4'), tooltip: t('experience.mobsuccess.b4.tooltip') },
 			{ text: t('experience.mobsuccess.b5') },
 		],
+		stack: ['typescript', 'react', 'pandacss', 'testing', 'amplify'],
 	},
 	{
 		name: 'Connivence',
@@ -27,6 +38,7 @@ const experiences = [
 		period: t('experience.connivence.period'),
 		role: t('experience.connivence.role'),
 		bullets: [{ text: t('experience.connivence.b1') }],
+		stack: ['react', 'git', 'figma'],
 	},
 ];
 ---
@@ -58,7 +70,7 @@ const experiences = [
 							<li>
 								{'tooltip' in bullet && bullet.tooltip ? (
 									<span
-										class="tooltip-trigger cursor-help underline decoration-neutral-400 decoration-dashed underline-offset-4"
+										class="tooltip-trigger cursor-help underline decoration-neutral-300 decoration-dashed underline-offset-4"
 										tabindex="0"
 									>
 										{bullet.text}
@@ -74,6 +86,17 @@ const experiences = [
 								)}
 							</li>
 						))}
+					</ul>
+					<ul class="mt-2 flex gap-2">
+						{experience.stack.map((item) => {
+							const stack = getStackItem(item);
+							return (
+								<li class="squircle flex items-center gap-1 border border-neutral-200 px-2 py-1 text-sm text-neutral-500">
+									<stack.icon class="size-4" />
+									{stack.name}
+								</li>
+							);
+						})}
 					</ul>
 				</li>
 			))

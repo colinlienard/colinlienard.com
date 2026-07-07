@@ -1,4 +1,5 @@
 import sitemap from '@astrojs/sitemap';
+import svelte from '@astrojs/svelte';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, fontProviders } from 'astro/config';
 import icons from 'unplugin-icons/vite';
@@ -11,6 +12,7 @@ export default defineConfig({
 		defaultLocale: 'fr',
 	},
 	integrations: [
+		svelte({ extensions: ['.svelte'] }),
 		sitemap({
 			i18n: {
 				defaultLocale: 'fr',
