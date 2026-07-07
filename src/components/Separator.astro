@@ -1,0 +1,15 @@
+<hr class="wave" aria-hidden="true" />
+<!-- <hr class="border-neutral-200" aria-hidden="true" /> -->
+
+<style>
+	.wave {
+		border: 0;
+		height: 8px;
+		width: 100%;
+		background-color: var(--color-neutral-300);
+		-webkit-mask: var(--wave) repeat-x center / 22px 8px;
+		mask: var(--wave) repeat-x center / 22px 8px;
+		--wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='8' viewBox='0 0 22 8'%3E%3Cpath d='M0 4 Q5.5 0 11 4 T22 4' fill='none' stroke='currentColor' stroke-width='1' stroke-linecap='round'/%3E%3C/svg%3E");
+		/*--wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='8' viewBox='0 0 22 8'%3E%3Cpath d='M0 7 L11 1 L22 7' fill='none' stroke='currentColor' stroke-width='1' stroke-linecap='round'/%3E%3C/svg%3E");*/
+	}
+</style>

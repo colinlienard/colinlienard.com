@@ -7,6 +7,7 @@ export const languages = {
 
 export const ui = {
 	fr: {
+		'menu.role': 'Full-Stack Engineer',
 		'seo.description':
 			'Colin Lienard, Full-Stack Engineer React & TypeScript basé à Limoges. +4 ans d’expérience, spécialisé dans l’expérience développeur et les applications web modernes.',
 		'hero.status': 'Disponible maintenant (remote/Limoges)',
@@ -17,6 +18,22 @@ export const ui = {
 		'hero.cta.secondary': 'Copier mon e-mail',
 		'hero.cta.copied': 'E-mail copié !',
 		'about.title': 'À propos',
+		'about.p1.pre': '👋 Hello, je suis un ',
+		'about.p1.role': 'ingénieur full-stack',
+		'about.p1.mid1':
+			' avec +4 ans d’expérience, spécialisé dans l’expérience développeur et les interfaces complexes. Je vis à ',
+		'about.p1.city': '🐂 Limoges',
+		'about.p1.mid2': ' et je suis habitué à travailler en ',
+		'about.p1.remote': 'distanciel',
+		'about.p1.post': '.',
+		'about.p2.pre': 'J’aide des 🚀 ',
+		'about.p2.link': 'startups',
+		'about.p2.mid1': ' à transformer une idée en produit solide et soigné. Je me concentre sur le ',
+		'about.p2.mid2': ' tout en ayant la capacité de contribuer au ',
+		'about.p2.post': '.',
+		'about.p3.pre': 'En parallèle, je conçois et maintiens des projets ⭐ ',
+		'about.p3.link': 'open-source',
+		'about.p3.post': ' utilisés par des centaines de développeurs.',
 		'about.s1.pre': 'Je travaille avec des ',
 		'about.s1.link': 'startups',
 		'about.s1.post':
@@ -25,7 +42,7 @@ export const ui = {
 		'about.s2.mid': ', tout en gardant la flexibilité de développer des fonctionnalités ',
 		'about.s2.post': 'quand le produit l’exige.',
 		'about.s3.pre': 'En parallèle, je conçois et maintiens des ',
-		'about.s3.link': 'projets open source',
+		'about.s3.link': 'projets open-source',
 		'about.s3.post': 'utilisés au quotidien par des centaines de développeurs.',
 		'about.s4.pre': 'J’explore aussi de nouvelles ',
 		'about.s4.link': 'technologies',
@@ -61,13 +78,14 @@ export const ui = {
 		'experience.connivence.period': '2021 - 2022, Limoges',
 		'experience.connivence.b1':
 			'Conçu une application de gestion des stagiaires (inscriptions et export de documents administratifs) qui a fluidifié la vente de formations.',
-		'projects.title': 'Open source',
+		'projects.title': 'Open-source',
 		'projects.moreOn': 'Voir tout sur',
 		'stack.title': 'Tech stack',
 		'contact.title': 'Restons en contact',
 		'footer.allRightsReserved': 'Tous droits réservés',
 	},
 	en: {
+		'menu.role': 'Full-Stack Engineer',
 		'seo.description':
 			'Colin Lienard, Full-Stack React & TypeScript Engineer based in Limoges, France. +4 years of experience, specialized in developer experience and modern web applications.',
 		'hero.status': 'Available now (remote/Limoges)',
@@ -78,6 +96,22 @@ export const ui = {
 		'hero.cta.secondary': 'Copy my email',
 		'hero.cta.copied': 'Email copied!',
 		'about.title': 'About',
+		'about.p1.pre': '👋 Hello, I’m a ',
+		'about.p1.role': 'full-stack engineer',
+		'about.p1.mid1':
+			' with 4+ years of experience, specialized in developer experience and complex interfaces. I live in ',
+		'about.p1.city': 'Limoges, 🇫🇷 France',
+		'about.p1.mid2': ' and I’m used to working ',
+		'about.p1.remote': 'remotely',
+		'about.p1.post': '.',
+		'about.p2.pre': 'I help 🚀 ',
+		'about.p2.link': 'startups',
+		'about.p2.mid1': ' turn an idea into a solid, polished product. I focus on the ',
+		'about.p2.mid2': ' while also contributing to the ',
+		'about.p2.post': '.',
+		'about.p3.pre': 'On the side, I design and maintain ⭐ ',
+		'about.p3.link': 'open-source',
+		'about.p3.post': ' projects used by hundreds of developers.',
 		'about.s1.pre': 'I work with ',
 		'about.s1.link': 'startups',
 		'about.s1.post':

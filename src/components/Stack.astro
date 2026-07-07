@@ -1,4 +1,5 @@
 ---
+import IconWrenchScrewdriver from 'virtual:icons/heroicons/wrench-screwdriver';
 import ClaudeIcon from 'virtual:icons/logos/claude-icon';
 import CloudflareIcon from 'virtual:icons/logos/cloudflare-icon';
 import DockerIcon from 'virtual:icons/logos/docker-icon';
@@ -27,8 +28,8 @@ const items = [
 	{ name: 'Postgres', icon: PostgresIcon },
 	{ name: 'Docker', icon: DockerIcon },
 	{ name: 'Cloudflare', icon: CloudflareIcon },
-	{ name: 'Git', icon: GitIcon },
-	{ name: 'CI/CD', icon: CiCdIcon },
+	// { name: 'Git', icon: GitIcon },
+	// { name: 'CI/CD', icon: CiCdIcon },
 	{ name: 'Unit testing', icon: VitestIcon },
 	{ name: 'Figma', icon: FigmaIcon },
 	{ name: 'Claude', icon: ClaudeIcon },
@@ -36,9 +37,13 @@ const items = [
 ---
 
 <section id="stack" class="section flex scroll-mt-24 flex-col gap-12">
-	<h2 class="text-2xl font-medium tracking-tight">{t('stack.title')}</h2>
+	<!-- <h2 class="text-2xl font-medium tracking-tight">{t('stack.title')}</h2> -->
+	<div class="flex items-center gap-2">
+		<IconWrenchScrewdriver class="[&_path]:stroke-2" />
+		<h2 class="">{t('stack.title')}</h2>
+	</div>
 	<ul
-		class="group grid grid-cols-3 justify-center border-[0.5px] border-taupe-900/10 sm:grid-cols-7"
+		class="group grid grid-cols-3 justify-center border-[0.5px] border-taupe-900/10 sm:grid-cols-6"
 	>
 		{
 			items.map((item) => (
@@ -47,7 +52,7 @@ const items = [
 						class="size-10 transition-all group-hover:grayscale group-hover/item:grayscale-0!"
 						aria-hidden="true"
 					/>
-					<span class="font-mono text-xs text-taupe-900/60">{item.name}</span>
+					<span class="text-xs text-taupe-900/60">{item.name}</span>
 				</li>
 			))
 		}

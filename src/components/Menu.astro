@@ -1,0 +1,43 @@
+---
+import { Image } from 'astro:assets';
+import me from '../assets/me.jpeg';
+import { useTranslations } from '../i18n';
+
+const t = useTranslations(Astro.currentLocale);
+---
+
+<div class="fixed inset-0 z-50 h-32 bg-linear-to-b from-neutral-50 from-50% to-transparent"></div>
+
+<div
+	class="fixed top-12 z-50 flex w-full max-w-md items-center gap-2 rounded-full bg-white p-1.5 pr-3 shadow-lg/6 ring ring-black/8"
+>
+	<Image
+		src={me}
+		alt="Colin Lienard"
+		width={80}
+		height={80}
+		class="size-10 rounded-full object-cover"
+		loading="eager"
+	/>
+	<div class="flex flex-col leading-5">
+		<span>Colin Lienard</span>
+		<span class="text-sm text-neutral-500/90">
+			{t('menu.role')}
+		</span>
+	</div>
+	<kbd
+		class="mr-1.5 ml-auto flex items-center gap-0.5 rounded-md border-b-4 border-neutral-200 bg-neutral-100 p-1 font-sans text-sm text-neutral-500"
+	>
+		<span id="mod-key" class="text-base leading-none">⌘</span>K
+	</kbd>
+</div>
+
+<script is:inline>
+	if (!/Mac|iPhone|iPad|iPod/.test(navigator.platform)) {
+		const el = document.getElementById('mod-key');
+		if (el) {
+			el.textContent = 'Ctrl';
+			el.classList.remove('text-base');
+		}
+	}
+</script>

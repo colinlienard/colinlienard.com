@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import connivence from '../assets/connivence.png';
 import mobsuccess from '../assets/mobsuccess.png';
+import BriefcaseIcon from 'virtual:icons/heroicons/briefcase';
 import { useTranslations } from '../i18n';
 
 const t = useTranslations(Astro.currentLocale);
@@ -31,48 +32,49 @@ const experiences = [
 ---
 
 <section id="experience" class="section flex scroll-mt-24 flex-col gap-12">
-	<h2 class="text-2xl font-medium tracking-tight">{t('experience.title')}</h2>
-	<ul class="grid gap-10 sm:grid-cols-[auto_1fr] sm:gap-12">
+	<div class="flex items-center gap-2">
+		<BriefcaseIcon class="[&_path]:stroke-2" />
+		<h2 class="">{t('experience.title')}</h2>
+	</div>
+	<ul class="flex flex-col gap-12">
 		{
 			experiences.map((experience) => (
-				<li class="flex flex-col gap-2 sm:contents">
-					<p class="font-mono text-sm text-taupe-900/60">{experience.period}</p>
-					<div class="flex flex-col gap-3">
-						<h3 class="inline items-center font-semibold">
-							{experience.role}
-							<Image
-								src={experience.logo}
-								alt={experience.name}
-								width={48}
-								height={48}
-								class="mr-0.5 ml-2 inline size-6 -translate-y-0.5 object-contain"
-								loading="lazy"
-							/>
-							{experience.name}
-						</h3>
-						<ul class="flex list-[square] flex-col gap-1 leading-relaxed text-pretty text-taupe-900/60">
-							{experience.bullets.map((bullet) => (
-								<li>
-									{'tooltip' in bullet && bullet.tooltip ? (
+				<li class="flex flex-col gap-2">
+					<p class="text-sm text-neutral-500">{experience.period}</p>
+					<h3 class="inline items-center">
+						{experience.role}
+						<Image
+							src={experience.logo}
+							alt={experience.name}
+							width={48}
+							height={48}
+							class="mr-0.5 ml-2 inline size-6 -translate-y-0.5 object-contain"
+							loading="lazy"
+						/>
+						{experience.name}
+					</h3>
+					<ul class="mt-2 flex list-[square] flex-col gap-1 pl-4 leading-relaxed text-pretty text-neutral-500">
+						{experience.bullets.map((bullet) => (
+							<li>
+								{'tooltip' in bullet && bullet.tooltip ? (
+									<span
+										class="tooltip-trigger cursor-help underline decoration-neutral-400 decoration-dashed underline-offset-4"
+										tabindex="0"
+									>
+										{bullet.text}
 										<span
-											class="tooltip-trigger cursor-help underline decoration-taupe-900/30 decoration-dashed underline-offset-4"
-											tabindex="0"
+											role="tooltip"
+											class="tooltip squircle pointer-events-none absolute bottom-[calc(100%+8px)] left-0 z-20 w-max max-w-xs rounded-3xl bg-neutral-900 px-3 py-2 text-sm leading-snug text-white shadow-xl/30"
 										>
-											{bullet.text}
-											<span
-												role="tooltip"
-												class="tooltip squircle pointer-events-none absolute bottom-[calc(100%+8px)] left-0 z-20 w-max max-w-xs rounded-3xl bg-taupe-900 px-3 py-2 text-sm leading-snug text-white shadow-xl/30"
-											>
-												{bullet.tooltip}
-											</span>
+											{bullet.tooltip}
 										</span>
-									) : (
-										bullet.text
-									)}
-								</li>
-							))}
-						</ul>
-					</div>
+									</span>
+								) : (
+									bullet.text
+								)}
+							</li>
+						))}
+					</ul>
 				</li>
 			))
 		}

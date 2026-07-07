@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
-import IconStar from 'virtual:icons/heroicons/star-solid';
+import IconStar from 'virtual:icons/heroicons/star';
+import IconStarSolid from 'virtual:icons/heroicons/star-solid';
 import GithubIcon from 'virtual:icons/logos/github-icon';
 import githundred from '../assets/githundred.png';
 import gitlight from '../assets/gitlight.png';
@@ -36,7 +37,11 @@ const projects = [
 ---
 
 <section id="projects" class="section flex scroll-mt-24 flex-col gap-12">
-	<h2 class="text-2xl font-medium tracking-tight">{t('projects.title')}</h2>
+	<!-- <h2 class="text-2xl font-medium tracking-tight">{t('projects.title')}</h2> -->
+	<div class="flex items-center gap-2">
+		<IconStar class="[&_path]:stroke-2" />
+		<h2 class="">{t('projects.title')}</h2>
+	</div>
 	<ul class="group grid border-[0.5px] border-taupe-900/10 sm:grid-cols-2">
 		{
 			projects.map((project) => (
@@ -48,7 +53,7 @@ const projects = [
 						class="flex flex-col items-center gap-8 p-8 transition-all group-hover:grayscale hover:grayscale-0! hover:[&_img]:scale-110"
 					>
 						<div class="flex w-full items-center justify-end gap-1">
-							<IconStar class="text-amber-400" />
+							<IconStarSolid class="text-amber-400" />
 							<span class="font-mono text-sm text-taupe-900/60">+{project.stars}</span>
 						</div>
 						<div class="relative">
