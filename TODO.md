@@ -1,0 +1,7 @@
+- [ ] Menu content
+- [ ] Dark mode
+- [ ] Improve open-source and tech stack design
+- [ ] Main CTA animation
+- [ ] Background animation
+- [ ] OG image
+- [ ] Footer illustration/game
