@@ -1,44 +1,37 @@
 ---
-import ClaudeIcon from 'virtual:icons/logos/claude-icon';
-import CloudflareIcon from 'virtual:icons/logos/cloudflare-icon';
-import DockerIcon from 'virtual:icons/logos/docker-icon';
-import FigmaIcon from 'virtual:icons/logos/figma';
-import GitIcon from 'virtual:icons/logos/git-icon';
-import CiCdIcon from 'virtual:icons/logos/github-actions';
-import HonoIcon from 'virtual:icons/logos/hono';
-import NodeJsIcon from 'virtual:icons/logos/nodejs-icon-alt';
-import PostgresIcon from 'virtual:icons/logos/postgresql';
-import ReactIcon from 'virtual:icons/logos/react';
-import SvelteIcon from 'virtual:icons/logos/svelte-icon';
-import TailwindIcon from 'virtual:icons/logos/tailwindcss-icon';
-import TypeScriptIcon from 'virtual:icons/logos/typescript-icon';
-import VitestIcon from 'virtual:icons/logos/vitest';
+import IconWrenchScrewdriver from 'virtual:icons/heroicons/wrench-screwdriver';
 import { useTranslations } from '../i18n';
+import { getStackItem, type StackItem } from '../stack';
 
 const t = useTranslations(Astro.currentLocale);
 
-const items = [
-	{ name: 'TypeScript', icon: TypeScriptIcon },
-	{ name: 'React', icon: ReactIcon },
-	{ name: 'Svelte', icon: SvelteIcon },
-	{ name: 'Tailwind', icon: TailwindIcon },
-	{ name: 'Node.js', icon: NodeJsIcon },
-	{ name: 'Hono', icon: HonoIcon },
-	{ name: 'Postgres', icon: PostgresIcon },
-	{ name: 'Docker', icon: DockerIcon },
-	{ name: 'Cloudflare', icon: CloudflareIcon },
-	{ name: 'Git', icon: GitIcon },
-	{ name: 'CI/CD', icon: CiCdIcon },
-	{ name: 'Unit testing', icon: VitestIcon },
-	{ name: 'Figma', icon: FigmaIcon },
-	{ name: 'Claude', icon: ClaudeIcon },
-];
+const items = (
+	[
+		'typescript',
+		'react',
+		'svelte',
+		'tailwind',
+		'node',
+		'hono',
+		'postgres',
+		'docker',
+		'cloudflare',
+		// 'git',
+		// 'cicd',
+		'testing',
+		'figma',
+		'claude',
+	] satisfies StackItem[]
+).map((item) => getStackItem(item));
 ---
 
 <section id="stack" class="section flex scroll-mt-24 flex-col gap-12">
-	<h2 class="text-2xl font-medium tracking-tight">{t('stack.title')}</h2>
+	<div class="flex items-center gap-2">
+		<IconWrenchScrewdriver class="[&_path]:stroke-2" />
+		<h2 class="">{t('stack.title')}</h2>
+	</div>
 	<ul
-		class="group grid grid-cols-3 justify-center border-[0.5px] border-taupe-900/10 sm:grid-cols-7"
+		class="group grid grid-cols-3 justify-center border-[0.5px] border-taupe-900/10 sm:grid-cols-6"
 	>
 		{
 			items.map((item) => (
@@ -47,7 +40,7 @@ const items = [
 						class="size-10 transition-all group-hover:grayscale group-hover/item:grayscale-0!"
 						aria-hidden="true"
 					/>
-					<span class="font-mono text-xs text-taupe-900/60">{item.name}</span>
+					<span class="text-xs text-taupe-900/60">{item.name}</span>
 				</li>
 			))
 		}

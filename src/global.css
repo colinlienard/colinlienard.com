@@ -27,13 +27,13 @@
 
 @theme {
 	--font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
-	--font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+	--font-newsreader: var(--font-newsreader), ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 @layer components {
 	.section {
 		width: 100%;
-		max-width: min(calc(100vw - 4rem), 52rem);
+		max-width: min(calc(100vw - 4rem), 40rem);
 	}
 
 	.squircle {

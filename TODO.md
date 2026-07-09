@@ -1,7 +1,7 @@
-- [ ] Add sounds
-- [ ] Improve available pill
-- [ ] Animations at the start
-- [ ] Animations on scroll
-- [ ] Steps on the side of the page
-- [ ] Improve sunlit config devtool
-- [ ] Change the background color in the footer?
+- [ ] Menu content
+- [ ] Dark mode
+- [ ] Improve open-source and tech stack design
+- [ ] Main CTA animation
+- [ ] Background animation
+- [ ] OG image
+- [ ] Footer illustration/game

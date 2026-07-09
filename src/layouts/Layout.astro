@@ -2,9 +2,8 @@
 import '../global.css';
 import { Font } from 'astro:assets';
 import Footer from '../components/Footer.astro';
-import Nav from '../components/Nav.astro';
+import Menu from '../components/Menu.astro';
 import Seo from '../components/Seo.astro';
-import Sunlit from '../components/Sunlit.astro';
 ---
 
 <!doctype html>
@@ -17,16 +16,15 @@ import Sunlit from '../components/Sunlit.astro';
 		<title>Colin Lienard</title>
 		<Seo />
 		<Font cssVariable="--font-inter" preload />
-		<Font cssVariable="--font-geist-mono" preload />
+		<Font cssVariable="--font-newsreader" preload />
 		<!-- TODO: remove this when done -->
 		<meta name="robots" content="noindex, nofollow" />
 	</head>
 	<body
-		class="flex min-h-dvh cursor-default flex-col items-center gap-40 bg-white pt-32 font-sans text-taupe-900 antialiased selection:bg-taupe-900/10"
+		class="flex min-h-dvh cursor-default flex-col items-center bg-neutral-50 pt-36 font-sans font-medium text-neutral-900 antialiased selection:bg-neutral-900/10"
 	>
-		<Sunlit />
-		<Nav />
-		<main class="contents">
+		<Menu />
+		<main class="flex w-full max-w-[min(calc(100vw-4rem),40rem)] flex-col gap-20">
 			<slot />
 		</main>
 		<Footer />

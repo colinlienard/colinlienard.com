@@ -2,6 +2,7 @@ import js from '@eslint/js';
 import prettier from 'eslint-config-prettier';
 import astro from 'eslint-plugin-astro';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
+import svelte from 'eslint-plugin-svelte';
 import eslintPluginUnicorn from 'eslint-plugin-unicorn';
 import globals from 'globals';
 import ts from 'typescript-eslint';
@@ -11,11 +12,20 @@ export default [
 	js.configs.recommended,
 	...ts.configs.recommended,
 	...astro.configs.recommended,
+	...svelte.configs['flat/recommended'],
 	{
 		languageOptions: {
 			globals: {
 				...globals.browser,
 				...globals.node,
+			},
+		},
+	},
+	{
+		files: ['**/*.svelte', '**/*.svelte.ts'],
+		languageOptions: {
+			parserOptions: {
+				parser: ts.parser,
 			},
 		},
 	},
@@ -26,10 +36,11 @@ export default [
 				'error',
 				{
 					case: 'kebabCase',
-					ignore: [/^(.*)\.astro$/],
+					ignore: [/^(.*)\.astro$/, /^(.*)\.svelte$/],
 				},
 			],
 			'unicorn/name-replacements': 'off',
+			'unicorn/no-top-level-assignment-in-function': 'off',
 		},
 	},
 	{
@@ -56,6 +67,7 @@ export default [
 		},
 	},
 	prettier,
+	...svelte.configs['flat/prettier'],
 	{
 		ignores: ['**/dist/**', '**/.astro/**'],
 	},

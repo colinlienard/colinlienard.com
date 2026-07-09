@@ -1,50 +1,51 @@
 ---
-import { Image } from 'astro:assets';
-import me from '../assets/me.jpeg';
 import { CONTACT } from '../config';
 import { useTranslations } from '../i18n';
 
 const t = useTranslations(Astro.currentLocale);
+
+const link =
+	'text-neutral-900 underline decoration-neutral-400 underline-offset-2 hover:decoration-solid decoration-dashed';
 ---
 
-<section class="section relative flex flex-col items-center justify-center text-center">
-	<div class="flex items-center gap-2 rounded-full border border-taupe-900/10 px-4 py-2">
-		<div class="relative size-2 *:absolute *:inset-0 *:rounded-full *:bg-green-400">
-			<div></div>
-			<div class="ping"></div>
-		</div>
-		<span class="font-mono text-sm text-nowrap">
-			{t('hero.status')}
-		</span>
+<section class="section relative flex flex-col gap-6">
+	<h1 class="font-newsreader mt-8 text-2xl tracking-tight text-balance italic">Colin Lienard</h1>
+
+	<div class="flex flex-col gap-4 leading-relaxed text-pretty text-neutral-500/90">
+		<p>
+			{t('hero.p1.pre')}<span class="whitespace-nowrap text-neutral-900">{t('hero.p1.role')}</span>{
+				t('hero.p1.mid1')
+			}<span class="text-neutral-900">{t('hero.p1.city')}</span>{t('hero.p1.mid2')}<span
+				class="whitespace-nowrap text-neutral-900">{t('hero.p1.remote')}</span
+			>{t('hero.p1.post')}
+		</p>
+		<p>
+			{t('hero.p2.pre')}<a class={link} href="#experience">{t('hero.p2.link')}</a>{
+				t('hero.p2.mid1')
+			}<span class="whitespace-nowrap text-neutral-900">front-end</span>{t('hero.p2.mid2')}<span
+				class="whitespace-nowrap text-neutral-900">back-end</span
+			>{t('hero.p2.post')}
+		</p>
+		<p>
+			{t('hero.p3.pre')}<a class={`${link} whitespace-nowrap`} href="#projects">
+				{t('hero.p3.link')}
+			</a>
+			{t('hero.p3.post')}
+		</p>
 	</div>
 
-	<h1 class="mt-8 text-3xl font-medium tracking-tight text-balance sm:text-4xl">
-		{t('hero.title')}
-	</h1>
-	<p class="text-3xl font-medium tracking-tight text-balance text-taupe-900/50 sm:text-4xl">
-		{t('hero.subtitle')}
-	</p>
-
-	<div class="mt-10 flex flex-wrap items-center justify-center gap-3">
+	<div class="flex flex-wrap gap-2">
 		<a
-			class="squircle flex items-center gap-3 bg-taupe-900 px-4 py-3 font-semibold text-white shadow-xl/30 transition-all duration-300 hover:shadow-xl/45 active:scale-95"
+			class="flex rounded-full bg-neutral-900 px-4 py-2 text-white transition-all hover:bg-neutral-800 active:scale-95"
 			href={CONTACT.cal}
 		>
-			<Image
-				src={me}
-				alt="Colin Lienard"
-				width={64}
-				height={64}
-				class="size-6 rounded-full object-cover"
-				loading="eager"
-			/>
-			{t('hero.cta.primary')}
+			Planifier un appel
 		</a>
 		<button
 			type="button"
 			id="copy-email"
 			data-email={CONTACT.email}
-			class="copy-email squircle grid place-items-center bg-taupe-900/8 px-4 py-3 font-semibold transition-all hover:bg-taupe-900/12 active:scale-95"
+			class="copy-email grid rounded-full bg-neutral-200/50 px-4 py-2 transition-all hover:bg-neutral-200 active:scale-95"
 		>
 			<span class="copy-label copy-label-default">{t('hero.cta.secondary')}</span>
 			<span class="copy-label copy-label-copied" aria-hidden="true">{t('hero.cta.copied')}</span>
