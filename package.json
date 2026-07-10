@@ -12,9 +12,6 @@
 		"format": "prettier --check .",
 		"format:fix": "prettier --write ."
 	},
-	"dependencies": {
-		"tailwind-merge": "^3.6.0"
-	},
 	"devDependencies": {
 		"@astrojs/check": "^0.9.9",
 		"@astrojs/sitemap": "^3.7.3",

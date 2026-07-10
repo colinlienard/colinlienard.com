@@ -8,8 +8,12 @@ export const languages = {
 export const ui = {
 	fr: {
 		'menu.role': 'Full-Stack Engineer',
+		'menu.light': 'Clair',
+		'menu.dark': 'Sombre',
+		'menu.system': 'Système',
 		'seo.description':
 			'Colin Lienard, Full-Stack Engineer React & TypeScript basé à Limoges. +4 ans d’expérience, spécialisé dans l’expérience développeur et les applications web modernes.',
+		'hero.title': 'Accueil',
 		'hero.subtitle':
 			"+4 ans d'expérience, spécialisé dans l’expérience développeur et les applications web modernes",
 		'hero.cta.secondary': 'Copier mon e-mail',
@@ -32,7 +36,7 @@ export const ui = {
 		'hero.p3.post': ' utilisés par des centaines de développeurs.',
 		'experience.title': 'Expérience',
 		'experience.mobsuccess.role': 'Full-Stack Engineer chez',
-		'experience.mobsuccess.period': '2023 - 2026, Paris (remote)',
+		'experience.mobsuccess.period': '2023 - Présent, Paris (distanciel)',
 		'experience.mobsuccess.b1':
 			'Développé des applications web utilisées par de grandes entreprises françaises pour piloter leurs campagnes publicitaires.',
 		'experience.mobsuccess.b2':
@@ -40,7 +44,7 @@ export const ui = {
 		'experience.mobsuccess.b3':
 			'Optimisé les performances des applications et des suites de tests.',
 		'experience.mobsuccess.b3.tooltip':
-			'Temps de chargement des applications réduit de 2 s et durée des runs de tests réduite de 20 %.',
+			'Temps de chargement des applications réduit de 1,5 s et durée des runs de tests réduite de 20 %.',
 		'experience.mobsuccess.b4': 'Mené plusieurs migrations techniques structurantes.',
 		'experience.mobsuccess.b4.tooltip':
 			'Create React App → Vite, JS → TS, React Router → TanStack Router, adoption du React Compiler.',
@@ -51,14 +55,18 @@ export const ui = {
 			'Conçu une application de gestion des stagiaires (inscriptions et export de documents administratifs) qui a fluidifié la vente de formations.',
 		'projects.title': 'Open-source',
 		'projects.moreOn': 'Voir tout sur',
-		'stack.title': 'Tech stack',
+		'stack.title': 'Stack technique',
 		'contact.title': 'Restons en contact',
 		'footer.allRightsReserved': 'Tous droits réservés',
 	},
 	en: {
 		'menu.role': 'Full-Stack Engineer',
+		'menu.light': 'Light',
+		'menu.dark': 'Dark',
+		'menu.system': 'System',
 		'seo.description':
 			'Colin Lienard, Full-Stack React & TypeScript Engineer based in Limoges, France. +4 years of experience, specialized in developer experience and modern web applications.',
+		'hero.title': 'Home',
 		'hero.subtitle':
 			'+4 years of experience, specialized in developer experience and modern web applications',
 		'hero.cta.secondary': 'Copy my email',
@@ -81,13 +89,13 @@ export const ui = {
 		'hero.p3.post': ' projects used by hundreds of developers.',
 		'experience.title': 'Experience',
 		'experience.mobsuccess.role': 'Full-Stack Engineer at',
-		'experience.mobsuccess.period': '2023 - 2026, Paris (remote)',
+		'experience.mobsuccess.period': '2023 - Present, Paris (remote)',
 		'experience.mobsuccess.b1':
 			'Built web applications used by major French companies to run their advertising campaigns.',
 		'experience.mobsuccess.b2':
 			'Created an AI chat companion letting users ask questions and trigger agentic actions.',
 		'experience.mobsuccess.b3': 'Optimized application performance and test suites.',
-		'experience.mobsuccess.b3.tooltip': 'Cut app load time by 2s and test-run duration by 20%',
+		'experience.mobsuccess.b3.tooltip': 'Cut app load time by 1.5s and test-run duration by 20%',
 		'experience.mobsuccess.b4': 'Led several key technical migrations..',
 		'experience.mobsuccess.b4.tooltip':
 			'Create React App → Vite, JS → TS, React Router → TanStack Router, React Compiler adoption.',
@@ -96,7 +104,7 @@ export const ui = {
 		'experience.connivence.period': '2021 - 2022, Limoges',
 		'experience.connivence.b1':
 			'Built an intern-management app (registrations and admin document export) that streamlined training sales.',
-		'projects.title': 'Open Source',
+		'projects.title': 'Open-Source',
 		'projects.moreOn': 'See it all on',
 		'stack.title': 'Tech Stack',
 		'contact.title': "Let's connect",
