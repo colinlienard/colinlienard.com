@@ -29,8 +29,8 @@ const stack = {
 	postgres: { name: 'Postgres', icon: PostgresIcon },
 	react: { name: 'React', icon: ReactIcon },
 	svelte: { name: 'Svelte', icon: SvelteIcon },
-	tailwind: { name: 'Tailwind', icon: TailwindIcon },
-	testing: { name: 'Testing', icon: VitestIcon },
+	tailwind: { name: 'Tailwind CSS', icon: TailwindIcon },
+	testing: { name: 'Vitest', icon: VitestIcon },
 	typescript: { name: 'TypeScript', icon: TypeScriptIcon },
 };
 

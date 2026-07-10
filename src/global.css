@@ -23,6 +23,10 @@
 	a[target='_blank'] {
 		cursor: alias;
 	}
+
+	strong {
+		font-weight: unset;
+	}
 }
 
 @theme {
