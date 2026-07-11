@@ -30,3 +30,22 @@ import Seo from '../components/Seo.astro';
 		<Footer />
 	</body>
 </html>
+
+<style>
+	main {
+		animation: appear 0.3s ease-out;
+
+		@media (prefers-reduced-motion: reduce) {
+			animation: none;
+		}
+	}
+
+	@keyframes appear {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+</style>

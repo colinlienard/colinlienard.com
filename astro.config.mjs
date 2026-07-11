@@ -40,6 +40,6 @@ export default defineConfig({
 		},
 	],
 	vite: {
-		plugins: [icons({ compiler: 'astro' }), tailwindcss()],
+		plugins: [icons({ compiler: 'svelte' }), tailwindcss()],
 	},
 });

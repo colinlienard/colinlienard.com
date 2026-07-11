@@ -1,55 +1,78 @@
 ---
+import CheckIcon from 'virtual:icons/heroicons/check';
+import GithubIcon from 'virtual:icons/logos/github-icon';
+import LinkedinIcon from 'virtual:icons/logos/linkedin-icon';
+import XIcon from 'virtual:icons/logos/x';
+import MaltIcon from '../assets/malt.svg';
 import { CONTACT } from '../config';
 import { useTranslations } from '../i18n';
 
 const t = useTranslations(Astro.currentLocale);
-
-const link =
-	'text-neutral-900 underline decoration-neutral-400 underline-offset-2 hover:decoration-solid decoration-dashed';
 ---
 
-<section class="section relative flex flex-col gap-6">
+<section id="hero" class="section relative flex flex-col gap-12">
 	<h1 class="font-newsreader mt-8 text-2xl tracking-tight text-balance italic">Colin Lienard</h1>
 
 	<div class="flex flex-col gap-4 leading-relaxed text-pretty text-neutral-500/90">
 		<p>
-			{t('hero.p1.pre')}<span class="whitespace-nowrap text-neutral-900">{t('hero.p1.role')}</span>{
-				t('hero.p1.mid1')
-			}<span class="text-neutral-900">{t('hero.p1.city')}</span>{t('hero.p1.mid2')}<span
-				class="whitespace-nowrap text-neutral-900">{t('hero.p1.remote')}</span
-			>{t('hero.p1.post')}
+			{t('hero.p1.pre')}<strong class="whitespace-nowrap text-neutral-900"
+				>{t('hero.p1.role')}</strong
+			>{t('hero.p1.mid1')}<strong class="text-neutral-900">{t('hero.p1.city')}</strong>{
+				t('hero.p1.mid2')
+			}<strong class="text-neutral-900">{t('hero.p1.remote')}</strong>{t('hero.p1.post')}
 		</p>
 		<p>
-			{t('hero.p2.pre')}<a class={link} href="#experience">{t('hero.p2.link')}</a>{
+			{t('hero.p2.pre')}<strong class="text-neutral-900">{t('hero.p2.link')}</strong>{
 				t('hero.p2.mid1')
-			}<span class="whitespace-nowrap text-neutral-900">front-end</span>{t('hero.p2.mid2')}<span
-				class="whitespace-nowrap text-neutral-900">back-end</span
-			>{t('hero.p2.post')}
+			}<strong class="whitespace-nowrap text-neutral-900">front-end</strong>{
+				t('hero.p2.mid2')
+			}<strong class="whitespace-nowrap text-neutral-900">back-end</strong>{t('hero.p2.post')}
 		</p>
 		<p>
-			{t('hero.p3.pre')}<a class={`${link} whitespace-nowrap`} href="#projects">
+			{t('hero.p3.pre')}<strong class="text-neutral-900">
 				{t('hero.p3.link')}
-			</a>
+			</strong>
 			{t('hero.p3.post')}
 		</p>
 	</div>
 
-	<div class="flex flex-wrap gap-2">
-		<a
-			class="flex rounded-full bg-neutral-900 px-4 py-2 text-white transition-all hover:bg-neutral-800 active:scale-95"
-			href={CONTACT.cal}
-		>
-			Planifier un appel
-		</a>
+	<div class="flex flex-wrap items-center gap-4">
 		<button
 			type="button"
 			id="copy-email"
 			data-email={CONTACT.email}
-			class="copy-email grid rounded-full bg-neutral-200/50 px-4 py-2 transition-all hover:bg-neutral-200 active:scale-95"
+			class="copy-email grid rounded-full bg-neutral-900 px-4 py-2 text-white transition-all hover:bg-neutral-800 active:scale-95"
 		>
 			<span class="copy-label copy-label-default">{t('hero.cta.secondary')}</span>
-			<span class="copy-label copy-label-copied" aria-hidden="true">{t('hero.cta.copied')}</span>
+			<span class="copy-label copy-label-copied flex items-center gap-1" aria-hidden="true">
+				<CheckIcon class="size-4" />
+				{t('hero.cta.copied')}
+			</span>
 		</button>
+		<a href={CONTACT.github} target="_blank" rel="noopener noreferrer">
+			<GithubIcon
+				class="size-6 [&_path]:transition-colors not-hover:[&_path]:fill-neutral-500"
+				aria-label="Github"
+			/>
+		</a>
+		<a href={CONTACT.linkedin} target="_blank" rel="noopener noreferrer">
+			<LinkedinIcon
+				class="size-6 [&_path]:transition-colors not-hover:[&_path]:fill-neutral-500"
+				aria-label="Linkedin"
+			/>
+		</a>
+		<a href={CONTACT.malt} target="_blank" rel="noopener noreferrer">
+			<MaltIcon
+				class="size-6 [&_path]:transition-colors not-hover:[&_path]:fill-neutral-500"
+				aria-label="Malt"
+			/>
+		</a>
+		<a href={CONTACT.x} target="_blank" rel="noopener noreferrer">
+			<XIcon
+				class="size-6 [&_path]:transition-colors not-hover:[&_path]:fill-neutral-500"
+				aria-label="X"
+			/>
+		</a>
 	</div>
 </section>
 

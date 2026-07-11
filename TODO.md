@@ -1,4 +1,4 @@
-- [ ] Menu content
+- [x] Menu content (nav, dark mode, switch lang, contacts)
 - [ ] Dark mode
 - [ ] Improve open-source and tech stack design
 - [ ] Main CTA animation

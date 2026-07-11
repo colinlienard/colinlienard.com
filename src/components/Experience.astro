@@ -65,7 +65,7 @@ const experiences: Experience[] = [
 						/>
 						{experience.name}
 					</h3>
-					<ul class="mt-2 flex list-[square] flex-col gap-1 pl-4 leading-relaxed text-pretty text-neutral-500">
+					<ul class="mt-2 flex list-[circle] flex-col gap-1 pl-4 leading-relaxed text-pretty text-neutral-500">
 						{experience.bullets.map((bullet) => (
 							<li>
 								{'tooltip' in bullet && bullet.tooltip ? (
@@ -87,7 +87,7 @@ const experiences: Experience[] = [
 							</li>
 						))}
 					</ul>
-					<ul class="mt-2 flex gap-2">
+					<ul class="mt-2 flex flex-wrap gap-2">
 						{experience.stack.map((item) => {
 							const stack = getStackItem(item);
 							return (

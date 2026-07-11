@@ -1,10 +1,26 @@
 ---
 import { Image } from 'astro:assets';
 import me from '../assets/me.jpeg';
+import { useTranslations } from '../i18n';
 import Menu from './Menu.svelte';
+
+const t = useTranslations(Astro.currentLocale);
+const translations = {
+	role: t('menu.role'),
+	sections: t('menu.sections'),
+	language: t('menu.language'),
+	theme: t('menu.theme'),
+	hero: t('hero.title'),
+	experience: t('experience.title'),
+	projects: t('projects.title'),
+	stack: t('stack.title'),
+	light: t('menu.light'),
+	dark: t('menu.dark'),
+	system: t('menu.system'),
+};
 ---
 
-<Menu locale={Astro.currentLocale} client:load>
+<Menu {translations} client:load>
 	<Image
 		src={me}
 		alt="Colin Lienard"

@@ -41,6 +41,7 @@ export default [
 			],
 			'unicorn/name-replacements': 'off',
 			'unicorn/no-top-level-assignment-in-function': 'off',
+			'unicorn/prefer-global-this': 'off',
 		},
 	},
 	{
