@@ -30,17 +30,15 @@ const items = (
 		<CommandLineIcon class="[&_path]:stroke-2" />
 		<h2 class="">{t('stack.title')}</h2>
 	</div>
-	<ul
-		class="group grid grid-cols-3 justify-center border-[0.5px] border-taupe-900/10 sm:grid-cols-6"
-	>
+	<ul class="group border-border grid grid-cols-3 justify-center border-[0.5px] sm:grid-cols-6">
 		{
 			items.map((item) => (
-				<li class="group/item flex aspect-square flex-col items-center justify-center gap-3 border-[0.5px] border-taupe-900/10 hover:[&_svg]:scale-110">
+				<li class="group/item border-border flex aspect-square flex-col items-center justify-center gap-3 border-[0.5px] hover:[&_svg]:scale-110">
 					<item.icon
 						class="size-10 transition-all group-hover:grayscale group-hover/item:grayscale-0!"
 						aria-hidden="true"
 					/>
-					<span class="text-xs text-taupe-900/60">{item.name}</span>
+					<span class="text-muted text-xs">{item.name}</span>
 				</li>
 			))
 		}

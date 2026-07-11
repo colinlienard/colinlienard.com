@@ -31,14 +31,37 @@
 
 	let { translations, children }: { translations: Translations; children?: Snippet } = $props();
 
+	type Theme = 'light' | 'dark' | 'system';
+
 	let isMac = $state(true);
 	let isOpen = $state(false);
 	let isKeyDown = $state(false);
 	let isTransitioning = $state(false);
 	let selectedItem = $state(0);
+	let theme = $state<Theme>('system');
+
+	function applyTheme(value: Theme) {
+		theme = value;
+		if (value === 'system') {
+			localStorage.removeItem('theme');
+		} else {
+			localStorage.setItem('theme', value);
+		}
+		document.documentElement.classList.toggle(
+			'dark',
+			value === 'dark' ||
+				(value === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches),
+		);
+	}
 
 	onMount(() => {
 		isMac = /Mac|iPhone|iPad|iPod/.test(navigator.platform);
+		theme = (localStorage.getItem('theme') as Theme | null) ?? 'system';
+
+		const media = window.matchMedia('(prefers-color-scheme: dark)');
+		const offMedia = on(media, 'change', () => {
+			if (theme === 'system') applyTheme('system');
+		});
 
 		let timeout: ReturnType<typeof setTimeout>;
 		let timeout2: ReturnType<typeof setTimeout>;
@@ -63,6 +86,7 @@
 			clearTimeout(timeout);
 			clearTimeout(timeout2);
 			off();
+			offMedia();
 		};
 	});
 
@@ -86,11 +110,15 @@
 						selectedItem++;
 						break;
 					}
-					case 'Enter':
+					case 'Enter': {
+						e.preventDefault();
+						handleMenuAction();
+						if (selectedItem < 5) isOpen = false;
+						break;
+					}
 					case 'Escape': {
 						e.preventDefault();
 						isOpen = false;
-						if (e.key === 'Enter') handleMenuAction();
 						break;
 					}
 				}
@@ -114,6 +142,10 @@
 			window.location.pathname = window.location.pathname === '/en' ? '' : '/en';
 			return;
 		}
+		if (index >= 5) {
+			applyTheme(index === 5 ? 'light' : index === 6 ? 'dark' : 'system');
+			return;
+		}
 		const targets = ['hero', 'experience', 'projects', 'stack'];
 		const target = document.querySelector<HTMLElement>('#' + targets[index]);
 		if (target) {
@@ -124,7 +156,7 @@
 
 <div
 	id="menu"
-	class="fixed top-8 sm:top-12 z-50 w-full rounded-3xl transition-all ease-out duration-400 bg-white/90 backdrop-blur-sm ring ring-black/8 {isOpen
+	class="fixed top-8 sm:top-12 z-50 w-full rounded-3xl transition-all ease-out duration-400 bg-white/90 dark:bg-neutral-800/90 backdrop-blur-sm ring ring-border {isOpen
 		? 'rounded-b-xl max-w-[min(400px,calc(100vw-4rem))] shadow-2xl'
 		: 'max-w-xs shadow-lg/6'}"
 	role="presentation"
@@ -142,12 +174,12 @@
 		{@render children?.()}
 		<div class="flex flex-col leading-5">
 			<span>Colin Lienard</span>
-			<span class="text-sm text-neutral-400/90">
+			<span class="text-sm text-muted">
 				{translations.role}
 			</span>
 		</div>
 		<kbd
-			class="not-sm:hidden mr-1.5 ml-auto flex items-center gap-0.5 rounded-md border border-neutral-200 bg-neutral-100 p-1 font-sans text-sm text-neutral-400 {isKeyDown
+			class="not-sm:hidden mr-1.5 ml-auto flex items-center gap-0.5 rounded-md border border-border bg-bg p-1 font-sans text-sm text-muted {isKeyDown
 				? 'translate-y-0.5'
 				: 'border-b-4'}"
 		>
@@ -160,21 +192,21 @@
 			transition:slideWithOpacity={{ duration: TRANSITION_DURATION }}
 		>
 			<div class="absolute top-0 -left-12 not-sm:hidden -right-12 -bottom-16 -z-10"></div>
-			<hr class="text-black/8 -mx-1.5" />
-			<span class="text-sm text-neutral-400 pl-2 pt-1">{translations.sections}</span>
+			<hr class="text-border -mx-1.5" />
+			<span class="text-sm text-muted pl-2 pt-1">{translations.sections}</span>
 			{@render menuItem(0, translations.hero, HomeIcon)}
 			{@render menuItem(1, translations.experience, BriefcaseIcon)}
 			{@render menuItem(2, translations.projects, StarIcon)}
 			{@render menuItem(3, translations.stack, CommandLineIcon)}
-			<hr class="text-black/8 -mx-1.5" />
-			<span class="text-sm text-neutral-400 pl-2 pt-1">{translations.language}</span>
+			<hr class="text-border -mx-1.5" />
+			<span class="text-sm text-muted pl-2 pt-1">{translations.language}</span>
 			{@render menuItem(4, window.location.pathname === '/en' ? 'Français' : 'English')}
-			<hr class="text-black/8 -mx-1.5" />
-			<span class="text-sm text-neutral-400 pl-2 pt-1">{translations.theme}</span>
+			<hr class="text-border -mx-1.5" />
+			<span class="text-sm text-muted pl-2 pt-1">{translations.theme}</span>
 			<div class="grid grid-cols-3 gap-1.5">
-				{@render menuItem(5, translations.light, SunIcon)}
-				{@render menuItem(6, translations.dark, MoonIcon)}
-				{@render menuItem(7, translations.system, ComputerDesktopIcon, true)}
+				{@render menuItem(5, translations.light, SunIcon, theme === 'light')}
+				{@render menuItem(6, translations.dark, MoonIcon, theme === 'dark')}
+				{@render menuItem(7, translations.system, ComputerDesktopIcon, theme === 'system')}
 			</div>
 		</div>
 	{/if}
@@ -184,15 +216,15 @@
 	<button
 		class="flex items-center gap-2 p-2 rounded-lg {selectedItem === index
 			? isActive
-				? 'bg-neutral-900/10'
-				: 'bg-neutral-900/5'
+				? 'bg-fg/10'
+				: 'bg-fg/5'
 			: isActive
-				? 'bg-neutral-900/5'
+				? 'bg-fg/5'
 				: ''} {index > 4 ? 'justify-center' : ''}"
 		onmouseenter={() => (selectedItem = index)}
 		onclick={() => {
 			handleMenuAction(index);
-			isOpen = false;
+			if (index < 5) isOpen = false;
 		}}
 	>
 		{#if Icon}
@@ -207,7 +239,7 @@
 
 <!-- Blur gradient -->
 <div class="pointer-events-none fixed inset-0 z-40 h-32">
-	<div class="absolute inset-0 bg-linear-to-b from-neutral-50 to-transparent"></div>
+	<div class="absolute inset-0 bg-linear-to-b from-bg to-transparent"></div>
 	<div
 		class="absolute inset-0 mask-[linear-gradient(to_bottom,black_0%,black_85%,transparent_100%)] backdrop-blur-[1px]"
 	></div>

@@ -17,11 +17,18 @@ import Seo from '../components/Seo.astro';
 		<Seo />
 		<Font cssVariable="--font-inter" preload />
 		<Font cssVariable="--font-newsreader" preload />
+		<script is:inline>
+			const theme = localStorage.getItem('theme');
+			document.documentElement.classList.toggle(
+				'dark',
+				theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches),
+			);
+		</script>
 		<!-- TODO: remove this when done -->
 		<meta name="robots" content="noindex, nofollow" />
 	</head>
 	<body
-		class="flex min-h-dvh cursor-default flex-col items-center bg-neutral-50 pt-36 font-sans font-medium text-neutral-900 antialiased selection:bg-neutral-900/10"
+		class="bg-bg text-fg selection:bg-fg/10 flex min-h-dvh cursor-default flex-col items-center pt-36 font-sans font-medium antialiased"
 	>
 		<Menu />
 		<main class="flex w-full max-w-[min(calc(100vw-4rem),40rem)] flex-col gap-20">

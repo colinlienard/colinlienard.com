@@ -29,9 +29,36 @@
 	}
 }
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
 	--font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
 	--font-newsreader: var(--font-newsreader), ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+@theme inline {
+	--color-bg: var(--bg);
+	--color-fg: var(--fg);
+	--color-muted: var(--muted);
+	--color-border: var(--border);
+}
+
+@layer base {
+	:root {
+		color-scheme: light;
+		--bg: var(--color-neutral-50);
+		--fg: var(--color-neutral-900);
+		--muted: var(--color-neutral-500);
+		--border: --alpha(var(--color-neutral-900) / 8%);
+	}
+
+	.dark {
+		color-scheme: dark;
+		--bg: var(--color-neutral-900);
+		--fg: var(--color-neutral-50);
+		--muted: var(--color-neutral-400);
+		--border: --alpha(var(--color-neutral-50) / 12%);
+	}
 }
 
 @layer components {
