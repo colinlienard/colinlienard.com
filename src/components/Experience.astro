@@ -52,7 +52,7 @@ const experiences: Experience[] = [
 		{
 			experiences.map((experience) => (
 				<li class="flex flex-col gap-2">
-					<p class="text-sm text-neutral-500">{experience.period}</p>
+					<p class="text-muted text-sm">{experience.period}</p>
 					<h3 class="inline items-center">
 						{experience.role}
 						<Image
@@ -65,18 +65,18 @@ const experiences: Experience[] = [
 						/>
 						{experience.name}
 					</h3>
-					<ul class="mt-2 flex list-[circle] flex-col gap-1 pl-4 leading-relaxed text-pretty text-neutral-500">
+					<ul class="text-muted mt-2 flex list-[circle] flex-col gap-1 pl-4 leading-relaxed text-pretty">
 						{experience.bullets.map((bullet) => (
 							<li>
 								{'tooltip' in bullet && bullet.tooltip ? (
 									<span
-										class="tooltip-trigger cursor-help underline decoration-neutral-300 decoration-dashed underline-offset-4"
+										class="tooltip-trigger decoration-border cursor-help underline decoration-dashed underline-offset-4"
 										tabindex="0"
 									>
 										{bullet.text}
 										<span
 											role="tooltip"
-											class="tooltip squircle pointer-events-none absolute bottom-[calc(100%+8px)] left-0 z-20 w-max max-w-xs rounded-3xl bg-neutral-900 px-3 py-2 text-sm leading-snug text-white shadow-xl/30"
+											class="tooltip squircle pointer-events-none absolute bottom-[calc(100%+8px)] left-0 z-20 w-max max-w-xs rounded-3xl bg-neutral-900 px-3 py-2 text-sm leading-snug shadow-xl/30"
 										>
 											{bullet.tooltip}
 										</span>
@@ -91,7 +91,7 @@ const experiences: Experience[] = [
 						{experience.stack.map((item) => {
 							const stack = getStackItem(item);
 							return (
-								<li class="squircle flex items-center gap-1 border border-neutral-200 px-2 py-1 text-sm text-neutral-500">
+								<li class="squircle border-border text-muted flex items-center gap-1 border px-2 py-1 text-sm">
 									<stack.icon class="size-4" />
 									{stack.name}
 								</li>
