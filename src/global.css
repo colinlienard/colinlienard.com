@@ -67,12 +67,18 @@
 		max-width: min(calc(100vw - 4rem), 40rem);
 	}
 
+	.bold-icon {
+		path {
+			stroke-width: 2px;
+		}
+	}
+
 	.squircle {
 		border-radius: var(--radius-2xl);
 
 		@supports (corner-shape: squircle) {
 			corner-shape: squircle;
-			border-radius: 4rem;
+			border-radius: 3rem;
 		}
 	}
 }

@@ -41,37 +41,31 @@ const t = useTranslations(Astro.currentLocale);
 			type="button"
 			id="copy-email"
 			data-email={CONTACT.email}
-			class="copy-email bg-fg text-bg hover:bg-fg/90 grid rounded-full px-4 py-2 transition-all active:scale-95"
+			class="copy-email bg-fg text-bg hover:bg-fg/90 squircle grid px-4 py-2 transition-all active:scale-95"
 		>
 			<span class="copy-label copy-label-default">{t('hero.cta.secondary')}</span>
-			<span class="copy-label copy-label-copied flex items-center gap-1" aria-hidden="true">
-				<CheckIcon class="size-4" />
+			<span class="copy-label copy-label-copied flex items-center gap-2" aria-hidden="true">
+				<CheckIcon class="bold-icon size-4" />
 				{t('hero.cta.copied')}
 			</span>
 		</button>
-		<a href={CONTACT.github} target="_blank" rel="noopener noreferrer">
+		<a href={CONTACT.github} target="_blank" rel="noopener noreferrer" aria-label="Github">
 			<GithubIcon
 				class="hover:[&_path]:fill-fg [&_path]:fill-muted size-6 [&_path]:transition-colors"
-				aria-label="Github"
 			/>
 		</a>
-		<a href={CONTACT.linkedin} target="_blank" rel="noopener noreferrer">
+		<a href={CONTACT.linkedin} target="_blank" rel="noopener noreferrer" aria-label="Linkedin">
 			<LinkedinIcon
 				class="hover:[&_path]:fill-fg [&_path]:fill-muted size-6 [&_path]:transition-colors"
-				aria-label="Linkedin"
 			/>
 		</a>
-		<a href={CONTACT.malt} target="_blank" rel="noopener noreferrer">
+		<a href={CONTACT.malt} target="_blank" rel="noopener noreferrer" aria-label="Malt">
 			<MaltIcon
 				class="hover:[&_path]:fill-fg [&_path]:fill-muted size-6 [&_path]:transition-colors"
-				aria-label="Malt"
 			/>
 		</a>
-		<a href={CONTACT.x} target="_blank" rel="noopener noreferrer">
-			<XIcon
-				class="hover:[&_path]:fill-fg [&_path]:fill-muted size-6 [&_path]:transition-colors"
-				aria-label="X"
-			/>
+		<a href={CONTACT.x} target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+			<XIcon class="hover:[&_path]:fill-fg [&_path]:fill-muted size-6 [&_path]:transition-colors" />
 		</a>
 	</div>
 </section>

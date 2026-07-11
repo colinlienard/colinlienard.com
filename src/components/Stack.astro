@@ -1,5 +1,5 @@
 ---
-import CommandLineIcon from 'virtual:icons/heroicons/command-line';
+import CodeBracketIcon from 'virtual:icons/heroicons/code-bracket';
 import { useTranslations } from '../i18n';
 import { getStackItem, type StackItem } from '../stack';
 
@@ -10,15 +10,13 @@ const items = (
 		'typescript',
 		'react',
 		'svelte',
-		'tailwind',
-		'node',
+		'tanstack',
+		'pandacss',
+		'vitest',
 		'hono',
 		'postgres',
 		'docker',
 		'cloudflare',
-		// 'git',
-		// 'cicd',
-		'testing',
 		'figma',
 		'claude',
 	] satisfies StackItem[]
@@ -27,13 +25,13 @@ const items = (
 
 <section id="stack" class="section flex scroll-mt-24 flex-col gap-12">
 	<div class="flex items-center gap-2">
-		<CommandLineIcon class="[&_path]:stroke-2" />
+		<CodeBracketIcon class="bold-icon" />
 		<h2 class="">{t('stack.title')}</h2>
 	</div>
-	<ul class="group border-border grid grid-cols-3 justify-center border-[0.5px] sm:grid-cols-6">
+	<ul class="group grid grid-cols-3 justify-center sm:grid-cols-6">
 		{
 			items.map((item) => (
-				<li class="group/item border-border flex aspect-square flex-col items-center justify-center gap-3 border-[0.5px] hover:[&_svg]:scale-110">
+				<li class="group/item flex aspect-square flex-col items-center justify-center gap-3 hover:[&_svg]:scale-110">
 					<item.icon
 						class="size-10 transition-all group-hover:grayscale group-hover/item:grayscale-0!"
 						aria-hidden="true"

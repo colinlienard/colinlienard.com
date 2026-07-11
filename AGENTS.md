@@ -22,7 +22,7 @@ Personal website of Colin Lienard, a French Full-Stack Engineer based in Limoges
 
 - `src/pages/index.astro` — French page (default). `src/pages/en/index.astro` — English page.
 - `src/layouts/Layout.astro` — shared layout.
-- `src/components/` — one component per section: `Hero`, `Experience`, `Projects`, `Stack`, `Contact`, `Nav`, `Footer`, `Seo`, `Sunlit`.
+- `src/components/` — one component per section: `Hero`, `Experience`, `OpenSource`, `Stack`, `Contact`, `Nav`, `Footer`, `Seo`, `Sunlit`.
 - `src/config.ts` — `CONTACT` object (all external links + email).
 - `src/i18n/index.ts` — **all copy lives here.** Flat `ui` object keyed by locale (`fr`, `en`), accessed via `useTranslations(Astro.currentLocale)` → `t('some.key')`. **FR and EN must have the exact same keys** (the key type is derived from the `fr` object). French is `defaultLang`.
 

@@ -14,6 +14,7 @@ import SvelteIcon from 'virtual:icons/logos/svelte-icon';
 import TailwindIcon from 'virtual:icons/logos/tailwindcss-icon';
 import TypeScriptIcon from 'virtual:icons/logos/typescript-icon';
 import VitestIcon from 'virtual:icons/logos/vitest';
+import TanStackIcon from './assets/tanstack.svg';
 
 const stack = {
 	amplify: { name: 'Amplify', icon: AmplifyIcon },
@@ -30,7 +31,8 @@ const stack = {
 	react: { name: 'React', icon: ReactIcon },
 	svelte: { name: 'Svelte', icon: SvelteIcon },
 	tailwind: { name: 'Tailwind CSS', icon: TailwindIcon },
-	testing: { name: 'Vitest', icon: VitestIcon },
+	vitest: { name: 'Vitest', icon: VitestIcon },
+	tanstack: { name: 'TanStack', icon: TanStackIcon },
 	typescript: { name: 'TypeScript', icon: TypeScriptIcon },
 };
 
