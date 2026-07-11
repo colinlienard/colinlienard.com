@@ -81,7 +81,7 @@ export const ui = {
 		'hero.p1.role': 'full-stack engineer',
 		'hero.p1.mid1':
 			' with 4+ years of experience, specialized in developer experience and complex interfaces. I live in ',
-		'hero.p1.city': 'Limoges, France',
+		'hero.p1.city': 'Limoges, France 🇫🇷',
 		'hero.p1.mid2': ' and I’m used to working ',
 		'hero.p1.remote': 'remotely',
 		'hero.p1.post': '.',

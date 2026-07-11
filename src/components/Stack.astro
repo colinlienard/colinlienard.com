@@ -1,5 +1,5 @@
 ---
-import CommandLineIcon from 'virtual:icons/heroicons/command-line';
+import CodeBracketIcon from 'virtual:icons/heroicons/code-bracket';
 import { useTranslations } from '../i18n';
 import { getStackItem, type StackItem } from '../stack';
 
@@ -16,8 +16,6 @@ const items = (
 		'postgres',
 		'docker',
 		'cloudflare',
-		// 'git',
-		// 'cicd',
 		'testing',
 		'figma',
 		'claude',
@@ -27,7 +25,7 @@ const items = (
 
 <section id="stack" class="section flex scroll-mt-24 flex-col gap-12">
 	<div class="flex items-center gap-2">
-		<CommandLineIcon class="[&_path]:stroke-2" />
+		<CodeBracketIcon class="[&_path]:stroke-2" />
 		<h2 class="">{t('stack.title')}</h2>
 	</div>
 	<ul class="group border-border grid grid-cols-3 justify-center border-[0.5px] sm:grid-cols-6">

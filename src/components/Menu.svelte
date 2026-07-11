@@ -4,7 +4,7 @@
 	import { on } from 'svelte/events';
 	import ArrowUpRightIcon from 'virtual:icons/heroicons/arrow-up-right';
 	import BriefcaseIcon from 'virtual:icons/heroicons/briefcase';
-	import CommandLineIcon from 'virtual:icons/heroicons/command-line';
+	import CodeBracketIcon from 'virtual:icons/heroicons/code-bracket';
 	import ComputerDesktopIcon from 'virtual:icons/heroicons/computer-desktop';
 	import HomeIcon from 'virtual:icons/heroicons/home';
 	import MoonIcon from 'virtual:icons/heroicons/moon';
@@ -157,7 +157,7 @@
 <div
 	id="menu"
 	class="fixed top-8 sm:top-12 z-50 w-full rounded-3xl transition-all ease-out duration-400 bg-white/90 dark:bg-neutral-800/90 backdrop-blur-sm ring ring-border {isOpen
-		? 'rounded-b-xl max-w-[min(400px,calc(100vw-4rem))] shadow-2xl'
+		? 'rounded-b-xl max-w-[min(400px,calc(100vw-4rem))] shadow-2xl dark:shadow-2xl/50'
 		: 'max-w-xs shadow-lg/6'}"
 	role="presentation"
 	onmouseenter={() => !isTransitioning && (isOpen = true)}
@@ -197,7 +197,7 @@
 			{@render menuItem(0, translations.hero, HomeIcon)}
 			{@render menuItem(1, translations.experience, BriefcaseIcon)}
 			{@render menuItem(2, translations.projects, StarIcon)}
-			{@render menuItem(3, translations.stack, CommandLineIcon)}
+			{@render menuItem(3, translations.stack, CodeBracketIcon)}
 			<hr class="text-border -mx-1.5" />
 			<span class="text-sm text-muted pl-2 pt-1">{translations.language}</span>
 			{@render menuItem(4, window.location.pathname === '/en' ? 'Français' : 'English')}

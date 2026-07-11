@@ -70,13 +70,13 @@ const experiences: Experience[] = [
 							<li>
 								{'tooltip' in bullet && bullet.tooltip ? (
 									<span
-										class="tooltip-trigger decoration-border cursor-help underline decoration-dashed underline-offset-4"
+										class="tooltip-trigger decoration-fg/20 cursor-help underline decoration-dashed underline-offset-4"
 										tabindex="0"
 									>
 										{bullet.text}
 										<span
 											role="tooltip"
-											class="tooltip squircle pointer-events-none absolute bottom-[calc(100%+8px)] left-0 z-20 w-max max-w-xs rounded-3xl bg-neutral-900 px-3 py-2 text-sm leading-snug shadow-xl/30"
+											class="tooltip squircle pointer-events-none absolute bottom-[calc(100%+8px)] left-0 z-20 w-max max-w-xs rounded-3xl bg-neutral-900 px-3 py-2 text-sm leading-snug text-white shadow-xl/30 dark:bg-neutral-700"
 										>
 											{bullet.tooltip}
 										</span>
