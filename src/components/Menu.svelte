@@ -179,7 +179,7 @@
 			</span>
 		</div>
 		<kbd
-			class="not-sm:hidden mr-1.5 ml-auto flex items-center gap-0.5 rounded-md border border-border bg-bg p-1 font-sans text-sm text-muted {isKeyDown
+			class="not-sm:hidden mr-1.5 ml-auto flex items-center gap-0.5 rounded-md border border-border bg-fg/5 p-1 font-sans text-sm text-muted {isKeyDown
 				? 'translate-y-0.5'
 				: 'border-b-4'}"
 		>
@@ -228,7 +228,7 @@
 		}}
 	>
 		{#if Icon}
-			<Icon class="[&_path]:stroke-2" />
+			<Icon class="bold-icon" />
 		{/if}
 		{title}
 		{#if index === 4}

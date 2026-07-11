@@ -38,7 +38,7 @@ const projects = [
 
 <section id="projects" class="section flex scroll-mt-24 flex-col gap-12">
 	<div class="flex items-center gap-2">
-		<StarIcon class="[&_path]:stroke-2" />
+		<StarIcon class="bold-icon" />
 		<h2 class="">{t('projects.title')}</h2>
 	</div>
 	<ul class="group grid gap-4 sm:grid-cols-2">
@@ -52,7 +52,7 @@ const projects = [
 						class="squircle bg-fg/2 flex flex-col items-center gap-8 p-8 transition-all group-hover:grayscale hover:grayscale-0! active:scale-95 hover:[&_img]:scale-110"
 					>
 						<div class="flex w-full items-center justify-end gap-1">
-							<StarSolidIcon class="text-amber-400" />
+							<StarSolidIcon class="text-yellow-500" />
 							<span class="text-muted text-sm">+{project.stars}</span>
 						</div>
 						<div class="relative">
@@ -69,7 +69,7 @@ const projects = [
 								alt={project.title}
 								width={256}
 								height={256}
-								class="absolute inset-0 size-32 blur-3xl"
+								class="absolute inset-0 size-32 blur-3xl dark:opacity-75"
 								loading="lazy"
 							/>
 						</div>

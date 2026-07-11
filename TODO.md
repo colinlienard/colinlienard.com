@@ -1,6 +1,6 @@
 - [x] Menu content (nav, dark mode, switch lang, contacts)
 - [x] Dark mode
-- [ ] Improve open-source and tech stack design
+- [x] Improve open-source and tech stack design
 - [ ] Main CTA animation
 - [ ] Background animation
 - [ ] OG image

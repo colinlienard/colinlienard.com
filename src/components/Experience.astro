@@ -30,7 +30,7 @@ const experiences: Experience[] = [
 			{ text: t('experience.mobsuccess.b4'), tooltip: t('experience.mobsuccess.b4.tooltip') },
 			{ text: t('experience.mobsuccess.b5') },
 		],
-		stack: ['typescript', 'react', 'pandacss', 'testing', 'amplify'],
+		stack: ['typescript', 'react', 'pandacss', 'vitest', 'amplify'],
 	},
 	{
 		name: 'Connivence',
@@ -45,7 +45,7 @@ const experiences: Experience[] = [
 
 <section id="experience" class="section flex scroll-mt-24 flex-col gap-12">
 	<div class="flex items-center gap-2">
-		<BriefcaseIcon class="[&_path]:stroke-2" />
+		<BriefcaseIcon class="bold-icon" />
 		<h2 class="">{t('experience.title')}</h2>
 	</div>
 	<ul class="flex flex-col gap-12">
@@ -76,7 +76,7 @@ const experiences: Experience[] = [
 										{bullet.text}
 										<span
 											role="tooltip"
-											class="tooltip squircle pointer-events-none absolute bottom-[calc(100%+8px)] left-0 z-20 w-max max-w-xs rounded-3xl bg-neutral-900 px-3 py-2 text-sm leading-snug text-white shadow-xl/30 dark:bg-neutral-700"
+											class="tooltip squircle pointer-events-none absolute bottom-[calc(100%+8px)] left-0 z-20 w-max max-w-xs rounded-3xl bg-neutral-900 px-3 py-2 text-sm leading-snug text-white shadow-xl/30 dark:bg-neutral-950"
 										>
 											{bullet.tooltip}
 										</span>
