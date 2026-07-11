@@ -124,8 +124,8 @@
 
 <div
 	id="menu"
-	class="fixed top-12 z-50 w-full rounded-3xl transition-all ease-out duration-400 bg-white/90 backdrop-blur-sm ring ring-black/8 {isOpen
-		? 'rounded-b-xl max-w-md shadow-2xl'
+	class="fixed top-8 sm:top-12 z-50 w-full rounded-3xl transition-all ease-out duration-400 bg-white/90 backdrop-blur-sm ring ring-black/8 {isOpen
+		? 'rounded-b-xl max-w-[min(400px,calc(100vw-4rem))] shadow-2xl'
 		: 'max-w-xs shadow-lg/6'}"
 	role="presentation"
 	onmouseenter={() => !isTransitioning && (isOpen = true)}
