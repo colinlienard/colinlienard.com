@@ -40,5 +40,8 @@
 		"typescript-eslint": "^8.62.0",
 		"unplugin-icons": "^23.0.1"
 	},
-	"packageManager": "pnpm@9.15.0"
+	"packageManager": "pnpm@9.15.0",
+	"dependencies": {
+		"@paper-design/shaders": "^0.0.77"
+	}
 }

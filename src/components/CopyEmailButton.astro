@@ -1,0 +1,123 @@
+---
+import {
+	getShaderColorFromString,
+	LiquidMetalShapes,
+	type LiquidMetalUniforms,
+	ShaderFitOptions,
+} from '@paper-design/shaders';
+import { CONTACT } from '../config';
+import { useTranslations } from '../i18n';
+
+const t = useTranslations(Astro.currentLocale);
+
+const uniforms = {
+	u_colorBack: getShaderColorFromString('#AAAAAC'),
+	u_colorTint: getShaderColorFromString('#ffffff'),
+	u_contour: 0.4,
+	u_distortion: 0.1,
+	u_softness: 0.05,
+	u_repetition: 1.5,
+	u_shiftRed: 0.3,
+	u_shiftBlue: 0.3,
+	u_angle: 90,
+	u_isImage: false,
+	u_shape: LiquidMetalShapes.none,
+
+	u_fit: ShaderFitOptions.cover,
+	u_scale: 1,
+	u_rotation: 0,
+	u_offsetX: 0,
+	u_offsetY: 0,
+	u_originX: 0.5,
+	u_originY: 0.5,
+	u_worldWidth: 0,
+	u_worldHeight: 0,
+} satisfies Omit<LiquidMetalUniforms, 'u_image'>;
+---
+
+<button
+	type="button"
+	data-email={CONTACT.email}
+	class="copy-email relative flex items-center justify-center px-4 py-2 transition-transform active:scale-95"
+>
+	<span id="shader" class="squircle absolute inset-0 -z-10" data-uniforms={JSON.stringify(uniforms)}
+	></span>
+	<span class="text-bg grid">
+		<span class="copy-label copy-label-default">{t('hero.cta.secondary')}</span>
+		<span class="copy-label copy-label-copied flex items-center" aria-hidden="true">
+			{t('hero.cta.copied')}
+		</span>
+	</span>
+</button>
+
+<style>
+	:global(canvas) {
+		display: block;
+		width: 100%;
+		height: 100%;
+		border-radius: inherit;
+	}
+
+	.copy-label {
+		grid-area: 1 / 1;
+		transition:
+			opacity 0.5s ease,
+			filter 0.5s ease;
+	}
+
+	.copy-label-copied {
+		opacity: 0;
+		filter: blur(4px);
+	}
+
+	.copy-email[data-copied] .copy-label-default {
+		opacity: 0;
+		filter: blur(4px);
+	}
+
+	.copy-email[data-copied] .copy-label-copied {
+		opacity: 1;
+		filter: blur(0);
+	}
+</style>
+
+<script>
+	import { liquidMetalFragmentShader, ShaderMount } from '@paper-design/shaders';
+
+	const element = document.querySelector<HTMLElement>('#shader')!;
+	const uniforms = JSON.parse(element.dataset.uniforms!);
+	new ShaderMount(
+		element,
+		liquidMetalFragmentShader,
+		uniforms,
+		undefined,
+		1,
+		0,
+		undefined,
+		undefined,
+	);
+
+	function setupCopy(button: HTMLButtonElement) {
+		const { email } = button.dataset;
+		let timeout: ReturnType<typeof setTimeout>;
+
+		button.addEventListener('click', async () => {
+			if (!email) return;
+
+			try {
+				await navigator.clipboard.writeText(email);
+				button.dataset.copied = 'true';
+				clearTimeout(timeout);
+				timeout = setTimeout(() => {
+					delete button.dataset.copied;
+				}, 3000);
+			} catch {
+				location.assign(`mailto:${email}`);
+			}
+		});
+	}
+
+	for (const button of document.querySelectorAll<HTMLButtonElement>('button.copy-email')) {
+		setupCopy(button);
+	}
+</script>
