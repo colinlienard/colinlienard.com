@@ -4,6 +4,7 @@ import { Font } from 'astro:assets';
 import Footer from '../components/Footer.astro';
 import Menu from '../components/menu/Menu.astro';
 import Seo from '../components/Seo.astro';
+import BlurGradient from '../components/BlurGradient.astro';
 ---
 
 <!doctype html>
@@ -31,6 +32,7 @@ import Seo from '../components/Seo.astro';
 		class="bg-bg text-fg selection:bg-fg/10 flex min-h-dvh cursor-default flex-col items-center pt-36 font-sans font-medium antialiased"
 	>
 		<Menu />
+		<BlurGradient />
 		<main class="flex w-full max-w-[min(calc(100vw-4rem),40rem)] flex-col gap-20">
 			<slot />
 		</main>

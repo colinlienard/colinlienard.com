@@ -148,7 +148,7 @@
 
 <div
 	id="menu"
-	class="fixed top-8 sm:top-12 z-50 w-full rounded-3xl transition-all ease-out duration-400 bg-white/90 dark:bg-neutral-800/90 backdrop-blur-sm ring ring-border {isOpen
+	class="menu fixed top-8 sm:top-12 z-50 w-full rounded-[1.6rem] transition-all ease-out duration-400 bg-white/90 dark:bg-neutral-800/90 backdrop-blur-sm ring ring-border {isOpen
 		? 'rounded-b-xl max-w-[min(400px,calc(100vw-4rem))] shadow-2xl dark:shadow-2xl/50'
 		: 'max-w-xs shadow-lg/6'}"
 	role="presentation"
@@ -156,7 +156,7 @@
 	onmouseleave={() => !isTransitioning && (isOpen = false)}
 >
 	<div
-		class="flex items-center gap-2 p-1.5 pr-3"
+		class="flex items-center p-1.5 overflow-hidden"
 		role="presentation"
 		ontouchend={(e) => {
 			e.preventDefault();
@@ -164,17 +164,19 @@
 		}}
 	>
 		{@render children?.()}
-		<div class="flex flex-col leading-5 w-full">
-			<span>Colin Lienard</span>
-			<MenuStatus {translations} {lang} isPause={isOpen} />
+		<div class="menu-status flex justify-between pl-2 pr-1.5 items-center w-full text-nowrap">
+			<div class="flex flex-col leading-5 w-full">
+				<span>Colin Lienard</span>
+				<MenuStatus {translations} {lang} isPause={isOpen} />
+			</div>
+			<kbd
+				class="not-sm:hidden mr-1.5 ml-auto flex items-center gap-0.5 rounded-md border border-border bg-fg/5 p-1 font-sans text-sm text-muted {isKeyDown
+					? 'translate-y-0.5'
+					: 'border-b-4'}"
+			>
+				<span class="leading-none" class:text-base={isMac}>{isMac ? '⌘' : 'Ctrl'}</span>K
+			</kbd>
 		</div>
-		<kbd
-			class="not-sm:hidden mr-1.5 ml-auto flex items-center gap-0.5 rounded-md border border-border bg-fg/5 p-1 font-sans text-sm text-muted {isKeyDown
-				? 'translate-y-0.5'
-				: 'border-b-4'}"
-		>
-			<span class="leading-none" class:text-base={isMac}>{isMac ? '⌘' : 'Ctrl'}</span>K
-		</kbd>
 	</div>
 	{#if isOpen}
 		<div
@@ -227,19 +229,38 @@
 	</button>
 {/snippet}
 
-<!-- Blur gradient -->
-<div class="pointer-events-none fixed inset-0 z-40 h-32">
-	<div class="absolute inset-0 bg-linear-to-b from-bg to-transparent"></div>
-	<div
-		class="absolute inset-0 mask-[linear-gradient(to_bottom,black_0%,black_85%,transparent_100%)] backdrop-blur-[1px]"
-	></div>
-	<div
-		class="absolute inset-0 mask-[linear-gradient(to_bottom,black_0%,black_55%,transparent_80%)] backdrop-blur-xs"
-	></div>
-	<div
-		class="absolute inset-0 mask-[linear-gradient(to_bottom,black_0%,black_30%,transparent_55%)] backdrop-blur-sm"
-	></div>
-	<div
-		class="absolute inset-0 mask-[linear-gradient(to_bottom,black_0%,black_12%,transparent_32%)] backdrop-blur-lg"
-	></div>
-</div>
+<style>
+	.menu {
+		animation: menu 0.6s 0.2s var(--ease-in-out) backwards;
+	}
+
+	.menu-status {
+		animation: menu-status 0.5s 0.6s var(--ease-in-out) backwards;
+	}
+
+	@keyframes menu {
+		0% {
+			transform: scale(50%);
+			opacity: 0;
+			width: 52px;
+		}
+		50% {
+			transform: scale(100%);
+			opacity: 1;
+			width: 52px;
+		}
+		100% {
+			width: 320px;
+		}
+	}
+
+	@keyframes menu-status {
+		0% {
+			opacity: 0;
+			filter: blur(4px);
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+</style>
