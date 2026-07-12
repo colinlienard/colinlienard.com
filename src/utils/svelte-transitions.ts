@@ -57,8 +57,8 @@ export function flyWithBlur(
 	const target_opacity = +style.opacity;
 	const transform = style.transform === 'none' ? '' : style.transform;
 	const od = target_opacity * (1 - opacity);
-	const [x_value, x_unit] = split_css_unit(x);
-	const [y_value, y_unit] = split_css_unit(y);
+	const [x_value, x_unit] = splitCssUnit(x);
+	const [y_value, y_unit] = splitCssUnit(y);
 	return {
 		delay,
 		duration,
@@ -70,9 +70,7 @@ export function flyWithBlur(
 	};
 }
 
-function split_css_unit(value: number | string) {
+function splitCssUnit(value: number | string): [number, string] {
 	const split = typeof value === 'string' && value.match(/^\s*(-?[\d.]+)([^\s]*)\s*$/);
-	return split
-		? [Number.parseFloat(split[1]), split[2] || 'px']
-		: [/** @type {number} */ value, 'px'];
+	return split ? [Number.parseFloat(split[1]), split[2] || 'px'] : [value as number, 'px'];
 }

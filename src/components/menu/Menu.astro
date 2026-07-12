@@ -2,14 +2,14 @@
 import { Image } from 'astro:assets';
 import me from '../../assets/me.jpeg';
 import { useTranslations } from '../../i18n';
-import Menu from './Menu.svelte';
 import type { MenuTranslations } from './menu';
+import Menu from './Menu.svelte';
 
 const t = useTranslations(Astro.currentLocale);
 const translations: MenuTranslations = {
 	role: t('menu.role'),
 	available: t('menu.available'),
-	contributions: t('menu.contributions'),
+	location: t('menu.location'),
 	sections: t('menu.sections'),
 	language: t('menu.language'),
 	theme: t('menu.theme'),

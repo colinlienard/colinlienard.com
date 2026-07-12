@@ -9,7 +9,7 @@ export const ui = {
 	fr: {
 		'menu.role': 'Full-Stack Engineer',
 		'menu.available': 'Disponible en septembre',
-		'menu.contributions': 'contributions cette semaine',
+		'menu.location': 'Limoges et distanciel',
 		'menu.sections': 'Sections',
 		'menu.language': 'Langue',
 		'menu.theme': 'Thème',
@@ -67,7 +67,7 @@ export const ui = {
 	en: {
 		'menu.role': 'Full-Stack Engineer',
 		'menu.available': 'Available in September',
-		'menu.contributions': 'contributions this week',
+		'menu.location': 'France and remote',
 		'menu.sections': 'Sections',
 		'menu.language': 'Language',
 		'menu.theme': 'Theme',

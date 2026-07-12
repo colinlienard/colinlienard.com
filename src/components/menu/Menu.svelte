@@ -166,7 +166,7 @@
 		{@render children?.()}
 		<div class="flex flex-col leading-5 w-full">
 			<span>Colin Lienard</span>
-			<MenuStatus {translations} {lang} />
+			<MenuStatus {translations} {lang} isPause={isOpen} />
 		</div>
 		<kbd
 			class="not-sm:hidden mr-1.5 ml-auto flex items-center gap-0.5 rounded-md border border-border bg-fg/5 p-1 font-sans text-sm text-muted {isKeyDown

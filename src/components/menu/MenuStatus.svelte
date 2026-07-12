@@ -1,35 +1,36 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import GithubIcon from 'virtual:icons/logos/github-icon';
+	import { on } from 'svelte/events';
+	import EnvelopeIcon from 'virtual:icons/heroicons/envelope-solid';
+	import MapPinIcon from 'virtual:icons/heroicons/map-pin-solid';
+	import { CONTACT } from '../../config';
 	import { flyWithBlur } from '../../utils/svelte-transitions';
 	import type { MenuTranslations } from './menu';
-	import { getParisTime, getWeekContributions } from './status';
+	import { getParisTime } from './menu';
 
-	let { translations, lang }: { translations: MenuTranslations; lang?: string } = $props();
+	let {
+		translations,
+		lang,
+		isPause,
+	}: { translations: MenuTranslations; lang?: string; isPause: boolean } = $props();
 
-	let weekContributions = $state<number | null>(null);
-
-	const options = $derived([
-		role,
-		available,
-		...(weekContributions ? [contributions] : []),
-		currentTime,
-	]);
+	const options = [role, available, location, email, currentTime];
 
 	let current = $state(0);
+	let isVisible = $state(true);
 
 	$effect(() => {
+		isVisible = !document.hidden;
+		return on(document, 'visibilitychange', () => {
+			isVisible = !document.hidden;
+		});
+	});
+
+	$effect(() => {
+		if (isPause || !isVisible) return;
 		const interval = setInterval(() => {
 			current = (current + 1) % options.length;
 		}, 4000);
-
 		return () => clearInterval(interval);
-	});
-
-	onMount(() => {
-		getWeekContributions().then((value) => {
-			if (value !== null) weekContributions = value;
-		});
 	});
 </script>
 
@@ -37,7 +38,7 @@
 	<span class="opacity-0" aria-hidden="true">_</span>
 	{#key current}
 		<span
-			class="absolute inset-0"
+			class="absolute inset-0 flex gap-1 items-center"
 			in:flyWithBlur={{ y: 8, duration: 500 }}
 			out:flyWithBlur={{ y: -8, duration: 500 }}
 		>
@@ -51,29 +52,27 @@
 {/snippet}
 
 {#snippet available()}
-	<div class="flex gap-1 items-center">
-		<div class="relative size-1.5 *:absolute *:inset-0 *:rounded-full *:bg-green-400">
-			<div></div>
-			<div class="ping"></div>
-		</div>
-		{translations.available}
+	<div class="relative blur-[1px] size-1.5 *:absolute *:inset-0 *:rounded-full *:bg-green-400">
+		<div></div>
+		<div class="ping"></div>
 	</div>
+	{translations.available}
+{/snippet}
+
+{#snippet location()}
+	<MapPinIcon />
+	{translations.location}
+{/snippet}
+
+{#snippet email()}
+	<a class="contents" href={`mailto:${CONTACT.email}`}>
+		<EnvelopeIcon />
+		{CONTACT.email}
+	</a>
 {/snippet}
 
 {#snippet currentTime()}
-	<span class="font-mono">
-		{getParisTime(lang)} (Paris)
-	</span>
-{/snippet}
-
-{#snippet contributions()}
-	<div class="flex gap-1 items-center min-w-0">
-		<GithubIcon class="shrink-0 size-3 translate-y-[-0.5px] [&_path]:fill-muted" />
-		<span class="truncate">
-			<span class="font-mono">{weekContributions}</span>
-			<span>{translations.contributions}</span>
-		</span>
-	</div>
+	<span class="font-mono">{getParisTime(lang)}</span> (Paris)
 {/snippet}
 
 <style>

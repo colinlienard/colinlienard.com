@@ -32,6 +32,12 @@ export default [
 	eslintPluginUnicorn.configs['recommended'],
 	{
 		rules: {
+			'unicorn/consistent-function-scoping': [
+				'error',
+				{
+					ignore: [/^(.*)\.svelte$/],
+				},
+			],
 			'unicorn/filename-case': [
 				'error',
 				{
