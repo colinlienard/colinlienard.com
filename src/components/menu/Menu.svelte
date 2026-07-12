@@ -10,26 +10,18 @@
 	import MoonIcon from 'virtual:icons/heroicons/moon';
 	import StarIcon from 'virtual:icons/heroicons/star';
 	import SunIcon from 'virtual:icons/heroicons/sun';
-	import { slideWithOpacity } from '../utils/slide-with-opacity';
+	import { slideWithOpacity } from '../../utils/svelte-transitions';
+	import type { MenuTranslations } from './menu';
+	import MenuStatus from './MenuStatus.svelte';
 
 	const ITEMS_NUMBER = 8;
 	const TRANSITION_DURATION = 400;
 
-	type Translations = {
-		role: string;
-		sections: string;
-		language: string;
-		theme: string;
-		hero: string;
-		experience: string;
-		projects: string;
-		stack: string;
-		light: string;
-		dark: string;
-		system: string;
-	};
-
-	let { translations, children }: { translations: Translations; children?: Snippet } = $props();
+	let {
+		translations,
+		lang,
+		children,
+	}: { translations: MenuTranslations; lang?: string; children?: Snippet } = $props();
 
 	type Theme = 'light' | 'dark' | 'system';
 
@@ -172,11 +164,9 @@
 		}}
 	>
 		{@render children?.()}
-		<div class="flex flex-col leading-5">
+		<div class="flex flex-col leading-5 w-full">
 			<span>Colin Lienard</span>
-			<span class="text-sm text-muted">
-				{translations.role}
-			</span>
+			<MenuStatus {translations} {lang} />
 		</div>
 		<kbd
 			class="not-sm:hidden mr-1.5 ml-auto flex items-center gap-0.5 rounded-md border border-border bg-fg/5 p-1 font-sans text-sm text-muted {isKeyDown

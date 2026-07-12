@@ -47,3 +47,32 @@ export function slideWithOpacity(
 			`min-${primary_property}: 0`,
 	};
 }
+
+// From import("svelte/transition").fly
+export function flyWithBlur(
+	node: Element,
+	{ delay = 0, duration = 400, easing = cubicOut, x = 0, y = 0, opacity = 0 } = {},
+): TransitionConfig {
+	const style = getComputedStyle(node);
+	const target_opacity = +style.opacity;
+	const transform = style.transform === 'none' ? '' : style.transform;
+	const od = target_opacity * (1 - opacity);
+	const [x_value, x_unit] = split_css_unit(x);
+	const [y_value, y_unit] = split_css_unit(y);
+	return {
+		delay,
+		duration,
+		easing,
+		css: (t, u) => `
+			transform: ${transform} translate(${(1 - t) * x_value}${x_unit}, ${(1 - t) * y_value}${y_unit});
+			opacity: ${target_opacity - od * u};
+			filter: blur(${u * 2}px);`,
+	};
+}
+
+function split_css_unit(value: number | string) {
+	const split = typeof value === 'string' && value.match(/^\s*(-?[\d.]+)([^\s]*)\s*$/);
+	return split
+		? [Number.parseFloat(split[1]), split[2] || 'px']
+		: [/** @type {number} */ value, 'px'];
+}
