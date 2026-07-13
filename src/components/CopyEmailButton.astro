@@ -1,0 +1,43 @@
+---
+import { CONTACT } from '../config';
+import { useTranslations } from '../i18n';
+
+const t = useTranslations(Astro.currentLocale);
+---
+
+<button
+	id="copy-email"
+	type="button"
+	data-email={CONTACT.email}
+	class="squircle text-bg bg-fg group hover:bg-fg/90 relative flex items-center justify-center px-4 py-2 transition-all active:scale-95"
+>
+	<span class="transition-all duration-500 group-data-copied:opacity-0 group-data-copied:blur-xs">
+		{t('hero.cta.secondary')}
+	</span>
+	<span
+		class="absolute transition-all duration-500 not-group-data-copied:opacity-0 not-group-data-copied:blur-xs"
+		aria-hidden="true"
+	>
+		{t('hero.cta.copied')}
+	</span>
+</button>
+
+<script>
+	const button = document.querySelector<HTMLButtonElement>('#copy-email')!;
+	const { email } = button.dataset;
+	let timeout: ReturnType<typeof setTimeout>;
+
+	button.addEventListener('click', async () => {
+		if (!email) return;
+		try {
+			await navigator.clipboard.writeText(email);
+			button.dataset.copied = 'true';
+			clearTimeout(timeout);
+			timeout = setTimeout(() => {
+				delete button.dataset.copied;
+			}, 3000);
+		} catch {
+			location.assign(`mailto:${email}`);
+		}
+	});
+</script>

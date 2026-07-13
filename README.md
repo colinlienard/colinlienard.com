@@ -8,6 +8,8 @@
 
 ---
 
+My personal website built with [Astro](https://astro.build), [Svelte](https://svelte.dev) and [Tailwind CSS](https://tailwindcss.com).
+
 ## License
 
 [MIT](./LICENSE) © Colin Lienard
