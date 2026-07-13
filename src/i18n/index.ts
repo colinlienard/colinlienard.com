@@ -2,7 +2,7 @@ export const defaultLang = 'fr';
 
 export const languages = {
 	fr: { label: 'FR', icon: '🇫🇷', path: '/' },
-	en: { label: 'EN', icon: '🇬🇧', path: '/en/' },
+	en: { label: 'EN', icon: '🇬🇧', path: '/en' },
 } as const;
 
 export const ui = {

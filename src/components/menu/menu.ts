@@ -14,6 +14,13 @@ export type MenuTranslations = {
 	system: string;
 };
 
+export type MenuItemData = {
+	isActive?: boolean;
+	isLink?: boolean;
+	isCentered?: boolean;
+	onselect(): void;
+};
+
 export function getParisTime(lang?: string) {
 	const isEnglish = lang === 'en';
 	return new Intl.DateTimeFormat(isEnglish ? 'en-US' : 'fr-FR', {

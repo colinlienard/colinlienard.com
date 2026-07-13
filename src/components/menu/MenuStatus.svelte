@@ -72,7 +72,7 @@
 {/snippet}
 
 {#snippet currentTime()}
-	<span class="font-mono">{getParisTime(lang)}</span> (Paris)
+	<span class="font-mono">{getParisTime(lang)} (Paris)</span>
 {/snippet}
 
 <style>
