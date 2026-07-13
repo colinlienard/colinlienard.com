@@ -7,10 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      '@paper-design/shaders':
-        specifier: ^0.0.77
-        version: 0.0.77
     devDependencies:
       '@astrojs/check':
         specifier: ^0.9.9
@@ -845,9 +841,6 @@ packages:
 
   '@oxc-project/types@0.137.0':
     resolution: {integrity: sha512-WT+Gb24i8hmvo85AIv2oEYouEXkRlKAlT9WaCa3TfLgNCN+GhrJOGZuIlMouAh38Qe4QOx26eUOVsq70qXrywA==}
-
-  '@paper-design/shaders@0.0.77':
-    resolution: {integrity: sha512-y0mR3brBu6qvVgbnvBdXX3zL/hajdamkECLt8NbexaEc1L46W3a+ZIEwxu1NJ2/bqwxAgjJC0o2+4CAii5wp/w==}
 
   '@pkgr/core@0.3.6':
     resolution: {integrity: sha512-SEeaJLb3qBNF/OaXnaR1NmmBbFYk1zC0ZH/52fATcRPLFg/p791YrcyFFy44Bo9sLaGuSuLp5Q6axbb/O+v/RA==}
@@ -3502,8 +3495,6 @@ snapshots:
   '@oslojs/encoding@1.1.0': {}
 
   '@oxc-project/types@0.137.0': {}
-
-  '@paper-design/shaders@0.0.77': {}
 
   '@pkgr/core@0.3.6': {}
 
