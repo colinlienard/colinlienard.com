@@ -49,7 +49,7 @@
 		--bg: var(--color-neutral-50);
 		--fg: var(--color-neutral-900);
 		--muted: var(--color-neutral-500);
-		--border: --alpha(var(--color-neutral-900) / 8%);
+		--border: --alpha(var(--color-neutral-900) / 10%);
 	}
 
 	.dark {
@@ -57,7 +57,7 @@
 		--bg: var(--color-neutral-900);
 		--fg: var(--color-neutral-50);
 		--muted: var(--color-neutral-400);
-		--border: --alpha(var(--color-neutral-50) / 12%);
+		--border: --alpha(var(--color-neutral-50) / 10%);
 	}
 }
 

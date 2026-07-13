@@ -27,7 +27,6 @@
 
 	let isMac = $state(true);
 	let isOpen = $state(false);
-	let isKeyDown = $state(false);
 	let isTransitioning = $state(false);
 	let selectedItem = $state(0);
 	let theme = $state<Theme>('system');
@@ -56,7 +55,6 @@
 		});
 
 		let timeout: ReturnType<typeof setTimeout>;
-		let timeout2: ReturnType<typeof setTimeout>;
 
 		const off = on(window, 'keydown', (e) => {
 			if (!(e.key === 'k' && (isMac ? e.metaKey : e.ctrlKey))) {
@@ -68,15 +66,10 @@
 			isTransitioning = true;
 			clearTimeout(timeout);
 			timeout = setTimeout(() => (isTransitioning = false), TRANSITION_DURATION);
-
-			isKeyDown = true;
-			clearTimeout(timeout2);
-			timeout2 = setTimeout(() => (isKeyDown = false), 150);
 		});
 
 		return () => {
 			clearTimeout(timeout);
-			clearTimeout(timeout2);
 			off();
 			offMedia();
 		};
@@ -170,9 +163,7 @@
 				<MenuStatus {translations} {lang} isPause={isOpen} />
 			</div>
 			<kbd
-				class="not-sm:hidden mr-1.5 ml-auto flex items-center gap-0.5 rounded-md border border-border bg-fg/5 p-1 font-sans text-sm text-muted {isKeyDown
-					? 'translate-y-0.5'
-					: 'border-b-4'}"
+				class="not-sm:hidden mr-1.5 ml-auto flex items-center gap-0.5 rounded-md bg-fg/5 p-1 font-sans text-sm text-muted"
 			>
 				<span class="leading-none" class:text-base={isMac}>{isMac ? '⌘' : 'Ctrl'}</span>K
 			</kbd>
@@ -206,13 +197,10 @@
 
 {#snippet menuItem(index: number, title: string, Icon?: Component, isActive: boolean = false)}
 	<button
-		class="flex items-center gap-2 p-2 rounded-lg {selectedItem === index
-			? isActive
-				? 'bg-fg/10'
-				: 'bg-fg/5'
-			: isActive
-				? 'bg-fg/5'
-				: ''} {index > 4 ? 'justify-center' : ''}"
+		class="flex items-center gap-2 p-2 rounded-lg {selectedItem === index ? 'bg-fg/5' : ''} {index >
+		4
+			? 'justify-center'
+			: ''} {isActive ? 'outline outline-border' : ''}"
 		onmouseenter={() => (selectedItem = index)}
 		onclick={() => {
 			handleMenuAction(index);
@@ -243,6 +231,7 @@
 			transform: scale(50%);
 			opacity: 0;
 			width: 52px;
+			pointer-events: none;
 		}
 		50% {
 			transform: scale(100%);
@@ -251,6 +240,7 @@
 		}
 		100% {
 			width: 320px;
+			pointer-events: none;
 		}
 	}
 
