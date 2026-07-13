@@ -9,7 +9,7 @@ const t = useTranslations(Astro.currentLocale);
 	id="copy-email"
 	type="button"
 	data-email={CONTACT.email}
-	class="squircle text-bg bg-fg group relative flex items-center justify-center px-4 py-2 transition-transform active:scale-95"
+	class="squircle text-bg bg-fg group hover:bg-fg/90 relative flex items-center justify-center px-4 py-2 transition-all active:scale-95"
 >
 	<span class="transition-all duration-500 group-data-copied:opacity-0 group-data-copied:blur-xs">
 		{t('hero.cta.secondary')}
