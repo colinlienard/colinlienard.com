@@ -2,12 +2,14 @@ export const defaultLang = 'fr';
 
 export const languages = {
 	fr: { label: 'FR', icon: '🇫🇷', path: '/' },
-	en: { label: 'EN', icon: '🇬🇧', path: '/en/' },
+	en: { label: 'EN', icon: '🇬🇧', path: '/en' },
 } as const;
 
 export const ui = {
 	fr: {
 		'menu.role': 'Full-Stack Engineer',
+		'menu.available': 'Disponible en septembre',
+		'menu.location': 'Limoges et distanciel',
 		'menu.sections': 'Sections',
 		'menu.language': 'Langue',
 		'menu.theme': 'Thème',
@@ -64,6 +66,8 @@ export const ui = {
 	},
 	en: {
 		'menu.role': 'Full-Stack Engineer',
+		'menu.available': 'Available in September',
+		'menu.location': 'France and remote',
 		'menu.sections': 'Sections',
 		'menu.language': 'Language',
 		'menu.theme': 'Theme',

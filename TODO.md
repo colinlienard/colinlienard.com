@@ -2,6 +2,6 @@
 - [x] Dark mode
 - [x] Improve open-source and tech stack design
 - [ ] Main CTA animation
-- [ ] Background animation
 - [ ] OG image
 - [ ] Footer illustration/game
+- [ ] Easter eggs

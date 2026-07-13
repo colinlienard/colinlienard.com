@@ -1,12 +1,15 @@
 ---
 import { Image } from 'astro:assets';
-import me from '../assets/me.jpeg';
-import { useTranslations } from '../i18n';
+import me from '../../assets/me.jpeg';
+import { useTranslations } from '../../i18n';
+import type { MenuTranslations } from './menu';
 import Menu from './Menu.svelte';
 
 const t = useTranslations(Astro.currentLocale);
-const translations = {
+const translations: MenuTranslations = {
 	role: t('menu.role'),
+	available: t('menu.available'),
+	location: t('menu.location'),
 	sections: t('menu.sections'),
 	language: t('menu.language'),
 	theme: t('menu.theme'),
@@ -20,13 +23,13 @@ const translations = {
 };
 ---
 
-<Menu {translations} client:load>
+<Menu {translations} lang={Astro.currentLocale} client:load>
 	<Image
 		src={me}
 		alt="Colin Lienard"
 		width={80}
 		height={80}
-		class="size-10 rounded-full object-cover"
+		class="size-10 shrink-0 rounded-full object-cover"
 		loading="eager"
 	/>
 </Menu>

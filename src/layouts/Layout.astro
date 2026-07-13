@@ -1,8 +1,9 @@
 ---
 import '../global.css';
 import { Font } from 'astro:assets';
+import BlurGradient from '../components/BlurGradient.astro';
 import Footer from '../components/Footer.astro';
-import Menu from '../components/Menu.astro';
+import Menu from '../components/menu/Menu.astro';
 import Seo from '../components/Seo.astro';
 ---
 
@@ -28,9 +29,10 @@ import Seo from '../components/Seo.astro';
 		<meta name="robots" content="noindex, nofollow" />
 	</head>
 	<body
-		class="bg-bg text-fg selection:bg-fg/10 flex min-h-dvh cursor-default flex-col items-center pt-36 font-sans font-medium antialiased"
+		class="bg-bg text-fg selection:bg-fg/6 flex min-h-dvh cursor-default flex-col items-center pt-36 font-sans font-medium antialiased"
 	>
 		<Menu />
+		<BlurGradient />
 		<main class="flex w-full max-w-[min(calc(100vw-4rem),40rem)] flex-col gap-20">
 			<slot />
 		</main>
