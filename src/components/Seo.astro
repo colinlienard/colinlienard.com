@@ -9,7 +9,7 @@ const site = Astro.site!;
 const canonical = new URL(Astro.url.pathname, site);
 const ogImage = new URL('/og.jpg', site);
 
-const title = 'Colin Lienard';
+const title = t('seo.title');
 const description = t('seo.description');
 
 const alternates = [
@@ -18,23 +18,59 @@ const alternates = [
 	{ hreflang: 'x-default', href: new URL('/', site).href },
 ];
 
-const personSchema = {
+const personId = new URL('#person', site).href;
+const websiteId = new URL('#website', site).href;
+
+const structuredData = {
 	'@context': 'https://schema.org',
-	'@type': 'Person',
-	name: 'Colin Lienard',
-	url: site.href,
-	image: ogImage.href,
-	jobTitle: 'Full-Stack Engineer',
-	email: `mailto:${CONTACT.email}`,
-	address: {
-		'@type': 'PostalAddress',
-		addressLocality: 'Limoges',
-		addressCountry: 'FR',
-	},
-	sameAs: [CONTACT.linkedin, CONTACT.github, CONTACT.x, CONTACT.malt],
+	'@graph': [
+		{
+			'@type': 'Person',
+			'@id': personId,
+			name: 'Colin Lienard',
+			url: site.href,
+			image: ogImage.href,
+			jobTitle: 'Full-Stack Engineer',
+			description,
+			email: `mailto:${CONTACT.email}`,
+			address: {
+				'@type': 'PostalAddress',
+				addressLocality: 'Limoges',
+				addressCountry: 'FR',
+			},
+			hasOccupation: {
+				'@type': 'Occupation',
+				name: 'Full-Stack Engineer',
+				skills: 'React, TypeScript, Svelte, Node.js, web performance, developer experience',
+			},
+			knowsAbout: [
+				'React',
+				'TypeScript',
+				'Svelte',
+				'Node.js',
+				'Front-End Development',
+				'Full-Stack Development',
+				'Web Performance',
+				'Developer Experience',
+				'Open Source',
+			],
+			sameAs: [CONTACT.linkedin, CONTACT.github, CONTACT.x, CONTACT.malt],
+		},
+		{
+			'@type': 'WebSite',
+			'@id': websiteId,
+			url: site.href,
+			name: 'Colin Lienard',
+			description,
+			inLanguage: lang === 'fr' ? 'fr-FR' : 'en-US',
+			author: { '@id': personId },
+			publisher: { '@id': personId },
+		},
+	],
 };
 ---
 
+<title>{title}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={canonical.href} />
 
@@ -57,4 +93,4 @@ const personSchema = {
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImage.href} />
 
-<script type="application/ld+json" set:html={JSON.stringify(personSchema)} is:inline />
+<script type="application/ld+json" set:html={JSON.stringify(structuredData)} is:inline />

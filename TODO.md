@@ -1,7 +1,0 @@
-- [x] Menu content (nav, dark mode, switch lang, contacts)
-- [x] Dark mode
-- [x] Improve open-source and tech stack design
-- [x] Main CTA animation
-- [x] OG image
-- [ ] Footer illustration/game
-- [ ] Easter eggs

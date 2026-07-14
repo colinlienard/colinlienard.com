@@ -58,7 +58,7 @@ const projects = [
 						<div class="relative">
 							<Image
 								src={project.image}
-								alt={project.title}
+								alt=""
 								width={256}
 								height={256}
 								class="relative z-10 size-32 transition-transform"
@@ -66,15 +66,16 @@ const projects = [
 							/>
 							<Image
 								src={project.image}
-								alt={project.title}
+								alt=""
 								width={256}
 								height={256}
 								class="absolute inset-0 size-32 blur-3xl dark:opacity-75"
 								loading="lazy"
+								aria-hidden="true"
 							/>
 						</div>
 						<div class="flex w-full flex-col gap-2">
-							<span class="font-semibold">{project.title}</span>
+							<h3 class="font-semibold">{project.title}</h3>
 							<span class="text-muted text-sm">{project.description}</span>
 						</div>
 					</a>
@@ -86,15 +87,15 @@ const projects = [
 				href={CONTACT.github}
 				target="_blank"
 				rel="noopener noreferrer"
-				class="squircle bg-fg/2 flex h-full items-center justify-center p-8 transition-transform active:scale-95"
+				class="squircle text-muted hover:text-fg bg-fg/2 flex h-full items-center justify-center p-8 transition-all active:scale-95"
 			>
-				<p class="text-muted">
+				<span>
 					{t('projects.moreOn')}{' '}
 					<span class="decoration-fg/20 underline underline-offset-4">
-						<GithubIcon class="[&_path]:fill-muted mr-1 inline size-4 -translate-y-px" />
+						<GithubIcon class="mr-1 inline size-4 -translate-y-px [&_path]:fill-current" />
 						GitHub
 					</span>
-				</p>
+				</span>
 			</a>
 		</li>
 	</ul>

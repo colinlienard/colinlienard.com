@@ -241,6 +241,10 @@
 <style>
 	.menu {
 		animation: menu 0.6s 0.2s var(--ease-in-out) backwards;
+		--width: 45px;
+		@media (min-width: 40rem) {
+			--width: 52px;
+		}
 	}
 
 	.menu-status {
@@ -251,13 +255,13 @@
 		0% {
 			transform: scale(50%);
 			opacity: 0;
-			width: 52px;
+			width: var(--width);
 			pointer-events: none;
 		}
 		50% {
 			transform: scale(100%);
 			opacity: 1;
-			width: 52px;
+			width: var(--width);
 		}
 		100% {
 			width: 320px;
