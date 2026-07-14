@@ -137,7 +137,7 @@
 	$effect(() => {
 		if (!isOpen) return;
 
-		selectedItem = 0;
+		selectedItem = window.innerWidth < 480 ? -1 : 0;
 
 		const offs = [
 			on(window, 'keydown', (e) => {
@@ -234,6 +234,7 @@
 					{/each}
 				</div>
 			{/each}
+			<div class="absolute top-0 -left-12 not-sm:hidden -right-12 -bottom-16 -z-10"></div>
 		</div>
 	{/if}
 </div>
@@ -242,7 +243,7 @@
 	.menu {
 		animation: menu 0.6s 0.2s var(--ease-in-out) backwards;
 		--width: 45px;
-		@media (min-width: 40rem) {
+		@media (width > 480px) {
 			--width: 52px;
 		}
 	}
