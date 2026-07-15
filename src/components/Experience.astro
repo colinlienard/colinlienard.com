@@ -9,8 +9,7 @@ import { getStackItem, type StackItem } from '../stack';
 type Experience = {
 	name: string;
 	logo: typeof mobsuccess;
-	period: string;
-	role: string;
+	roles: { period: string; role: string }[];
 	bullets: { text: string; tooltip?: string }[];
 	stack: StackItem[];
 };
@@ -21,8 +20,16 @@ const experiences: Experience[] = [
 	{
 		name: 'Mobsuccess',
 		logo: mobsuccess,
-		period: t('experience.mobsuccess.period'),
-		role: t('experience.mobsuccess.role'),
+		roles: [
+			{
+				period: t('experience.mobsuccess.period.fullstack'),
+				role: t('experience.mobsuccess.role.fullstack'),
+			},
+			{
+				period: t('experience.mobsuccess.period.frontend'),
+				role: t('experience.mobsuccess.role.frontend'),
+			},
+		],
 		bullets: [
 			{ text: t('experience.mobsuccess.b1') },
 			{ text: t('experience.mobsuccess.b2') },
@@ -35,8 +42,7 @@ const experiences: Experience[] = [
 	{
 		name: 'Connivence',
 		logo: connivence,
-		period: t('experience.connivence.period'),
-		role: t('experience.connivence.role'),
+		roles: [{ period: t('experience.connivence.period'), role: t('experience.connivence.role') }],
 		bullets: [{ text: t('experience.connivence.b1') }],
 		stack: ['react', 'git', 'figma'],
 	},
@@ -52,19 +58,31 @@ const experiences: Experience[] = [
 		{
 			experiences.map((experience) => (
 				<li class="flex flex-col gap-2">
-					<p class="text-muted text-sm">{experience.period}</p>
-					<h3 class="inline items-center">
-						{experience.role}
-						<Image
-							src={experience.logo}
-							alt=""
-							width={48}
-							height={48}
-							class="mr-0.5 ml-2 inline size-6 -translate-y-0.5 object-contain dark:brightness-150"
-							loading="lazy"
-						/>
-						{experience.name}
-					</h3>
+					<div class="flex flex-col gap-1">
+						<div>
+							<p class="text-muted text-sm">{experience.roles[0].period}</p>
+							<h3 class="inline items-center">
+								{experience.roles[0].role}
+								<Image
+									src={experience.logo}
+									alt=""
+									width={48}
+									height={48}
+									class="mr-0.5 ml-2 inline size-6 -translate-y-0.5 object-contain dark:brightness-150"
+									loading="lazy"
+								/>
+								{experience.name}
+							</h3>
+						</div>
+						{experience.roles.length > 1 &&
+							experience.roles.slice(1).map(({ role, period }) => (
+								<div class="text-muted relative pl-9">
+									<div class="top-O border-border absolute left-2 h-7 w-4.5 rounded-bl-lg border-b-2 border-l-2" />
+									<p class="text-xs opacity-80">{period}</p>
+									<p class="text-sm">{role}</p>
+								</div>
+							))}
+					</div>
 					<ul class="text-muted mt-2 flex list-[circle] flex-col gap-1 pl-4 leading-relaxed text-pretty">
 						{experience.bullets.map((bullet) => (
 							<li>
