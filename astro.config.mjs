@@ -5,8 +5,7 @@ import { defineConfig, fontProviders } from 'astro/config';
 import icons from 'unplugin-icons/vite';
 
 export default defineConfig({
-	// TODO: remove staging
-	site: 'https://staging.colinlienard.com',
+	site: 'https://colinlienard.com',
 	i18n: {
 		locales: ['fr', 'en'],
 		defaultLocale: 'fr',
