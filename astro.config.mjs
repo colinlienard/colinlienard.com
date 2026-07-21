@@ -38,6 +38,7 @@ export default defineConfig({
 			styles: ['italic'],
 		},
 	],
+	trailingSlash: 'never',
 	vite: {
 		plugins: [icons({ compiler: 'svelte' }), tailwindcss()],
 	},
