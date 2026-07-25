@@ -1,11 +1,7 @@
 ---
-import GithubIcon from 'virtual:icons/logos/github-icon';
-import LinkedinIcon from 'virtual:icons/logos/linkedin-icon';
-import XIcon from 'virtual:icons/logos/x';
-import MaltIcon from '../assets/malt.svg';
-import { CONTACT } from '../config';
 import { useTranslations } from '../i18n';
 import CopyEmailButton from './CopyEmailButton.astro';
+import Contacts from './Contacts.svelte';
 
 const t = useTranslations(Astro.currentLocale);
 ---
@@ -36,25 +32,8 @@ const t = useTranslations(Astro.currentLocale);
 		</p>
 	</div>
 
-	<div class="flex flex-wrap items-center gap-4">
+	<div class="relative flex flex-wrap items-center gap-4">
 		<CopyEmailButton />
-		<a href={CONTACT.github} target="_blank" rel="noopener noreferrer" aria-label="Github">
-			<GithubIcon
-				class="hover:[&_path]:fill-fg [&_path]:fill-muted size-6 [&_path]:transition-colors"
-			/>
-		</a>
-		<a href={CONTACT.linkedin} target="_blank" rel="noopener noreferrer" aria-label="Linkedin">
-			<LinkedinIcon
-				class="hover:[&_path]:fill-fg [&_path]:fill-muted size-6 [&_path]:transition-colors"
-			/>
-		</a>
-		<a href={CONTACT.malt} target="_blank" rel="noopener noreferrer" aria-label="Malt">
-			<MaltIcon
-				class="hover:[&_path]:fill-fg [&_path]:fill-muted size-6 [&_path]:transition-colors"
-			/>
-		</a>
-		<a href={CONTACT.x} target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
-			<XIcon class="hover:[&_path]:fill-fg [&_path]:fill-muted size-6 [&_path]:transition-colors" />
-		</a>
+		<Contacts client:load />
 	</div>
 </section>

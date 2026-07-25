@@ -2,6 +2,7 @@
 	import type { Component, Snippet } from 'svelte';
 	import { onMount } from 'svelte';
 	import { on } from 'svelte/events';
+	import BarsIcon from 'virtual:icons/heroicons/bars-3';
 	import BriefcaseIcon from 'virtual:icons/heroicons/briefcase';
 	import CodeBracketIcon from 'virtual:icons/heroicons/code-bracket';
 	import ComputerDesktopIcon from 'virtual:icons/heroicons/computer-desktop';
@@ -183,7 +184,7 @@
 
 <div
 	id="menu"
-	class="menu fixed top-8 sm:top-12 z-50 w-full rounded-[1.6rem] transition-all ease-out duration-400 bg-white/90 dark:bg-neutral-800/90 backdrop-blur-sm ring ring-border {isOpen
+	class="menu fixed top-8 sm:top-12 z-50 w-full rounded-[1.6rem] transition-all ease-out duration-400 bg-surface/90 backdrop-blur-sm ring ring-border {isOpen
 		? 'rounded-b-xl max-w-[min(400px,calc(100vw-4rem))] shadow-2xl dark:shadow-2xl/50'
 		: 'max-w-xs shadow-lg/6'}"
 	role="presentation"
@@ -204,6 +205,7 @@
 				<span>Colin Lienard</span>
 				<MenuStatus {translations} {lang} isPause={isOpen} />
 			</div>
+			<BarsIcon class="sm:hidden mr-1.5 ml-auto" />
 			<kbd
 				class="not-sm:hidden mr-1.5 ml-auto flex items-center gap-0.5 rounded-md bg-fg/5 p-1 font-sans text-sm text-muted"
 			>
