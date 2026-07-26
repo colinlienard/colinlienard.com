@@ -40,51 +40,56 @@
 	let contentIndex = $state(0);
 	let prevContentIndex = $state(0);
 	let popupElement = $state<HTMLElement>();
-	let direction = $derived(contentIndex - prevContentIndex);
+	let direction = $derived(Math.max(Math.min(contentIndex - prevContentIndex, 1), -1));
 
 	const left = new Tween(0, { duration: 300, easing: cubicOut });
 	const width = new Tween(0, { duration: 300, easing: cubicOut });
 	const height = new Tween(0, { duration: 300, easing: cubicOut });
-
-	const contents = [github, linkedin, malt, x];
 
 	const items = [
 		{
 			label: 'GitHub',
 			url: CONTACT.github,
 			icon: GithubIcon,
+			content: github,
 		},
 		{
 			label: 'LinkedIn',
 			url: CONTACT.linkedin,
 			icon: LinkedinIcon,
+			content: linkedin,
 		},
 		{
 			label: 'Malt',
 			url: CONTACT.malt,
 			icon: MaltIcon,
+			content: malt,
 		},
 		{
 			label: 'X',
 			url: CONTACT.x,
 			icon: XIcon,
+			content: x,
 		},
 	];
 
-	const hover: Attachment<HTMLAnchorElement> = (node) => {
-		return on(node, 'mouseenter', async () => {
-			let prevOpen = open;
-			open = true;
+	const hover =
+		(index: number): Attachment<HTMLAnchorElement> =>
+		(node) => {
+			return on(node, 'mouseenter', async () => {
+				let prevOpen = open;
+				open = true;
 
-			left.set(node.offsetLeft + node.offsetWidth / 2, prevOpen ? {} : { duration: 0 });
-			prevContentIndex = contentIndex;
-			contentIndex = parseInt(node.dataset.index || '0');
+				left.set(node.offsetLeft + node.offsetWidth / 2, prevOpen ? {} : { duration: 0 });
+				prevContentIndex = contentIndex;
+				contentIndex = index;
 
-			await tick();
-			width.set(popupElement!.offsetWidth, prevOpen ? {} : { duration: 0 });
-			height.set(popupElement!.offsetHeight, prevOpen ? {} : { duration: 0 });
-		});
-	};
+				await tick();
+				if (!popupElement) return;
+				width.set(popupElement.offsetWidth, prevOpen ? {} : { duration: 0 });
+				height.set(popupElement.offsetHeight, prevOpen ? {} : { duration: 0 });
+			});
+		};
 </script>
 
 <div class="relative flex" onmouseleave={() => (open = false)} role="presentation">
@@ -95,8 +100,7 @@
 			target="_blank"
 			rel="noopener noreferrer"
 			aria-label={label}
-			data-index={index}
-			{@attach hover}
+			{@attach hover(index)}
 		>
 			<Icon class="[&_path]:fill-current size-6 [&_path]:transition-colors" />
 		</a>
@@ -116,11 +120,12 @@
 					in:flyWithBlur={{ x: 200 * direction, duration: 300 }}
 					out:flyWithBlur={{ x: 200 * -direction, duration: 300 }}
 				>
-					{@render contents[contentIndex]?.()}
+					{@render items[contentIndex]?.content()}
 				</div>
 			{/key}
 		</div>
 	{/if}
+	<!-- Pointer bridge -->
 	<div class="absolute inset-0 -top-2"></div>
 </div>
 

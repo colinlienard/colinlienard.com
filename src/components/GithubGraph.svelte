@@ -4,7 +4,7 @@
 
 	let { contributions }: { contributions: Contributions } = $props();
 
-	const weeks = $derived(toWeeks(contributions.days));
+	const weeks = $derived(toWeeks(contributions));
 
 	const levels = [
 		'bg-fg/10',

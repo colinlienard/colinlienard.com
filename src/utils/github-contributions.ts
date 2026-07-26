@@ -8,7 +8,9 @@ export type ContributionDay = {
 
 export type Contributions = {
 	total: number;
-	days: ContributionDay[];
+	start: string;
+	levels: string;
+	counts: number[];
 };
 
 const cache = new Map<string, Promise<Contributions>>();
@@ -31,17 +33,29 @@ async function fetchContributions(username: string) {
 		contributions: ContributionDay[];
 	};
 
-	return { total: data.total.lastYear ?? 0, days: data.contributions };
+	const days = data.contributions;
+
+	return {
+		total: data.total.lastYear ?? 0,
+		start: days[0]?.date ?? '',
+		levels: days.map((day) => day.level).join(''),
+		counts: days.map((day) => day.count),
+	};
 }
 
-export function toWeeks(days: ContributionDay[]) {
+export function toWeeks({ start, levels, counts }: Contributions) {
+	const startDate = new Date(`${start}T00:00:00Z`);
 	const weeks: (ContributionDay | undefined)[][] = [];
-	let week: (ContributionDay | undefined)[] = Array.from({
-		length: new Date(days[0].date).getUTCDay(),
-	});
+	let week: (ContributionDay | undefined)[] = Array.from({ length: startDate.getUTCDay() });
 
-	for (const day of days) {
-		week.push(day);
+	for (const [index, count] of counts.entries()) {
+		const date = new Date(startDate);
+		date.setUTCDate(date.getUTCDate() + index);
+		week.push({
+			date: date.toISOString().slice(0, 10),
+			count,
+			level: Number(levels[index] ?? 0) as ContributionDay['level'],
+		});
 		if (week.length === 7) {
 			weeks.push(week);
 			week = [];
