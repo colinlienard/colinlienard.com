@@ -38,6 +38,7 @@
 
 @theme inline {
 	--color-bg: var(--bg);
+	--color-surface: var(--surface);
 	--color-fg: var(--fg);
 	--color-muted: var(--muted);
 	--color-border: var(--border);
@@ -46,18 +47,20 @@
 @layer base {
 	:root {
 		color-scheme: light;
-		--bg: var(--color-neutral-50);
-		--fg: var(--color-neutral-900);
-		--muted: var(--color-neutral-500);
-		--border: --alpha(var(--color-neutral-900) / 10%);
+		--bg: var(--color-stone-50);
+		--surface: white;
+		--fg: var(--color-stone-800);
+		--muted: var(--color-stone-500);
+		--border: --alpha(var(--color-stone-900) / 10%);
 	}
 
 	.dark {
 		color-scheme: dark;
-		--bg: var(--color-neutral-900);
-		--fg: var(--color-neutral-50);
-		--muted: var(--color-neutral-400);
-		--border: --alpha(var(--color-neutral-50) / 10%);
+		--bg: hsl(24 5% 10%);
+		--surface: hsl(24 5% 15%);
+		--fg: var(--color-stone-100);
+		--muted: var(--color-stone-400);
+		--border: --alpha(var(--color-stone-50) / 10%);
 	}
 }
 
@@ -79,6 +82,15 @@
 		@supports (corner-shape: squircle) {
 			corner-shape: squircle;
 			border-radius: 3rem;
+		}
+	}
+
+	.squircle-sm {
+		border-radius: var(--radius-xl);
+
+		@supports (corner-shape: squircle) {
+			corner-shape: squircle;
+			border-radius: 2rem;
 		}
 	}
 }

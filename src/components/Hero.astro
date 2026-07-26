@@ -1,13 +1,15 @@
 ---
-import GithubIcon from 'virtual:icons/logos/github-icon';
-import LinkedinIcon from 'virtual:icons/logos/linkedin-icon';
-import XIcon from 'virtual:icons/logos/x';
-import MaltIcon from '../assets/malt.svg';
-import { CONTACT } from '../config';
+import { Image } from 'astro:assets';
+import me from '../assets/me.jpeg';
 import { useTranslations } from '../i18n';
+import { getGithubContributions } from '../utils/github-contributions';
+import Contacts from './Contacts.svelte';
 import CopyEmailButton from './CopyEmailButton.astro';
 
 const t = useTranslations(Astro.currentLocale);
+
+const contributions = await getGithubContributions('colinlienard');
+const contributionsLabel = `${contributions.total.toLocaleString(Astro.currentLocale)} ${t('hero.contributions')}`;
 ---
 
 <section id="hero" class="section relative flex flex-col gap-12">
@@ -36,25 +38,23 @@ const t = useTranslations(Astro.currentLocale);
 		</p>
 	</div>
 
-	<div class="flex flex-wrap items-center gap-4">
+	<div class="flex items-center gap-2">
 		<CopyEmailButton />
-		<a href={CONTACT.github} target="_blank" rel="noopener noreferrer" aria-label="Github">
-			<GithubIcon
-				class="hover:[&_path]:fill-fg [&_path]:fill-muted size-6 [&_path]:transition-colors"
-			/>
-		</a>
-		<a href={CONTACT.linkedin} target="_blank" rel="noopener noreferrer" aria-label="Linkedin">
-			<LinkedinIcon
-				class="hover:[&_path]:fill-fg [&_path]:fill-muted size-6 [&_path]:transition-colors"
-			/>
-		</a>
-		<a href={CONTACT.malt} target="_blank" rel="noopener noreferrer" aria-label="Malt">
-			<MaltIcon
-				class="hover:[&_path]:fill-fg [&_path]:fill-muted size-6 [&_path]:transition-colors"
-			/>
-		</a>
-		<a href={CONTACT.x} target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
-			<XIcon class="hover:[&_path]:fill-fg [&_path]:fill-muted size-6 [&_path]:transition-colors" />
-		</a>
+		<Contacts
+			client:load
+			{contributions}
+			{contributionsLabel}
+			labels={{
+				linkedinHeadline: t('contact.linkedin.headline'),
+				linkedinLocation: t('contact.linkedin.location'),
+				linkedinCta: t('contact.linkedin.cta'),
+				maltAvailability: t('contact.malt.availability'),
+				maltRate: t('contact.malt.rate'),
+				maltLocation: t('contact.malt.location'),
+				xCta: t('contact.x.cta'),
+			}}
+		>
+			<Image src={me} alt="Colin Lienard" width={80} height={80} class="size-10" />
+		</Contacts>
 	</div>
 </section>
