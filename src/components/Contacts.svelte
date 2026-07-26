@@ -1,129 +1,214 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte';
+	import { type Snippet, tick } from 'svelte';
 	import type { Attachment } from 'svelte/attachments';
+	import { cubicOut } from 'svelte/easing';
 	import { on } from 'svelte/events';
-	import { Spring } from 'svelte/motion';
+	import { Tween } from 'svelte/motion';
 	import { fade } from 'svelte/transition';
+	import MaltIcon from 'virtual:icons/custom/malt';
+	import BanknotesIcon from 'virtual:icons/heroicons/banknotes';
+	import MapPinIcon from 'virtual:icons/heroicons/map-pin';
 	import GithubIcon from 'virtual:icons/logos/github-icon';
 	import LinkedinIcon from 'virtual:icons/logos/linkedin-icon';
 	import XIcon from 'virtual:icons/logos/x';
 	import { CONTACT } from '../config';
+	import type { Contributions } from '../utils/github-contributions';
 	import { flyWithBlur } from '../utils/svelte-transitions';
+	import GithubGraph from './GithubGraph.svelte';
+
+	let {
+		children,
+		contributions,
+		contributionsLabel,
+		labels,
+	}: {
+		children: Snippet;
+		contributions: Contributions;
+		contributionsLabel: string;
+		labels: {
+			linkedinHeadline: string;
+			linkedinLocation: string;
+			linkedinCta: string;
+			maltAvailability: string;
+			maltRate: string;
+			maltLocation: string;
+			xCta: string;
+		};
+	} = $props();
 
 	let open = $state(false);
-	let content = $state<Snippet>();
-	const left = new Spring(0);
-	let isHovering = false;
+	let contentIndex = $state(0);
+	let prevContentIndex = $state(0);
+	let popupElement = $state<HTMLElement>();
+	let direction = $derived(contentIndex - prevContentIndex);
+
+	const left = new Tween(0, { duration: 300, easing: cubicOut });
+	const width = new Tween(0, { duration: 300, easing: cubicOut });
+	const height = new Tween(0, { duration: 300, easing: cubicOut });
+
+	const contents = [github, linkedin, malt, x];
+
+	const items = [
+		{
+			label: 'GitHub',
+			url: CONTACT.github,
+			icon: GithubIcon,
+		},
+		{
+			label: 'LinkedIn',
+			url: CONTACT.linkedin,
+			icon: LinkedinIcon,
+		},
+		{
+			label: 'Malt',
+			url: CONTACT.malt,
+			icon: MaltIcon,
+		},
+		{
+			label: 'X',
+			url: CONTACT.x,
+			icon: XIcon,
+		},
+	];
 
 	const hover: Attachment<HTMLAnchorElement> = (node) => {
-		const offs = [
-			on(node, 'mouseenter', () => {
-				left.target = node.offsetLeft + node.offsetWidth / 2;
-				left.stiffness = open ? 0.2 : 1;
-				open = true;
-				isHovering = true;
-				switch (node.ariaLabel) {
-					case 'Github': {
-						content = github;
-						break;
-					}
-					case 'Linkedin': {
-						content = linkedin;
-						break;
-					}
-					case 'Malt': {
-						content = malt;
-						break;
-					}
-					case 'X (Twitter)': {
-						content = x;
-						break;
-					}
-				}
-			}),
-			on(node, 'mouseleave', () => {
-				isHovering = false;
-				setTimeout(() => {
-					if (!isHovering) open = false;
-				}, 300);
-			}),
-		];
+		return on(node, 'mouseenter', async () => {
+			let prevOpen = open;
+			open = true;
 
-		return () => {
-			for (const off of offs) off();
-		};
+			left.set(node.offsetLeft + node.offsetWidth / 2, prevOpen ? {} : { duration: 0 });
+			prevContentIndex = contentIndex;
+			contentIndex = parseInt(node.dataset.index || '0');
+
+			await tick();
+			width.set(popupElement!.offsetWidth, prevOpen ? {} : { duration: 0 });
+			height.set(popupElement!.offsetHeight, prevOpen ? {} : { duration: 0 });
+		});
 	};
 </script>
 
-<a
-	href={CONTACT.github}
-	target="_blank"
-	rel="noopener noreferrer"
-	aria-label="Github"
-	{@attach hover}
->
-	<GithubIcon
-		class="hover:[&_path]:fill-fg [&_path]:fill-muted size-6 [&_path]:transition-colors"
-	/>
-</a>
-<a
-	href={CONTACT.linkedin}
-	target="_blank"
-	rel="noopener noreferrer"
-	aria-label="Linkedin"
-	{@attach hover}
->
-	<LinkedinIcon
-		class="hover:[&_path]:fill-fg [&_path]:fill-muted size-6 [&_path]:transition-colors"
-	/>
-</a>
-<a href={CONTACT.malt} target="_blank" rel="noopener noreferrer" aria-label="Malt" {@attach hover}>
-	<svg
-		viewBox="0 0 32 32"
-		xmlns="http://www.w3.org/2000/svg"
-		class="hover:[&_path]:fill-fg [&_path]:fill-muted size-6 [&_path]:transition-colors"
-	>
-		<path
-			d="M27.3892 4.61825C24.9683 2.20484 22.3911 3.76909 20.7747 5.37803L5.51955 20.6331C3.90317 22.2495 2.21229 24.7076 4.75978 27.2477C7.29981 29.7877 9.75047 28.0968 11.3669 26.4804L26.622 11.2253C28.2384 9.61639 29.8026 7.03166 27.3892 4.61825ZM12.8119 3.99255L16.0447 7.22533L19.3296 3.93296C19.5531 3.7095 19.7765 3.50093 20.0074 3.30726C19.6648 1.57169 18.6741 0 16.0372 0C13.4004 0 12.4097 1.57914 12.0745 3.31471C12.3203 3.53073 12.5661 3.74674 12.8119 3.99255ZM19.3296 27.9851L16.0447 24.7002L12.8119 27.9255C12.5661 28.1713 12.3277 28.4022 12.0819 28.6108C12.4544 30.3836 13.4972 32 16.0372 32C18.5847 32 19.635 30.3687 20 28.5959C19.7765 28.4022 19.5531 28.2086 19.3296 27.9851ZM11.4413 11.8212H5.21415C2.92737 11.8212 0 12.5438 0 15.9553C0 18.5102 1.63129 19.5531 3.41155 19.9181C3.62011 19.6797 11.4413 11.8212 11.4413 11.8212ZM28.6853 11.9926C28.4916 12.216 20.648 20.0968 20.648 20.0968H26.7858C29.0726 20.0968 32 19.5531 32 15.9553C32 13.3259 30.4283 12.3352 28.6853 11.9926ZM13.4823 9.78026L14.5922 8.67039L11.3669 5.43762C9.75047 3.82123 7.29981 2.13035 4.75233 4.67784C2.89013 6.54004 3.30726 8.35754 4.2905 9.82495C4.5959 9.80261 13.4823 9.78026 13.4823 9.78026ZM18.5996 22.1378L17.4823 23.2551L20.7747 26.54C22.3911 28.1564 24.9683 29.7207 27.3818 27.3073C29.1844 25.5047 28.7747 23.6052 27.7765 22.0931C27.4562 22.1155 18.5996 22.1378 18.5996 22.1378Z"
-		/>
-	</svg>
-</a>
-<a
-	href={CONTACT.x}
-	target="_blank"
-	rel="noopener noreferrer"
-	aria-label="X (Twitter)"
-	{@attach hover}
->
-	<XIcon class="hover:[&_path]:fill-fg [&_path]:fill-muted size-6 [&_path]:transition-colors" />
-</a>
-
-{#if open}
-	<div
-		transition:fade={{ duration: 150 }}
-		class="absolute bg-surface rounded-xl ring ring-border shadow-2xl p-4 bottom-[calc(100%+0.3rem)] translate-x-[-50%]"
-		style:left={left.current + 'px'}
-	>
-		{#key content}
-			<div in:flyWithBlur={{ x: 8, duration: 500 }} out:flyWithBlur={{ x: -8, duration: 500 }}>
-				{@render content?.()}
-			</div>
-		{/key}
-	</div>
-{/if}
+<div class="relative flex" onmouseleave={() => (open = false)} role="presentation">
+	{#each items as { label, url, icon: Icon }, index (index)}
+		<a
+			class="p-2 z-10 hover:[&_path]:fill-fg [&_path]:fill-muted"
+			href={url}
+			target="_blank"
+			rel="noopener noreferrer"
+			aria-label={label}
+			data-index={index}
+			{@attach hover}
+		>
+			<Icon class="[&_path]:fill-current size-6 [&_path]:transition-colors" />
+		</a>
+	{/each}
+	{#if open}
+		<div
+			transition:fade={{ duration: 150 }}
+			class="absolute flex items-end bg-surface overflow-hidden squircle-sm ring ring-border shadow-2xl bottom-[calc(100%+0.5rem)] translate-x-[-50%]"
+			style:left={left.current + 'px'}
+			style:width={width.current + 'px'}
+			style:height={height.current + 'px'}
+		>
+			{#key contentIndex}
+				<div
+					bind:this={popupElement}
+					class="absolute"
+					in:flyWithBlur={{ x: 200 * direction, duration: 300 }}
+					out:flyWithBlur={{ x: 200 * -direction, duration: 300 }}
+				>
+					{@render contents[contentIndex]?.()}
+				</div>
+			{/key}
+		</div>
+	{/if}
+	<div class="absolute inset-0 -top-2"></div>
+</div>
 
 {#snippet github()}
-	Github
+	<div class="flex flex-col p-3 gap-3">
+		<div class="flex items-center gap-3 [&_img]:rounded-full">
+			{@render children()}
+			<div class="flex flex-col">
+				colinlienard
+				<p class="text-muted text-sm">{contributionsLabel}</p>
+			</div>
+		</div>
+		<GithubGraph {contributions} />
+	</div>
 {/snippet}
 
 {#snippet linkedin()}
-	Linkedin
+	<div class="h-16 w-2xs bg-linear-to-br from-[#0A66C2] to-[#0A66C2]/30"></div>
+	<div
+		class="absolute left-3 translate-y-[-50%] p-0.5 bg-surface rounded-full [&_img]:size-14 [&_img]:rounded-full"
+	>
+		{@render children()}
+	</div>
+	<div class="flex flex-col gap-1 p-3 pt-8">
+		<span>Colin Lienard</span>
+		<div class="mt-1 flex items-end justify-between gap-3">
+			<p class="text-muted text-sm">
+				{labels.linkedinHeadline}<br />{labels.linkedinLocation}
+			</p>
+			<a
+				class="bg-[#0A66C2] dark:bg-[#71B7FB] text-bg h-fit hover:brightness-120 transition-[filter] py-1 px-3 rounded-full text-sm"
+				href={CONTACT.linkedin}
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				{labels.linkedinCta}
+			</a>
+		</div>
+	</div>
 {/snippet}
 
 {#snippet malt()}
-	Malt
+	<div class="flex flex-col gap-3 p-3">
+		<div class="flex items-center gap-3 [&_img]:rounded-md">
+			{@render children()}
+			<div class="flex flex-col">
+				Colin Lienard
+				<p class="text-muted flex items-center gap-1.5 text-sm">
+					<span class="size-1.5 rounded-full bg-green-400"></span>
+					{labels.maltAvailability}
+				</p>
+			</div>
+		</div>
+		<div class="flex items-baseline text-nowrap text-muted text-sm justify-between gap-6">
+			<div class="flex items-center gap-1"><BanknotesIcon />{labels.maltRate}</div>
+			<div class="flex items-center gap-1"><MapPinIcon />{labels.maltLocation}</div>
+		</div>
+		<div class="text-muted flex flex-wrap gap-2 text-sm">
+			{#each ['React', 'TypeScript', 'Node'] as skill (skill)}
+				<span class="ring-border rounded-md px-2 py-0.5 ring">{skill}</span>
+			{/each}
+		</div>
+	</div>
 {/snippet}
 
 {#snippet x()}
-	X (Twitter)
+	<img
+		class="w-2xs max-w-[unset] h-24"
+		src="https://pbs.twimg.com/profile_banners/1599713873325658112/1769633299/1500x500"
+		alt=""
+	/>
+	<div
+		class="absolute left-3 translate-y-[-50%] p-0.5 bg-surface rounded-full [&_img]:size-14 [&_img]:rounded-full"
+	>
+		{@render children()}
+	</div>
+	<div class="flex flex-col p-3">
+		<div class="flex justify-between">
+			<span class="mt-6">@colinlienard</span>
+			<a
+				class="bg-fg text-bg text-sm h-fit hover:bg-fg/90 transition-colors py-1 px-3 rounded-full"
+				href={CONTACT.x}
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				{labels.xCta}
+			</a>
+		</div>
+		<span class="text-sm text-muted">Developer building with svelte/react</span>
+	</div>
 {/snippet}

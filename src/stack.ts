@@ -1,3 +1,4 @@
+import TanStackIcon from 'virtual:icons/custom/tanstack';
 import AmplifyIcon from 'virtual:icons/logos/aws-amplify';
 import ClaudeIcon from 'virtual:icons/logos/claude-icon';
 import CloudflareIcon from 'virtual:icons/logos/cloudflare-icon';
@@ -14,7 +15,6 @@ import SvelteIcon from 'virtual:icons/logos/svelte-icon';
 import TailwindIcon from 'virtual:icons/logos/tailwindcss-icon';
 import TypeScriptIcon from 'virtual:icons/logos/typescript-icon';
 import VitestIcon from 'virtual:icons/logos/vitest';
-import TanStackIcon from './assets/tanstack.svg';
 
 const stack = {
 	amplify: { name: 'Amplify', icon: AmplifyIcon },

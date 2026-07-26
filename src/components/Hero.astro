@@ -1,9 +1,15 @@
 ---
+import { Image } from 'astro:assets';
+import me from '../assets/me.jpeg';
 import { useTranslations } from '../i18n';
-import CopyEmailButton from './CopyEmailButton.astro';
+import { getGithubContributions } from '../utils/github-contributions';
 import Contacts from './Contacts.svelte';
+import CopyEmailButton from './CopyEmailButton.astro';
 
 const t = useTranslations(Astro.currentLocale);
+
+const contributions = await getGithubContributions('colinlienard');
+const contributionsLabel = `${contributions.total.toLocaleString(Astro.currentLocale)} ${t('hero.contributions')}`;
 ---
 
 <section id="hero" class="section relative flex flex-col gap-12">
@@ -32,8 +38,23 @@ const t = useTranslations(Astro.currentLocale);
 		</p>
 	</div>
 
-	<div class="relative flex flex-wrap items-center gap-4">
+	<div class="flex items-center gap-2">
 		<CopyEmailButton />
-		<Contacts client:load />
+		<Contacts
+			client:load
+			{contributions}
+			{contributionsLabel}
+			labels={{
+				linkedinHeadline: t('contact.linkedin.headline'),
+				linkedinLocation: t('contact.linkedin.location'),
+				linkedinCta: t('contact.linkedin.cta'),
+				maltAvailability: t('contact.malt.availability'),
+				maltRate: t('contact.malt.rate'),
+				maltLocation: t('contact.malt.location'),
+				xCta: t('contact.x.cta'),
+			}}
+		>
+			<Image src={me} alt="Colin Lienard" width={80} height={80} class="size-10" />
+		</Contacts>
 	</div>
 </section>

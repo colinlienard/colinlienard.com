@@ -2,6 +2,7 @@ import sitemap from '@astrojs/sitemap';
 import svelte from '@astrojs/svelte';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, fontProviders } from 'astro/config';
+import { FileSystemIconLoader } from 'unplugin-icons/loaders';
 import icons from 'unplugin-icons/vite';
 
 export default defineConfig({
@@ -40,6 +41,14 @@ export default defineConfig({
 	],
 	trailingSlash: 'never',
 	vite: {
-		plugins: [icons({ compiler: 'svelte' }), tailwindcss()],
+		plugins: [
+			icons({
+				compiler: 'svelte',
+				customCollections: {
+					custom: FileSystemIconLoader('./src/assets/custom-icons'),
+				},
+			}),
+			tailwindcss(),
+		],
 	},
 });
