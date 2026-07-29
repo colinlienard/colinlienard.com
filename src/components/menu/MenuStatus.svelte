@@ -34,11 +34,11 @@
 	});
 </script>
 
-<span class="text-sm text-muted relative w-full">
+<span class="text-muted relative w-full text-sm">
 	<span class="opacity-0" aria-hidden="true">_</span>
 	{#key current}
 		<span
-			class="absolute inset-0 flex gap-1 items-center"
+			class="absolute inset-0 flex items-center gap-1"
 			in:flyWithBlur={{ y: 8, duration: 500 }}
 			out:flyWithBlur={{ y: -8, duration: 500 }}
 		>
@@ -52,7 +52,7 @@
 {/snippet}
 
 {#snippet available()}
-	<div class="relative blur-[1px] size-1.5 *:absolute *:inset-0 *:rounded-full *:bg-green-400">
+	<div class="relative size-1.5 blur-[1px] *:absolute *:inset-0 *:rounded-full *:bg-green-400">
 		<div></div>
 		<div class="ping"></div>
 	</div>

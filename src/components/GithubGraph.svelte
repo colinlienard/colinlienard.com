@@ -76,7 +76,7 @@
 	{#if hovered}
 		<div
 			transition:fade={{ duration: 100 }}
-			class="bg-stone-900 text-stone-100 shadow-xl/30 dark:bg-stone-950 pointer-events-none absolute z-10 -translate-x-1/2 -translate-y-[calc(100%+0.25rem)] squircle px-2 py-1 text-xs text-nowrap"
+			class="squircle pointer-events-none absolute z-10 -translate-x-1/2 -translate-y-[calc(100%+0.25rem)] bg-stone-900 px-2 py-1 text-xs text-nowrap text-stone-100 shadow-xl/30 dark:bg-stone-950"
 			style:left="{left}px"
 			style:top="{hovered.top}px"
 			bind:clientWidth={tooltipWidth}

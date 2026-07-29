@@ -97,20 +97,20 @@
 <div class="relative flex" onmouseleave={() => (open = false)} role="presentation">
 	{#each items as { label, url, icon: Icon }, index (index)}
 		<a
-			class="p-2 z-10 hover:[&_path]:fill-fg [&_path]:fill-muted"
+			class="hover:[&_path]:fill-fg [&_path]:fill-muted z-10 p-2"
 			href={url}
 			target="_blank"
 			rel="noopener noreferrer"
 			aria-label={label}
 			{@attach hover(index)}
 		>
-			<Icon class="[&_path]:fill-current size-6 [&_path]:transition-colors" />
+			<Icon class="size-6 [&_path]:fill-current [&_path]:transition-colors" />
 		</a>
 	{/each}
 	{#if open}
 		<div
 			transition:fade={{ duration: 150 }}
-			class="absolute flex items-end bg-surface overflow-hidden squircle-sm ring ring-border shadow-2xl bottom-[calc(100%+0.5rem)] translate-x-[-50%]"
+			class="bg-surface squircle-sm ring-border absolute bottom-[calc(100%+0.5rem)] flex translate-x-[-50%] items-end overflow-hidden shadow-2xl ring"
 			style:left={left.current + 'px'}
 			style:width={width.current + 'px'}
 			style:height={height.current + 'px'}
@@ -132,7 +132,7 @@
 </div>
 
 {#snippet github()}
-	<div class="flex flex-col p-3 gap-3">
+	<div class="flex flex-col gap-3 p-3">
 		<div class="flex items-center gap-3 [&_img]:rounded-full">
 			{@render children()}
 			<div class="flex flex-col">
@@ -147,7 +147,7 @@
 {#snippet linkedin()}
 	<div class="h-16 w-2xs bg-linear-to-br from-[#0A66C2] to-[#0A66C2]/30"></div>
 	<div
-		class="absolute left-3 translate-y-[-50%] p-0.5 bg-surface rounded-full [&_img]:size-14 [&_img]:rounded-full"
+		class="bg-surface absolute left-3 translate-y-[-50%] rounded-full p-0.5 [&_img]:size-14 [&_img]:rounded-full"
 	>
 		{@render children()}
 	</div>
@@ -158,7 +158,7 @@
 				{labels.linkedinHeadline}<br />{labels.linkedinLocation}
 			</p>
 			<a
-				class="bg-[#0A66C2] dark:bg-[#71B7FB] text-bg h-fit hover:brightness-120 transition-[filter] py-1 px-3 rounded-full text-sm"
+				class="text-bg h-fit rounded-full bg-[#0A66C2] px-3 py-1 text-sm transition-[filter] hover:brightness-120 dark:bg-[#71B7FB]"
 				href={CONTACT.linkedin}
 				target="_blank"
 				rel="noopener noreferrer"
@@ -181,7 +181,7 @@
 				</p>
 			</div>
 		</div>
-		<div class="flex items-baseline text-nowrap text-muted text-sm justify-between gap-6">
+		<div class="text-muted flex items-baseline justify-between gap-6 text-sm text-nowrap">
 			<div class="flex items-center gap-1"><BanknotesIcon />{labels.maltRate}</div>
 			<div class="flex items-center gap-1"><MapPinIcon />{labels.maltLocation}</div>
 		</div>
@@ -195,12 +195,12 @@
 
 {#snippet x()}
 	<img
-		class="w-2xs max-w-[unset] h-24"
+		class="h-24 w-2xs max-w-[unset]"
 		src="https://pbs.twimg.com/profile_banners/1599713873325658112/1769633299/1500x500"
 		alt=""
 	/>
 	<div
-		class="absolute left-3 translate-y-[-50%] p-0.5 bg-surface rounded-full [&_img]:size-14 [&_img]:rounded-full"
+		class="bg-surface absolute left-3 translate-y-[-50%] rounded-full p-0.5 [&_img]:size-14 [&_img]:rounded-full"
 	>
 		{@render children()}
 	</div>
@@ -208,7 +208,7 @@
 		<div class="flex justify-between">
 			<span class="mt-6">@colinlienard</span>
 			<a
-				class="bg-fg text-bg text-sm h-fit hover:bg-fg/90 transition-colors py-1 px-3 rounded-full"
+				class="bg-fg text-bg hover:bg-fg/90 h-fit rounded-full px-3 py-1 text-sm transition-colors"
 				href={CONTACT.x}
 				target="_blank"
 				rel="noopener noreferrer"
@@ -216,6 +216,6 @@
 				{labels.xCta}
 			</a>
 		</div>
-		<span class="text-sm text-muted">Developer building with svelte/react</span>
+		<span class="text-muted text-sm">Developer building with svelte/react</span>
 	</div>
 {/snippet}

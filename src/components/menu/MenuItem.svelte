@@ -19,10 +19,10 @@
 </script>
 
 <button
-	class="flex items-center gap-2 p-2 rounded-lg
+	class="flex items-center gap-2 rounded-lg p-2
 	  {isSelected ? 'bg-fg/5' : ''}
   	{isCentered ? 'justify-center' : ''}
-  	{isActive ? 'outline outline-border' : ''}
+  	{isActive ? 'outline-border outline' : ''}
 	"
 	{onmouseenter}
 	onclick={onselect}

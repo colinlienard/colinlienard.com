@@ -184,15 +184,15 @@
 
 <div
 	id="menu"
-	class="menu fixed top-8 sm:top-12 z-50 w-full rounded-[1.6rem] transition-all ease-out duration-400 bg-surface/90 backdrop-blur-sm ring ring-border {isOpen
-		? 'rounded-b-xl max-w-[min(400px,calc(100vw-4rem))] shadow-2xl dark:shadow-2xl/50'
+	class="menu bg-surface/90 ring-border fixed top-8 z-50 w-full rounded-[1.6rem] ring backdrop-blur-sm transition-all duration-400 ease-out sm:top-12 {isOpen
+		? 'max-w-[min(400px,calc(100vw-4rem))] rounded-b-xl shadow-2xl dark:shadow-2xl/50'
 		: 'max-w-xs shadow-lg/6'}"
 	role="presentation"
 	onmouseenter={() => !isTransitioning && (isOpen = true)}
 	onmouseleave={() => !isTransitioning && (isOpen = false)}
 >
 	<div
-		class="flex items-center p-1.5 overflow-hidden"
+		class="flex items-center overflow-hidden p-1.5"
 		role="presentation"
 		ontouchend={(e) => {
 			e.preventDefault();
@@ -200,14 +200,14 @@
 		}}
 	>
 		{@render children?.()}
-		<div class="menu-status flex justify-between pl-2 pr-1.5 items-center w-full text-nowrap">
-			<div class="flex flex-col leading-5 w-full">
+		<div class="menu-status flex w-full items-center justify-between pr-1.5 pl-2 text-nowrap">
+			<div class="flex w-full flex-col leading-5">
 				<span>Colin Lienard</span>
 				<MenuStatus {translations} {lang} isPause={isOpen} />
 			</div>
-			<BarsIcon class="sm:hidden mr-1.5 ml-auto" />
+			<BarsIcon class="mr-1.5 ml-auto sm:hidden" />
 			<kbd
-				class="not-sm:hidden mr-1.5 ml-auto flex items-center gap-0.5 rounded-md bg-fg/5 p-1 font-sans text-sm text-muted"
+				class="bg-fg/5 text-muted mr-1.5 ml-auto flex items-center gap-0.5 rounded-md p-1 font-sans text-sm not-sm:hidden"
 			>
 				<span class="leading-none" class:text-base={isMac}>{isMac ? '⌘' : 'Ctrl'}</span>K
 			</kbd>
@@ -215,12 +215,12 @@
 	</div>
 	{#if isOpen}
 		<div
-			class="flex relative flex-col gap-1.5 p-1.5 pt-0"
+			class="relative flex flex-col gap-1.5 p-1.5 pt-0"
 			transition:slideWithOpacity={{ duration: TRANSITION_DURATION }}
 		>
 			{#each sections as section (section.label)}
 				<hr class="text-border -mx-1.5" />
-				<span class="text-sm text-muted pl-2 pt-1">{section.label}</span>
+				<span class="text-muted pt-1 pl-2 text-sm">{section.label}</span>
 				<div class={section.isGrid ? 'grid grid-cols-3 gap-1.5' : 'contents'}>
 					{#each section.items as item (item.name)}
 						{@const { name, icon: Icon, ...props } = item}
@@ -236,7 +236,7 @@
 					{/each}
 				</div>
 			{/each}
-			<div class="absolute top-0 -left-12 not-sm:hidden -right-12 -bottom-16 -z-10"></div>
+			<div class="absolute top-0 -right-12 -bottom-16 -left-12 -z-10 not-sm:hidden"></div>
 		</div>
 	{/if}
 </div>
