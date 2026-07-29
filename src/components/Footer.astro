@@ -1,9 +1,22 @@
 ---
+import GithubIcon from 'virtual:icons/logos/github-icon';
+import { CONTACT } from '../config';
 import { useTranslations } from '../i18n';
 
 const t = useTranslations(Astro.currentLocale);
 ---
 
-<footer class="section text-muted pt-24 pb-8 text-center text-sm text-balance">
-	© Copyright {new Date().getFullYear()} - {t('footer.allRightsReserved')}, Colin Lienard
+<footer class="section text-muted flex flex-col items-center gap-4 pt-24 pb-8 text-sm">
+	<a
+		class="decoration-fg/20 hover:text-fg flex items-center gap-2 underline underline-offset-4 transition-colors"
+		href={CONTACT.github + '/colinlienard.com'}
+		target="_blank"
+		rel="noopener noreferrer"
+	>
+		<GithubIcon class="[&_path]:fill-current" />
+		{t('footer.sourceCode')}
+	</a>
+	<span class="text-center text-balance">
+		© Copyright {new Date().getFullYear()} - {t('footer.allRightsReserved')}, Colin Lienard
+	</span>
 </footer>

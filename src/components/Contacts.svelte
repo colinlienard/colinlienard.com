@@ -76,7 +76,9 @@
 	const hover =
 		(index: number): Attachment<HTMLAnchorElement> =>
 		(node) => {
-			return on(node, 'mouseenter', async () => {
+			return on(node, 'pointerenter', async (event) => {
+				if (event.pointerType !== 'mouse') return;
+
 				let prevOpen = open;
 				open = true;
 

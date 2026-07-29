@@ -1,11 +1,4 @@
-export const defaultLang = 'fr';
-
-export const languages = {
-	fr: { label: 'FR', icon: '🇫🇷', path: '/' },
-	en: { label: 'EN', icon: '🇬🇧', path: '/en' },
-} as const;
-
-export const ui = {
+const ui = {
 	fr: {
 		'menu.role': 'Full-Stack Engineer',
 		'menu.available': 'Disponible dès septembre',
@@ -32,8 +25,10 @@ export const ui = {
 		'hero.p1.post': '.',
 		'hero.p2.pre': "J'aide des ",
 		'hero.p2.link': 'startups et scaleups',
-		'hero.p2.mid1': ' à transformer une idée en produit solide et soigné. Je me concentre sur le ',
-		'hero.p2.mid2': ' tout en pouvant contribuer au ',
+		'hero.p2.mid1': " à transformer une idée en produit solide et soigné. J'aime concevoir des ",
+		'hero.p2.ux': 'expériences utilisateur',
+		'hero.p2.mid2': ' captivantes et peaufiner chaque ',
+		'hero.p2.interaction': 'interaction',
 		'hero.p2.post': '.',
 		'hero.p3.pre': 'En parallèle, je crée et maintiens des projets ⭐ ',
 		'hero.p3.link': 'open-source',
@@ -71,6 +66,7 @@ export const ui = {
 		'contact.malt.rate': '450 €/jour',
 		'contact.malt.location': 'Limoges et distanciel',
 		'contact.x.cta': 'Suivre',
+		'footer.sourceCode': 'Voir le code source',
 		'footer.allRightsReserved': 'Tous droits réservés',
 	},
 	en: {
@@ -99,8 +95,10 @@ export const ui = {
 		'hero.p1.post': '.',
 		'hero.p2.pre': 'I help ',
 		'hero.p2.link': 'startups and scaleups',
-		'hero.p2.mid1': ' turn an idea into a solid, polished product. I focus on the ',
-		'hero.p2.mid2': ' while also contributing to the ',
+		'hero.p2.mid1': ' turn an idea into a solid, polished product. I love crafting engaging ',
+		'hero.p2.ux': 'user experiences',
+		'hero.p2.mid2': ' and refining every ',
+		'hero.p2.interaction': 'interaction',
 		'hero.p2.post': '.',
 		'hero.p3.pre': 'On the side, I create and maintain ⭐ ',
 		'hero.p3.link': 'open-source',
@@ -136,11 +134,14 @@ export const ui = {
 		'contact.malt.rate': '€450/day',
 		'contact.malt.location': 'France and remote',
 		'contact.x.cta': 'Follow',
+		'footer.sourceCode': 'See the source code',
 		'footer.allRightsReserved': 'All rights reserved',
 	},
 } as const;
 
-export type Lang = keyof typeof ui;
+type Lang = keyof typeof ui;
+
+const defaultLang: Lang = 'fr';
 
 export function getLang(locale: string | undefined): Lang {
 	if (locale && Object.hasOwn(ui, locale)) return locale as Lang;
