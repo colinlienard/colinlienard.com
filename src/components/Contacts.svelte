@@ -7,7 +7,9 @@
 	import { fade } from 'svelte/transition';
 	import MaltIcon from 'virtual:icons/custom/malt';
 	import BanknotesIcon from 'virtual:icons/heroicons/banknotes';
+	import CheckBadgeIcon from 'virtual:icons/heroicons/check-badge-16-solid';
 	import MapPinIcon from 'virtual:icons/heroicons/map-pin';
+	import ShieldCheckIcon from 'virtual:icons/heroicons/shield-check';
 	import GithubIcon from 'virtual:icons/logos/github-icon';
 	import LinkedinIcon from 'virtual:icons/logos/linkedin-icon';
 	import XIcon from 'virtual:icons/logos/x';
@@ -134,7 +136,14 @@
 {#snippet github()}
 	<div class="flex flex-col gap-3 p-3">
 		<div class="flex items-center gap-3 [&_img]:rounded-full">
-			{@render children()}
+			<div class="relative">
+				{@render children()}
+				<div
+					class="bg-surface ring-border absolute -right-1.5 -bottom-1.5 flex size-5 items-center justify-center rounded-full text-xs shadow-sm ring"
+				>
+					🎧
+				</div>
+			</div>
 			<div class="flex flex-col">
 				colinlienard
 				<p class="text-muted text-sm">{contributionsLabel}</p>
@@ -145,14 +154,16 @@
 {/snippet}
 
 {#snippet linkedin()}
-	<div class="h-16 w-2xs bg-linear-to-br from-[#0A66C2] to-[#0A66C2]/30"></div>
+	<div class="linkedin-banner h-16 w-2xs bg-linear-to-br"></div>
 	<div
 		class="bg-surface absolute left-3 translate-y-[-50%] rounded-full p-0.5 [&_img]:size-14 [&_img]:rounded-full"
 	>
 		{@render children()}
 	</div>
 	<div class="flex flex-col gap-1 p-3 pt-8">
-		<span>Colin Lienard</span>
+		<div>
+			Colin Lienard <ShieldCheckIcon class="text-muted inline size-[1em] -translate-y-0.5" />
+		</div>
 		<div class="mt-1 flex items-end justify-between gap-3">
 			<p class="text-muted text-sm">
 				{labels.linkedinHeadline}<br />{labels.linkedinLocation}
@@ -170,7 +181,7 @@
 {/snippet}
 
 {#snippet malt()}
-	<div class="flex flex-col gap-3 p-3">
+	<div class="flex flex-col gap-4 p-3">
 		<div class="flex items-center gap-3 [&_img]:rounded-md">
 			{@render children()}
 			<div class="flex flex-col">
@@ -206,7 +217,9 @@
 	</div>
 	<div class="flex flex-col p-3">
 		<div class="flex justify-between">
-			<span class="mt-6">@colinlienard</span>
+			<div class="mt-6">
+				@colinlienard <CheckBadgeIcon class="inline size-[1em] -translate-y-0.5 text-[#1d9bf0]" />
+			</div>
 			<a
 				class="bg-fg text-bg hover:bg-fg/90 h-fit rounded-full px-3 py-1 text-sm transition-colors"
 				href={CONTACT.x}
@@ -216,6 +229,27 @@
 				{labels.xCta}
 			</a>
 		</div>
-		<span class="text-muted text-sm">Developer building with svelte/react</span>
+		<span class="text-muted text-sm">Developer building with Svelte/React</span>
 	</div>
 {/snippet}
+
+<style>
+	.linkedin-banner {
+		background-image:
+			radial-gradient(
+				circle at 120% 200%,
+				#0000000a 0%,
+				#0000000a 50%,
+				#c5c5c50a 50%,
+				#c5c5c50a 100%
+			),
+			radial-gradient(
+				circle at 130% -10%,
+				#4040400a 0%,
+				#4040400a 50%,
+				#ffffff0a 50%,
+				#ffffff0a 100%
+			),
+			linear-gradient(to right, #0a66c2, #0a66c280);
+	}
+</style>
