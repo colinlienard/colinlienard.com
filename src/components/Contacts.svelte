@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { type Snippet, tick } from 'svelte';
+	import type { Snippet } from 'svelte';
 	import type { Attachment } from 'svelte/attachments';
 	import { cubicOut } from 'svelte/easing';
 	import { on } from 'svelte/events';
@@ -40,9 +40,9 @@
 
 	let open = $state(false);
 	let contentIndex = $state(0);
-	let prevContentIndex = $state(0);
-	let popupElement = $state<HTMLElement>();
-	let direction = $derived(Math.max(Math.min(contentIndex - prevContentIndex, 1), -1));
+	let direction = $state(0);
+	let renderId = $state(0);
+	let isInstant = false;
 
 	const left = new Tween(0, { duration: 300, easing: cubicOut });
 	const width = new Tween(0, { duration: 300, easing: cubicOut });
@@ -78,22 +78,24 @@
 	const hover =
 		(index: number): Attachment<HTMLAnchorElement> =>
 		(node) => {
-			return on(node, 'pointerenter', async (event) => {
+			return on(node, 'pointerenter', (event) => {
 				if (event.pointerType !== 'mouse') return;
 
-				let prevOpen = open;
+				isInstant = !open;
 				open = true;
+				left.set(node.offsetLeft + node.offsetWidth / 2, isInstant ? { duration: 0 } : {});
+				renderId += 1;
 
-				left.set(node.offsetLeft + node.offsetWidth / 2, prevOpen ? {} : { duration: 0 });
-				prevContentIndex = contentIndex;
+				const prevContentIndex = contentIndex;
 				contentIndex = index;
-
-				await tick();
-				if (!popupElement) return;
-				width.set(popupElement.offsetWidth, prevOpen ? {} : { duration: 0 });
-				height.set(popupElement.offsetHeight, prevOpen ? {} : { duration: 0 });
+				direction = Math.max(Math.min(contentIndex - prevContentIndex, 1), -1);
 			});
 		};
+
+	const measure: Attachment<HTMLElement> = (node) => {
+		width.set(node.offsetWidth, isInstant ? { duration: 0 } : {});
+		height.set(node.offsetHeight, isInstant ? { duration: 0 } : {});
+	};
 </script>
 
 <div class="relative flex" onmouseleave={() => (open = false)} role="presentation">
@@ -117,12 +119,12 @@
 			style:width={width.current + 'px'}
 			style:height={height.current + 'px'}
 		>
-			{#key contentIndex}
+			{#key renderId}
 				<div
-					bind:this={popupElement}
 					class="absolute"
 					in:flyWithBlur={{ x: 200 * direction, duration: 300 }}
 					out:flyWithBlur={{ x: 200 * -direction, duration: 300 }}
+					{@attach measure}
 				>
 					{@render items[contentIndex]?.content()}
 				</div>
