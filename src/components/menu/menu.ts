@@ -20,12 +20,3 @@ export type MenuItemData = {
 	isCentered?: boolean;
 	onselect(): void;
 };
-
-export function getParisTime(lang?: string) {
-	const isEnglish = lang === 'en';
-	return new Intl.DateTimeFormat(isEnglish ? 'en-US' : 'fr-FR', {
-		timeZone: 'Europe/Paris',
-		hour: isEnglish ? 'numeric' : '2-digit',
-		minute: '2-digit',
-	}).format(new Date());
-}

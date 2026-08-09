@@ -9,7 +9,7 @@ const ui = {
 		'menu.light': 'Clair',
 		'menu.dark': 'Sombre',
 		'menu.system': 'Système',
-		'seo.title': 'Colin Lienard • Full-Stack Engineer',
+		'seo.title': 'Colin Lienard',
 		'seo.description':
 			"Colin Lienard, Full-Stack Engineer React & TypeScript basé à Limoges. +4 ans d'expérience, spécialisé dans l'expérience développeur et les interfaces web complexes.",
 		'hero.title': 'Accueil',
@@ -79,7 +79,7 @@ const ui = {
 		'menu.light': 'Light',
 		'menu.dark': 'Dark',
 		'menu.system': 'System',
-		'seo.title': 'Colin Lienard • Full-Stack Engineer',
+		'seo.title': 'Colin Lienard',
 		'seo.description':
 			'Colin Lienard, Full-Stack React & TypeScript Engineer based in Limoges, France. +4 years of experience, specialized in developer experience and complex web interfaces.',
 		'hero.title': 'Home',
@@ -90,7 +90,7 @@ const ui = {
 		'hero.p1.mid1':
 			' with 4+ years of experience, specialized in developer experience and complex web interfaces. Based in ',
 		'hero.p1.city': 'Limoges, France 🇫🇷',
-		'hero.p1.mid2': ', I work ',
+		'hero.p1.mid2': ', I work ',
 		'hero.p1.remote': 'remotely',
 		'hero.p1.post': '.',
 		'hero.p2.pre': 'I help ',

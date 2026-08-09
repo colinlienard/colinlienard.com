@@ -5,15 +5,10 @@
 	import { CONTACT } from '../../config';
 	import { flyWithBlur } from '../../utils/svelte-transitions';
 	import type { MenuTranslations } from './menu';
-	import { getParisTime } from './menu';
 
-	let {
-		translations,
-		lang,
-		isPause,
-	}: { translations: MenuTranslations; lang?: string; isPause: boolean } = $props();
+	let { translations, isPause }: { translations: MenuTranslations; isPause: boolean } = $props();
 
-	const options = [role, available, location, email, currentTime];
+	const options = [role, available, location, email];
 
 	let current = $state(0);
 	let isVisible = $state(true);
@@ -69,10 +64,6 @@
 		<EnvelopeIcon />
 		{CONTACT.email}
 	</a>
-{/snippet}
-
-{#snippet currentTime()}
-	<span class="font-mono">{getParisTime(lang)} (Paris)</span>
 {/snippet}
 
 <style>
