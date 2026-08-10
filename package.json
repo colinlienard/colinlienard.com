@@ -40,5 +40,5 @@
 		"typescript-eslint": "^8.65.0",
 		"unplugin-icons": "^23.0.1"
 	},
-	"packageManager": "pnpm@11.13.0"
+	"packageManager": "pnpm@11.21.0"
 }

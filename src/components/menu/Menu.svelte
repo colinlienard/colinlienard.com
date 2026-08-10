@@ -21,11 +21,7 @@
 
 	const TRANSITION_DURATION = 400;
 
-	let {
-		children,
-		translations,
-		lang,
-	}: { children?: Snippet; translations: MenuTranslations; lang?: string } = $props();
+	let { children, translations }: { children?: Snippet; translations: MenuTranslations } = $props();
 
 	const theme = createTheme();
 
@@ -203,7 +199,7 @@
 		<div class="menu-status flex w-full items-center justify-between pr-1.5 pl-2 text-nowrap">
 			<div class="flex w-full flex-col leading-5">
 				<span>Colin Lienard</span>
-				<MenuStatus {translations} {lang} isPause={isOpen} />
+				<MenuStatus {translations} isPause={isOpen} />
 			</div>
 			<BarsIcon class="mr-1.5 ml-auto sm:hidden" />
 			<kbd
