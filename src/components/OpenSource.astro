@@ -16,24 +16,33 @@ const projects = [
 		title: 'sv-router',
 		image: svrouter,
 		description: 'Type-safe routing for Svelte single-page apps',
-		stars: 200,
+		repo: 'sv-router',
 		link: 'https://github.com/colinlienard/sv-router',
 	},
 	{
 		title: 'GitLight',
 		image: gitlight,
 		description: 'GitHub & GitLab notifications on your desktop',
-		stars: 900,
+		repo: 'gitlight',
 		link: 'https://github.com/colinlienard/gitlight',
 	},
 	{
 		title: 'GitHundred',
 		image: githundred,
 		description: 'Top 100 most starred GitHub repositories',
-		stars: 50,
+		repo: 'githundred',
 		link: 'https://githundred.vercel.app',
 	},
 ];
+
+const projectsWithStars = await Promise.all(
+	projects.map(async ({ repo, ...project }) => {
+		const response = await fetch(`https://api.github.com/repos/colinlienard/${repo}`);
+		if (!response.ok) throw new Error(response.statusText);
+		const data = (await response.json()) as { stargazers_count: number };
+		return { ...project, stars: data.stargazers_count };
+	}),
+);
 ---
 
 <section id="projects" class="section flex scroll-mt-24 flex-col gap-12">
@@ -43,7 +52,7 @@ const projects = [
 	</div>
 	<ul class="group grid gap-4 sm:grid-cols-2">
 		{
-			projects.map((project) => (
+			projectsWithStars.map((project) => (
 				<li>
 					<a
 						href={project.link}
@@ -53,7 +62,9 @@ const projects = [
 					>
 						<div class="flex w-full items-center justify-end gap-1">
 							<StarSolidIcon class="text-yellow-500" />
-							<span class="text-muted text-sm">+{project.stars}</span>
+							<span class="text-muted text-sm">
+								{project.stars.toLocaleString(Astro.currentLocale)}
+							</span>
 						</div>
 						<div class="relative">
 							<Image
