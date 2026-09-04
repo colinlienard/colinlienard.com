@@ -7,7 +7,9 @@ import eslintPluginUnicorn from 'eslint-plugin-unicorn';
 import globals from 'globals';
 import ts from 'typescript-eslint';
 
-/** @type {import('eslint').Linter.Config[]} */
+/**
+@type {import('eslint').Linter.Config[]}
+*/
 export default [
 	js.configs.recommended,
 	...ts.configs.recommended,
@@ -42,6 +44,7 @@ export default [
 			'unicorn/name-replacements': 'off',
 			'unicorn/no-top-level-assignment-in-function': 'off',
 			'unicorn/prefer-global-this': 'off',
+			'unicorn/single-line-block-comment-style': 'off',
 		},
 	},
 	{
