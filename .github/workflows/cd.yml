@@ -1,0 +1,26 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 7 * * *'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+      - name: Build
+        run: pnpm build
+      - name: Deploy to Cloudflare
+        run: pnpm dlx wrangler deploy
