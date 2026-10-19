@@ -5,6 +5,7 @@ import { defineConfig, fontProviders } from 'astro/config';
 import { FileSystemIconLoader } from 'unplugin-icons/loaders';
 import icons from 'unplugin-icons/vite';
 
+// eslint-disable-next-line unicorn/no-top-level-side-effects
 export default defineConfig({
 	site: 'https://colinlienard.com',
 	i18n: {
