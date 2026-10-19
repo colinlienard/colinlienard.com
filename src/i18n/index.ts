@@ -1,7 +1,7 @@
 const ui = {
 	fr: {
 		'menu.role': 'Full-Stack Engineer',
-		'menu.available': 'Disponible dès septembre',
+		'menu.available': 'Disponible dès maintenant',
 		'menu.location': 'Limoges et distanciel',
 		'menu.sections': 'Sections',
 		'menu.language': 'Langue',
@@ -71,7 +71,7 @@ const ui = {
 	},
 	en: {
 		'menu.role': 'Full-Stack Engineer',
-		'menu.available': 'Available from September',
+		'menu.available': 'Available from now',
 		'menu.location': 'France and remote',
 		'menu.sections': 'Sections',
 		'menu.language': 'Language',
@@ -90,7 +90,7 @@ const ui = {
 		'hero.p1.mid1':
 			' with 4+ years of experience, specialized in developer experience and complex web interfaces. Based in ',
 		'hero.p1.city': 'Limoges, France 🇫🇷',
-		'hero.p1.mid2': ', I work ',
+		'hero.p1.mid2': ', I\u{A0}work ',
 		'hero.p1.remote': 'remotely',
 		'hero.p1.post': '.',
 		'hero.p2.pre': 'I help ',
@@ -144,8 +144,7 @@ type Lang = keyof typeof ui;
 const defaultLang: Lang = 'fr';
 
 export function getLang(locale: string | undefined): Lang {
-	if (locale && Object.hasOwn(ui, locale)) return locale as Lang;
-	return defaultLang;
+	return locale && Object.hasOwn(ui, locale) ? (locale as Lang) : defaultLang;
 }
 
 export function useTranslations(locale: string | undefined) {

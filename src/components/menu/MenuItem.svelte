@@ -22,7 +22,7 @@
 	class="flex items-center gap-2 rounded-lg p-2
 	  {isSelected ? 'bg-fg/5' : ''}
   	{isCentered ? 'justify-center' : ''}
-  	{isActive ? 'outline-border outline' : ''}
+	  {isActive ? 'outline outline-border' : ''}
 	"
 	{onmouseenter}
 	onclick={onselect}

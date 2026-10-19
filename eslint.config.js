@@ -45,6 +45,8 @@ export default [
 			'unicorn/no-top-level-assignment-in-function': 'off',
 			'unicorn/prefer-global-this': 'off',
 			'unicorn/single-line-block-comment-style': 'off',
+			'unicorn/prefer-early-return': 'off',
+			'unicorn/prefer-continue': 'off',
 		},
 	},
 	{

@@ -180,7 +180,7 @@
 
 <div
 	id="menu"
-	class="menu bg-surface/90 ring-border fixed top-8 z-50 w-full rounded-[1.6rem] ring backdrop-blur-sm transition-all duration-400 ease-out sm:top-12 {isOpen
+	class="menu fixed top-8 z-50 w-full rounded-[1.6rem] bg-surface/90 ring ring-border backdrop-blur-sm transition-all duration-400 ease-out sm:top-12 {isOpen
 		? 'max-w-[min(400px,calc(100vw-4rem))] rounded-b-xl shadow-2xl dark:shadow-2xl/50'
 		: 'max-w-xs shadow-lg/6'}"
 	role="presentation"
@@ -203,7 +203,7 @@
 			</div>
 			<BarsIcon class="mr-1.5 ml-auto sm:hidden" />
 			<kbd
-				class="bg-fg/5 text-muted mr-1.5 ml-auto flex items-center gap-0.5 rounded-md p-1 font-sans text-sm not-sm:hidden"
+				class="mr-1.5 ml-auto flex items-center gap-0.5 rounded-md bg-fg/5 p-1 font-sans text-sm text-muted not-sm:hidden"
 			>
 				<span class="leading-none" class:text-base={isMac}>{isMac ? '⌘' : 'Ctrl'}</span>K
 			</kbd>
@@ -215,8 +215,8 @@
 			transition:slideWithOpacity={{ duration: TRANSITION_DURATION }}
 		>
 			{#each sections as section (section.label)}
-				<hr class="text-border -mx-1.5" />
-				<span class="text-muted pt-1 pl-2 text-sm">{section.label}</span>
+				<hr class="-mx-1.5 text-border" />
+				<span class="pt-1 pl-2 text-sm text-muted">{section.label}</span>
 				<div class={section.isGrid ? 'grid grid-cols-3 gap-1.5' : 'contents'}>
 					{#each section.items as item (item.name)}
 						{@const { name, icon: Icon, ...props } = item}

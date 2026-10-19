@@ -51,58 +51,56 @@ const projectsWithStars = await Promise.all(
 		<h2 class="">{t('projects.title')}</h2>
 	</div>
 	<ul class="group grid gap-4 sm:grid-cols-2">
-		{
-			projectsWithStars.map((project) => (
-				<li>
-					<a
-						href={project.link}
-						target="_blank"
-						rel="noopener noreferrer"
-						class="squircle bg-fg/2 flex flex-col items-center gap-8 overflow-hidden p-8 transition-all group-hover:grayscale hover:grayscale-0! active:scale-95 hover:[&_img]:scale-104"
-					>
-						<div class="flex w-full items-center justify-end gap-1">
-							<StarSolidIcon class="text-yellow-500" />
-							<span class="text-muted text-sm">
-								{project.stars.toLocaleString(Astro.currentLocale)}
-							</span>
-						</div>
-						<div class="relative">
-							<Image
-								src={project.image}
-								alt=""
-								width={256}
-								height={256}
-								class="relative z-10 size-32 transition-transform"
-								loading="lazy"
-							/>
-							<Image
-								src={project.image}
-								alt=""
-								width={256}
-								height={256}
-								class="absolute inset-0 size-32 blur-3xl dark:opacity-75"
-								loading="lazy"
-								aria-hidden="true"
-							/>
-						</div>
-						<div class="flex w-full flex-col gap-2">
-							<h3 class="font-semibold">{project.title}</h3>
-							<span class="text-muted text-sm">{project.description}</span>
-						</div>
-					</a>
-				</li>
-			))
-		}
+		{projectsWithStars.map((project) => (
+			<li>
+				<a
+					href={project.link}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="squircle flex flex-col items-center gap-8 overflow-hidden bg-fg/2 p-8 transition-all group-hover:grayscale hover:grayscale-0! active:scale-95 hover:[&_img]:scale-104"
+				>
+					<div class="flex w-full items-center justify-end gap-1">
+						<StarSolidIcon class="text-yellow-500" />
+						<span class="text-sm text-muted">
+							{project.stars.toLocaleString(Astro.currentLocale)}
+						</span>
+					</div>
+					<div class="relative">
+						<Image
+							src={project.image}
+							alt=""
+							width={256}
+							height={256}
+							class="relative z-10 size-32 transition-transform"
+							loading="lazy"
+						/>
+						<Image
+							src={project.image}
+							alt=""
+							width={256}
+							height={256}
+							class="absolute inset-0 size-32 blur-3xl dark:opacity-75"
+							loading="lazy"
+							aria-hidden="true"
+						/>
+					</div>
+					<div class="flex w-full flex-col gap-2">
+						<h3 class="font-semibold">{project.title}</h3>
+						<span class="text-sm text-muted">{project.description}</span>
+					</div>
+				</a>
+			</li>
+		))}
 		<li>
 			<a
 				href={CONTACT.github}
 				target="_blank"
 				rel="noopener noreferrer"
-				class="squircle text-muted hover:text-fg bg-fg/2 flex h-full items-center justify-center p-8 transition-all active:scale-95"
+				class="squircle flex h-full items-center justify-center bg-fg/2 p-8 text-muted transition-all hover:text-fg active:scale-95"
 			>
 				<span>
 					{t('projects.moreOn')}{' '}
-					<span class="decoration-fg/20 underline underline-offset-4">
+					<span class="underline decoration-fg/20 underline-offset-4">
 						<GithubIcon class="mr-1 inline size-4 -translate-y-px [&_path]:fill-current" />
 						GitHub
 					</span>

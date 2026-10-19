@@ -74,7 +74,9 @@ const structuredData = {
 <meta name="description" content={description} />
 <link rel="canonical" href={canonical.href} />
 
-{alternates.map(({ hreflang, href }) => <link rel="alternate" hreflang={hreflang} href={href} />)}
+{alternates.map(({ hreflang, href }) => (
+	<link rel="alternate" hreflang={hreflang} href={href} />
+))}
 
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Colin Lienard" />

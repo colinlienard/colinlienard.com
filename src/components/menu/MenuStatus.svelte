@@ -29,7 +29,7 @@
 	});
 </script>
 
-<span class="text-muted relative w-full text-sm">
+<span class="relative w-full text-sm text-muted">
 	<span class="opacity-0" aria-hidden="true">_</span>
 	{#key current}
 		<span

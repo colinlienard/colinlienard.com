@@ -6,9 +6,9 @@ import { useTranslations } from '../i18n';
 const t = useTranslations(Astro.currentLocale);
 ---
 
-<footer class="section text-muted flex flex-col items-center gap-4 pt-24 pb-8 text-sm">
+<footer class="section flex flex-col items-center gap-4 pt-24 pb-8 text-sm text-muted">
 	<a
-		class="decoration-fg/20 hover:text-fg flex items-center gap-2 underline underline-offset-4 transition-colors"
+		class="flex items-center gap-2 underline decoration-fg/20 underline-offset-4 transition-colors hover:text-fg"
 		href={CONTACT.github + '/colinlienard.com'}
 		target="_blank"
 		rel="noopener noreferrer"
