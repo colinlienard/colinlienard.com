@@ -1,7 +1,7 @@
 const ui = {
 	fr: {
 		'menu.role': 'Full-Stack Engineer',
-		'menu.available': 'Disponible dès septembre',
+		'menu.available': 'Disponible dès maintenant',
 		'menu.location': 'Limoges et distanciel',
 		'menu.sections': 'Sections',
 		'menu.language': 'Langue',
@@ -71,7 +71,7 @@ const ui = {
 	},
 	en: {
 		'menu.role': 'Full-Stack Engineer',
-		'menu.available': 'Available from September',
+		'menu.available': 'Available from now',
 		'menu.location': 'France and remote',
 		'menu.sections': 'Sections',
 		'menu.language': 'Language',

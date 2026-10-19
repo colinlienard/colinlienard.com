@@ -13,27 +13,30 @@ const contributionsLabel = `${contributions.total.toLocaleString(Astro.currentLo
 ---
 
 <section id="hero" class="section relative flex flex-col gap-12">
-	<h1 class="font-newsreader mt-8 text-2xl tracking-tight text-balance italic">Colin Lienard</h1>
+	<h1 class="mt-8 font-newsreader text-2xl tracking-tight text-balance italic">Colin Lienard</h1>
 
-	<div class="text-muted/90 flex flex-col gap-4 leading-relaxed text-pretty">
+	<div class="flex flex-col gap-4 leading-relaxed text-pretty text-muted/90">
 		<p>
-			{t('hero.p1.pre')}<strong class="text-fg whitespace-nowrap">{t('hero.p1.role')}</strong>{
-				t('hero.p1.mid1')
-			}<strong class="text-fg">{t('hero.p1.city')}</strong>{t('hero.p1.mid2')}<strong
-				class="text-fg">{t('hero.p1.remote')}</strong
-			>{t('hero.p1.post')}
+			{t('hero.p1.pre')}
+			<strong class="whitespace-nowrap text-fg">{t('hero.p1.role')}</strong>
+			{t('hero.p1.mid1')}
+			<strong class="text-fg">{t('hero.p1.city')}</strong>
+			{t('hero.p1.mid2')}
+			<strong class="text-fg">{t('hero.p1.remote')}</strong>
+			{t('hero.p1.post')}
 		</p>
 		<p>
-			{t('hero.p2.pre')}<strong class="text-fg">{t('hero.p2.link')}</strong>{
-				t('hero.p2.mid1')
-			}<strong class="text-fg">{t('hero.p2.ux')}</strong>{t('hero.p2.mid2')}<strong class="text-fg"
-				>{t('hero.p2.interaction')}</strong
-			>{t('hero.p2.post')}
+			{t('hero.p2.pre')}
+			<strong class="text-fg">{t('hero.p2.link')}</strong>
+			{t('hero.p2.mid1')}
+			<strong class="text-fg">{t('hero.p2.ux')}</strong>
+			{t('hero.p2.mid2')}
+			<strong class="text-fg">{t('hero.p2.interaction')}</strong>
+			{t('hero.p2.post')}
 		</p>
 		<p>
-			{t('hero.p3.pre')}<strong class="text-fg">
-				{t('hero.p3.link')}
-			</strong>
+			{t('hero.p3.pre')}
+			<strong class="text-fg">{t('hero.p3.link')}</strong>
 			{t('hero.p3.post')}
 		</p>
 	</div>

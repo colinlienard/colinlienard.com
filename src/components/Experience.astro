@@ -55,70 +55,68 @@ const experiences: Experience[] = [
 		<h2 class="">{t('experience.title')}</h2>
 	</div>
 	<ul class="flex flex-col gap-12">
-		{
-			experiences.map((experience) => (
-				<li class="flex flex-col gap-2">
-					<div class="flex flex-col gap-1">
-						<div>
-							<p class="text-muted text-sm">{experience.roles[0].period}</p>
-							<h3 class="inline items-center">
-								{experience.roles[0].role}
-								<Image
-									src={experience.logo}
-									alt=""
-									width={48}
-									height={48}
-									class="mr-0.5 ml-2 inline size-6 -translate-y-0.5 object-contain dark:brightness-150"
-									loading="lazy"
-								/>
-								{experience.name}
-							</h3>
-						</div>
-						{experience.roles.length > 1 &&
-							experience.roles.slice(1).map(({ role, period }) => (
-								<div class="text-muted relative pl-9">
-									<div class="top-O border-border absolute left-2 h-7 w-4.5 rounded-bl-lg border-b-2 border-l-2" />
-									<p class="text-xs opacity-80">{period}</p>
-									<p class="text-sm">{role}</p>
-								</div>
-							))}
+		{experiences.map((experience) => (
+			<li class="flex flex-col gap-2">
+				<div class="flex flex-col gap-1">
+					<div>
+						<p class="text-sm text-muted">{experience.roles[0].period}</p>
+						<h3 class="inline items-center">
+							{experience.roles[0].role}
+							<Image
+								src={experience.logo}
+								alt=""
+								width={48}
+								height={48}
+								class="mr-0.5 ml-2 inline size-6 -translate-y-0.5 object-contain dark:brightness-150"
+								loading="lazy"
+							/>
+							{experience.name}
+						</h3>
 					</div>
-					<ul class="text-muted mt-2 flex list-[circle] flex-col gap-1 pl-4 leading-relaxed text-pretty">
-						{experience.bullets.map((bullet) => (
-							<li>
-								{'tooltip' in bullet && bullet.tooltip ? (
-									<span
-										class="tooltip-trigger decoration-fg/20 cursor-help underline decoration-dashed underline-offset-4"
-										tabindex="0"
-									>
-										{bullet.text}
-										<span
-											role="tooltip"
-											class="tooltip squircle pointer-events-none absolute bottom-[calc(100%+8px)] left-0 z-20 w-max max-w-xs rounded-3xl bg-stone-900 px-3 py-2 text-sm leading-snug text-stone-100 shadow-xl/30 dark:bg-stone-950"
-										>
-											{bullet.tooltip}
-										</span>
-									</span>
-								) : (
-									bullet.text
-								)}
-							</li>
+					{experience.roles.length > 1 &&
+						experience.roles.slice(1).map(({ role, period }) => (
+							<div class="relative pl-9 text-muted">
+								<div class="top-O absolute left-2 h-7 w-4.5 rounded-bl-lg border-b-2 border-l-2 border-border" />
+								<p class="text-xs opacity-80">{period}</p>
+								<p class="text-sm">{role}</p>
+							</div>
 						))}
-					</ul>
-					<ul class="mt-2 flex flex-wrap gap-2">
-						{experience.stack.map((item) => {
-							const stack = getStackItem(item);
-							return (
-								<li class="squircle border-border text-muted flex items-center gap-1 border px-2 py-1 text-sm">
-									<stack.icon class="size-4" />
-									{stack.name}
-								</li>
-							);
-						})}
-					</ul>
-				</li>
-			))
-		}
+				</div>
+				<ul class="mt-2 flex list-[circle] flex-col gap-1 pl-4 leading-relaxed text-pretty text-muted">
+					{experience.bullets.map((bullet) => (
+						<li>
+							{'tooltip' in bullet && bullet.tooltip ? (
+								<span
+									class="tooltip-trigger cursor-help underline decoration-fg/20 decoration-dashed underline-offset-4"
+									tabindex="0"
+								>
+									{bullet.text}
+									<span
+										role="tooltip"
+										class="tooltip squircle pointer-events-none absolute bottom-[calc(100%+8px)] left-0 z-20 w-max max-w-xs rounded-3xl bg-stone-900 px-3 py-2 text-sm leading-snug text-stone-100 shadow-xl/30 dark:bg-stone-950"
+									>
+										{bullet.tooltip}
+									</span>
+								</span>
+							) : (
+								bullet.text
+							)}
+						</li>
+					))}
+				</ul>
+				<ul class="mt-2 flex flex-wrap gap-2">
+					{experience.stack.map((item) => {
+						const stack = getStackItem(item);
+						return (
+							<li class="squircle flex items-center gap-1 border border-border px-2 py-1 text-sm text-muted">
+								<stack.icon class="size-4" />
+								{stack.name}
+							</li>
+						);
+					})}
+				</ul>
+			</li>
+		))}
 	</ul>
 </section>
 

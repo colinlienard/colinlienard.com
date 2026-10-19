@@ -16,7 +16,7 @@ Personal website of Colin Lienard, a French Full-Stack Engineer based in Limoges
 - Icons via **unplugin-icons** with Iconify (`heroicons`, `logos`) — imported as `virtual:icons/<set>/<name>`.
 - Images via `astro:assets` (`<Image>`), optimized with `sharp`.
 - SEO: `@astrojs/sitemap`, custom `Seo.astro` component.
-- Linting/formatting: ESLint (flat config, `unicorn`, `simple-import-sort`) + Prettier (with astro + tailwind plugins). Tabs for indentation, single quotes.
+- Linting/formatting: ESLint (flat config, `unicorn`, `simple-import-sort`) + Oxfmt (with Astro, Svelte, and Tailwind sorting enabled in `.oxfmtrc.json`). Tabs for indentation, single quotes.
 
 ## Structure
 

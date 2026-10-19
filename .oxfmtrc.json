@@ -1,0 +1,11 @@
+{
+	"$schema": "./node_modules/oxfmt/configuration_schema.json",
+	"useTabs": true,
+	"singleQuote": true,
+	"sortTailwindcss": {
+		"stylesheet": "./src/global.css"
+	},
+	"svelte": true,
+	"astro": true,
+	"ignorePatterns": ["node_modules", "pnpm-lock.yaml", "build", "dist", ".DS_Store", "Thumbs.db"]
+}

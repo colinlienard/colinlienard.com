@@ -101,7 +101,7 @@
 <div class="relative flex" onmouseleave={() => (open = false)} role="presentation">
 	{#each items as { label, url, icon: Icon }, index (index)}
 		<a
-			class="hover:[&_path]:fill-fg [&_path]:fill-muted z-10 p-2"
+			class="z-10 p-2 [&_path]:fill-muted hover:[&_path]:fill-fg"
 			href={url}
 			target="_blank"
 			rel="noopener noreferrer"
@@ -114,7 +114,7 @@
 	{#if open}
 		<div
 			transition:fade={{ duration: 150 }}
-			class="bg-surface squircle-sm ring-border absolute bottom-[calc(100%+0.5rem)] flex translate-x-[-50%] items-end overflow-hidden shadow-2xl ring"
+			class="squircle-sm absolute bottom-[calc(100%+0.5rem)] flex translate-x-[-50%] items-end overflow-hidden bg-surface shadow-2xl ring ring-border"
 			style:left={left.current + 'px'}
 			style:width={width.current + 'px'}
 			style:height={height.current + 'px'}
@@ -141,14 +141,14 @@
 			<div class="relative">
 				{@render children()}
 				<div
-					class="bg-surface ring-border absolute -right-1.5 -bottom-1.5 flex size-5 items-center justify-center rounded-full text-xs shadow-sm ring"
+					class="absolute -right-1.5 -bottom-1.5 flex size-5 items-center justify-center rounded-full bg-surface text-xs shadow-sm ring ring-border"
 				>
 					🎧
 				</div>
 			</div>
 			<div class="flex flex-col">
 				colinlienard
-				<p class="text-muted text-sm">{contributionsLabel}</p>
+				<p class="text-sm text-muted">{contributionsLabel}</p>
 			</div>
 		</div>
 		<GithubGraph {contributions} />
@@ -158,20 +158,20 @@
 {#snippet linkedin()}
 	<div class="linkedin-banner h-16 w-2xs bg-linear-to-br"></div>
 	<div
-		class="bg-surface absolute left-3 translate-y-[-50%] rounded-full p-0.5 [&_img]:size-14 [&_img]:rounded-full"
+		class="absolute left-3 translate-y-[-50%] rounded-full bg-surface p-0.5 [&_img]:size-14 [&_img]:rounded-full"
 	>
 		{@render children()}
 	</div>
 	<div class="flex flex-col gap-1 p-3 pt-8">
 		<div>
-			Colin Lienard <ShieldCheckIcon class="text-muted inline size-[1em] -translate-y-0.5" />
+			Colin Lienard <ShieldCheckIcon class="inline size-[1em] -translate-y-0.5 text-muted" />
 		</div>
 		<div class="mt-1 flex items-end justify-between gap-3">
-			<p class="text-muted text-sm">
+			<p class="text-sm text-muted">
 				{labels.linkedinHeadline}<br />{labels.linkedinLocation}
 			</p>
 			<a
-				class="text-bg h-fit rounded-full bg-[#0A66C2] px-3 py-1 text-sm transition-[filter] hover:brightness-120 dark:bg-[#71B7FB]"
+				class="h-fit rounded-full bg-[#0A66C2] px-3 py-1 text-sm text-bg transition-[filter] hover:brightness-120 dark:bg-[#71B7FB]"
 				href={CONTACT.linkedin}
 				target="_blank"
 				rel="noopener noreferrer"
@@ -188,19 +188,19 @@
 			{@render children()}
 			<div class="flex flex-col">
 				Colin Lienard
-				<p class="text-muted flex items-center gap-1.5 text-sm">
+				<p class="flex items-center gap-1.5 text-sm text-muted">
 					<span class="size-1.5 rounded-full bg-green-400"></span>
 					{labels.maltAvailability}
 				</p>
 			</div>
 		</div>
-		<div class="text-muted flex items-baseline justify-between gap-6 text-sm text-nowrap">
+		<div class="flex items-baseline justify-between gap-6 text-sm text-nowrap text-muted">
 			<div class="flex items-center gap-1"><BanknotesIcon />{labels.maltRate}</div>
 			<div class="flex items-center gap-1"><MapPinIcon />{labels.maltLocation}</div>
 		</div>
-		<div class="text-muted flex flex-wrap gap-2 text-sm">
+		<div class="flex flex-wrap gap-2 text-sm text-muted">
 			{#each ['React', 'TypeScript', 'Node'] as skill (skill)}
-				<span class="ring-border rounded-md px-2 py-0.5 ring">{skill}</span>
+				<span class="rounded-md px-2 py-0.5 ring ring-border">{skill}</span>
 			{/each}
 		</div>
 	</div>
@@ -213,7 +213,7 @@
 		alt=""
 	/>
 	<div
-		class="bg-surface absolute left-3 translate-y-[-50%] rounded-full p-0.5 [&_img]:size-14 [&_img]:rounded-full"
+		class="absolute left-3 translate-y-[-50%] rounded-full bg-surface p-0.5 [&_img]:size-14 [&_img]:rounded-full"
 	>
 		{@render children()}
 	</div>
@@ -223,7 +223,7 @@
 				@colinlienard <CheckBadgeIcon class="inline size-[1em] -translate-y-0.5 text-[#1d9bf0]" />
 			</div>
 			<a
-				class="bg-fg text-bg hover:bg-fg/90 h-fit rounded-full px-3 py-1 text-sm transition-colors"
+				class="h-fit rounded-full bg-fg px-3 py-1 text-sm text-bg transition-colors hover:bg-fg/90"
 				href={CONTACT.x}
 				target="_blank"
 				rel="noopener noreferrer"
@@ -231,7 +231,7 @@
 				{labels.xCta}
 			</a>
 		</div>
-		<span class="text-muted text-sm">Developer building with Svelte/React</span>
+		<span class="text-sm text-muted">Developer building with Svelte/React</span>
 	</div>
 {/snippet}
 
